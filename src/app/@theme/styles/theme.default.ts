@@ -1,6 +1,9 @@
 import { NbJSThemeOptions, DEFAULT_THEME as baseTheme } from '@nebular/theme';
 
 const baseThemeVariables = baseTheme.variables;
+// override charts colors...
+// baseThemeVariables.primary = '#ee2d26';
+// baseThemeVariables.primaryLight = '#f34d41';
 
 export const DEFAULT_THEME = {
   name: 'default',
