@@ -197,20 +197,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'TinyMCE',
         link: '/pages/editors/tinymce',
       },
-      {
-        title: 'CKEditor',
-        link: '/pages/editors/ckeditor',
-      },
     ],
   },
   {
     title: 'Tables & Data',
     icon: 'grid-outline',
     children: [
-      {
-        title: 'Smart Table',
-        link: '/pages/tables/smart-table',
-      },
       {
         title: 'Tree Grid',
         link: '/pages/tables/tree-grid',
