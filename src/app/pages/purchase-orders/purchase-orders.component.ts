@@ -28,8 +28,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class PurchaseOrdersComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = [
+    'state', 'price', 'currency', 'promisedDeliveryDate', 'wantedDeliveryDate', 'supplier',
+  ];
+  dataSource = [];
   source = [];
 
   settings = {
@@ -77,6 +79,7 @@ export class PurchaseOrdersComponent implements OnInit {
   ngOnInit(): void {
     this.service.getPage().then(res => {
       this.source = res.results;
+      this.dataSource = res.results;
     });
   }
 
