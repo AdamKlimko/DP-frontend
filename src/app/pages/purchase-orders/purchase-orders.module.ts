@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import {PurchaseOrdersComponent} from './purchase-orders.component';
 import {NbCardModule} from '@nebular/theme';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
-import {MatTableModule} from "@angular/material/table";
-import {ThemeModule} from "../../@theme/theme.module";
+import {MatTableModule} from '@angular/material/table';
+import {ThemeModule} from '../../@theme/theme.module';
 
 
 @NgModule({
