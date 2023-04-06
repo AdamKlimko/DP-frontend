@@ -7,4 +7,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/purchase-orders',
     home: true,
   },
+  {
+    title: 'Customer Orders',
+    icon: 'shopping-cart-outline',
+    link: '/pages/customer-orders',
+    home: true,
+  },
 ];

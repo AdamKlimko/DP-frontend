@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+    <label class="d-block" for="price">Price</label>
+    <input id="price" type="number" nbInput placeholder="price">
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="basic" (click)="dismiss()">Dismiss</button>
+    <button nbButton status="success" (click)="showToast('success')">Ayy</button>
+    <button nbButton status="danger" (click)="showToast('danger')">Ayy</button>
+  </nb-card-footer>
+</nb-card>

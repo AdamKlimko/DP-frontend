@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import {PurchaseOrdersComponent} from './purchase-orders/purchase-orders.component';
+import {CustomerOrdersComponent} from './customer-orders/customer-orders-table/customer-orders.component';
 
 const routes: Routes = [{
   path: '',
@@ -12,6 +13,10 @@ const routes: Routes = [{
     {
       path: 'purchase-orders',
       component: PurchaseOrdersComponent,
+    },
+    {
+      path: 'customer-orders',
+      component: CustomerOrdersComponent,
     },
     {
       path: '',
