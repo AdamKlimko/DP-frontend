@@ -4,7 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {CustomerOrder} from '../../../@core/data/customer-order';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {NbDialogService, NbToastrService} from '@nebular/theme';
+import {NbDialogService} from '@nebular/theme';
 import {CustomerOrderDialogComponent} from '../customer-order-dialog/customer-order-dialog.component';
 
 
@@ -20,7 +20,7 @@ export class CustomerOrdersComponent implements AfterViewInit {
   ) {}
 
   displayedColumns: string[] = [
-    'state', 'priority', 'price', 'currency', 'orderDate', 'productionSeq', 'orderProfit',
+    'state', 'priority', 'price', 'orderProfit', 'currency', 'orderDate', 'productionSeq', 'nProducts',
   ];
   dataSource = new MatTableDataSource<CustomerOrder>();
 
@@ -51,7 +51,7 @@ export class CustomerOrdersComponent implements AfterViewInit {
   create() {
     this.dialogService.open(CustomerOrderDialogComponent, {
       context: {
-        title: 'Create new customer order',
+        title: 'Create Customer Order',
       },
     });
   }

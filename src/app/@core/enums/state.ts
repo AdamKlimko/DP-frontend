@@ -1,4 +1,4 @@
-export const enum State {
+export enum State {
   PLANNED = 'planned',
   RELEASED = 'released',
   PROCESSED = 'processed',

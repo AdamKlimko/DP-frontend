@@ -1,4 +1,4 @@
-export const enum Priority {
+export enum Priority {
   LOW = 'low',
   MEDIUM = 'medium',
   HIGH = 'high',

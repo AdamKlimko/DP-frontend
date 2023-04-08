@@ -1,12 +1,42 @@
 <nb-card>
   <nb-card-header>{{ title }}</nb-card-header>
   <nb-card-body>
-    <label class="d-block" for="price">Price</label>
-    <input id="price" type="number" nbInput placeholder="price">
+    <form [formGroup]="form" class="row form-dialog">
+      <div class="col-md-6">
+        <label class="d-block" for="price">Order Date</label>
+        <input nbInput placeholder="Pick Order Date" [nbDatepicker]="orderDate" formControlName="orderDate">
+        <nb-datepicker #orderDate></nb-datepicker>
+
+        <label class="d-block" for="price">Price</label>
+        <input id="price" type="number" nbInput placeholder="Price" formControlName="price">
+
+        <label class="d-block" for="orderProfit">Order Profit</label>
+        <input id="orderProfit" type="number" nbInput placeholder="Order Profit" formControlName="orderProfit">
+
+        <label class="d-block" for="currency">Currency</label>
+        <nb-select id="currency" placeholder="Select Currency" formControlName="currency">
+          <nb-option *ngFor="let cur of currencies" [value]="cur">{{cur}}</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-md-6">
+        <label class="d-block" for="productionSeq">Production Sequence</label>
+        <input id="productionSeq" type="text" nbInput placeholder="Production Sequence" formControlName="productionSeq">
+
+        <label class="d-block" for="customer">Customer</label>
+        <input id="customer" type="text" nbInput placeholder="Customer" formControlName="customer">
+
+        <label class="d-block" for="priority">Priority</label>
+        <nb-radio-group id="priority" formControlName="priority">
+          <nb-radio *ngFor="let option of priorities" [value]="option">{{ option }}</nb-radio>
+        </nb-radio-group>
+      </div>
+    </form>
+
   </nb-card-body>
   <nb-card-footer>
-    <button nbButton status="basic" (click)="dismiss()">Dismiss</button>
-    <button nbButton status="success" (click)="showToast('success')">Ayy</button>
-    <button nbButton status="danger" (click)="showToast('danger')">Ayy</button>
+    <div class="d-flex justify-content-between">
+      <button nbButton status="basic" (click)="ref.close()">Cancel</button>
+      <button nbButton status="success" (click)="create()" [disabled]="!form.valid">Create</button>
+    </div>
   </nb-card-footer>
 </nb-card>

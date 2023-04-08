@@ -62,3 +62,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+nb-layout-header.fixed {
+  z-index: 999 !important;
+}

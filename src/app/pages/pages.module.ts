@@ -1,5 +1,12 @@
 import { NgModule } from '@angular/core';
-import {NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbMenuModule} from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbDatepickerModule,
+  NbIconModule,
+  NbInputModule,
+  NbMenuModule, NbRadioModule, NbSelectModule
+} from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -12,6 +19,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { CustomerOrderDialogComponent } from './customer-orders/customer-order-dialog/customer-order-dialog.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -28,6 +36,11 @@ import { CustomerOrderDialogComponent } from './customer-orders/customer-order-d
     NbButtonModule,
     NbIconModule,
     NbInputModule,
+    NbDatepickerModule,
+    ReactiveFormsModule,
+    NbSelectModule,
+    FormsModule,
+    NbRadioModule,
   ],
   declarations: [
     PagesComponent,

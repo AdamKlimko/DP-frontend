@@ -3,6 +3,14 @@
 @include nb-install-component() {
   nb-card {
     max-width: 600px;
-    max-height: 500px;
+    max-height: 700px;
   }
+}
+
+.form-dialog label {
+  margin: 0;
+}
+
+input {
+  margin-bottom: 8px;
 }

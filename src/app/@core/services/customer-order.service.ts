@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Page} from '../data/page';
 import {lastValueFrom} from 'rxjs';
@@ -14,8 +14,16 @@ export class CustomerOrderService {
   ) { }
 
   public async getPage(page: number): Promise<Page<CustomerOrder>> {
+    const url = `${config.apiUrl}/customerOrders?page=${page + 1}`;
     return await lastValueFrom(
-      this.http.get<Page<CustomerOrder>>(`${config.apiUrl}/customerOrders?page=${page + 1}`),
+      this.http.get<Page<CustomerOrder>>(url),
+    );
+  }
+
+  public async create(customerOrder: CustomerOrder): Promise<any> {
+    const url = `${config.apiUrl}/customerOrders`;
+    await lastValueFrom(
+      this.http.post<any>(url, customerOrder),
     );
   }
 }
