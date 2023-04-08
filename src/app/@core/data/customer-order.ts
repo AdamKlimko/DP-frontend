@@ -3,6 +3,7 @@ import {State} from '../enums/state';
 import {Priority} from '../enums/priority';
 
 export class CustomerOrder {
+  id: string | undefined;
   state: State;
   price: number;
   currency: Currency;

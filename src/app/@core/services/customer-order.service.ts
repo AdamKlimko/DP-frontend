@@ -20,6 +20,20 @@ export class CustomerOrderService {
     );
   }
 
+  public async getById(id: string): Promise<CustomerOrder> {
+    const url = `${config.apiUrl}/customerOrders/${id}`;
+    return await lastValueFrom(
+      this.http.get<CustomerOrder>(url),
+    );
+  }
+
+  public async updateById(id: string, customerOrder: CustomerOrder): Promise<CustomerOrder> {
+    const url = `${config.apiUrl}/customerOrders/${id}`;
+    return await lastValueFrom(
+      this.http.patch<CustomerOrder>(url, customerOrder),
+    );
+  }
+
   public async create(customerOrder: CustomerOrder): Promise<any> {
     const url = `${config.apiUrl}/customerOrders`;
     await lastValueFrom(

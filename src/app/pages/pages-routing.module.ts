@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import {PurchaseOrdersComponent} from './purchase-orders/purchase-orders.component';
 import {CustomerOrdersComponent} from './customer-orders/customer-orders-table/customer-orders.component';
+import {CustomerOrderDetailComponent} from './customer-orders/customer-order-detail/customer-order-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +18,11 @@ const routes: Routes = [{
     {
       path: 'customer-orders',
       component: CustomerOrdersComponent,
+    },
+
+    {
+      path: 'customer-orders/:id',
+      component: CustomerOrderDetailComponent,
     },
     {
       path: '',

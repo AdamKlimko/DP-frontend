@@ -1,5 +1,10 @@
 <nb-card>
-  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-header>
+    <div *ngIf="!customerOrder">Create Customer Order</div>
+    <div *ngIf="customerOrder">
+      Edit Customer Order: <b>{{customerOrder.id}}</b>
+    </div>
+  </nb-card-header>
   <nb-card-body>
     <form [formGroup]="form" class="row form-dialog">
       <div class="col-md-6">
@@ -36,7 +41,12 @@
   <nb-card-footer>
     <div class="d-flex justify-content-between">
       <button nbButton status="basic" (click)="ref.close()">Cancel</button>
-      <button nbButton status="success" (click)="create()" [disabled]="!form.valid">Create</button>
+      <button *ngIf="!customerOrder" nbButton status="success" (click)="create()" [disabled]="!form.valid">
+        Create
+      </button>
+      <button *ngIf="customerOrder" nbButton status="success" (click)="update()" [disabled]="!form.valid">
+        Update
+      </button>
     </div>
   </nb-card-footer>
 </nb-card>

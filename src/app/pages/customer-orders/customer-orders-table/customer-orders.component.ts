@@ -20,7 +20,7 @@ export class CustomerOrdersComponent implements AfterViewInit {
   ) {}
 
   displayedColumns: string[] = [
-    'state', 'priority', 'price', 'orderProfit', 'currency', 'orderDate', 'productionSeq', 'nProducts',
+    'state', 'priority', 'price', 'orderProfit', 'currency', 'orderDate', 'productionSeq', 'nProducts', 'action',
   ];
   dataSource = new MatTableDataSource<CustomerOrder>();
 
@@ -49,10 +49,6 @@ export class CustomerOrdersComponent implements AfterViewInit {
   }
 
   create() {
-    this.dialogService.open(CustomerOrderDialogComponent, {
-      context: {
-        title: 'Create Customer Order',
-      },
-    });
+    this.dialogService.open(CustomerOrderDialogComponent);
   }
 }
