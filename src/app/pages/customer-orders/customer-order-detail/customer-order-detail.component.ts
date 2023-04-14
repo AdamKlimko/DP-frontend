@@ -12,10 +12,6 @@ import {NbDialogService} from '@nebular/theme';
   styleUrls: ['./customer-order-detail.component.scss'],
 })
 export class CustomerOrderDetailComponent implements OnInit, OnDestroy {
-
-  displayedColumns: string[] = [
-    'partNumber', 'description', 'uom', 'size',
-  ];
   customerOrder: CustomerOrder;
   sub: Subscription;
   constructor(

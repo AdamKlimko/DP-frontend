@@ -56,32 +56,7 @@
               </ng-container>
 
               <ng-container *ngIf="customerOrder.products.length">
-                <table mat-table [dataSource]="customerOrder.products">
-
-                  <!-- Position Column -->
-                  <ng-container matColumnDef="partNumber">
-                    <th mat-header-cell *matHeaderCellDef> Part N. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.partNumber}} </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="description">
-                    <th mat-header-cell *matHeaderCellDef> Description </th>
-                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="uom">
-                    <th mat-header-cell *matHeaderCellDef> UOM </th>
-                    <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="size">
-                    <th mat-header-cell *matHeaderCellDef> Size </th>
-                    <td mat-cell *matCellDef="let element"> {{element.size}} </td>
-                  </ng-container>
-
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
+                <ngx-product-table [dataSource]="customerOrder.products"></ngx-product-table>
               </ng-container>
 
             </nb-tab>

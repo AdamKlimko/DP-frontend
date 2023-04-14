@@ -84,7 +84,7 @@ export class CustomerOrderDialogComponent implements OnInit {
       this.form.controls.priority.value,
       this.form.controls.orderProfit.value,
       this.form.controls.customer.value,
-      this.customerOrder.products,
+      [],
     );
     this.service.updateById(this.customerOrder.id, customerOrder)
       .then(

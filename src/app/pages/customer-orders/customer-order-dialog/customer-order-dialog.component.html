@@ -8,8 +8,8 @@
   <nb-card-body>
     <form [formGroup]="form" class="row form-dialog">
       <div class="col-md-6">
-        <label class="d-block" for="price">Order Date</label>
-        <input nbInput placeholder="Pick Order Date" [nbDatepicker]="orderDate" formControlName="orderDate">
+        <label class="d-block" for="orderDate">Order Date</label>
+        <input id="orderDate" nbInput placeholder="Pick Order Date" [nbDatepicker]="orderDate" formControlName="orderDate">
         <nb-datepicker #orderDate></nb-datepicker>
 
         <label class="d-block" for="price">Price</label>

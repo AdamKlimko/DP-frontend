@@ -1,0 +1,25 @@
+<nb-card>
+  <nb-card-header class="d-flex justify-content-between align-items-center">
+    Products
+    <button nbButton status="primary" size="small" (click)="create()">
+      <nb-icon icon="plus-outline" pack="eva"></nb-icon>
+    </button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <ngx-customer-table
+      [dataSource]="customers"
+      (editEmitter)="update($event)"
+      (deleteEmitter)="delete($event)"
+    ></ngx-customer-table>
+
+    <mat-paginator [pageSize]="10"
+                   [length]="length"
+                   [pageIndex]="pageIndex"
+                   (page)="setPage($event)"
+                   showFirstLastButtons>
+    </mat-paginator>
+
+  </nb-card-body>
+</nb-card>
