@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-header class="d-flex justify-content-between align-items-center">
+    Product Reservations
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <ngx-product-reservation-table
+      [dataSource]="productReservations"
+      [displayedColumns]="displayedColumns"
+    ></ngx-product-reservation-table>
+
+    <mat-paginator [pageSize]="10"
+                   [length]="length"
+                   [pageIndex]="pageIndex"
+                   (page)="setPage($event)"
+                   showFirstLastButtons>
+    </mat-paginator>
+
+  </nb-card-body>
+</nb-card>

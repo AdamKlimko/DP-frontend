@@ -6,6 +6,7 @@ import {CustomerOrder} from '../../../@core/data/customer-order';
 import {State} from '../../../@core/enums/state';
 import {Currency} from '../../../@core/enums/currency';
 import {Priority} from '../../../@core/enums/priority';
+import {CustomerService} from '../../../@core/services/customer.service';
 
 @Component({
   selector: 'ngx-customer-order-dialog',
@@ -16,7 +17,12 @@ export class CustomerOrderDialogComponent implements OnInit {
 
   currencies = Object.values(Currency);
   priorities = Object.values(Priority);
+  states = Object.values(State);
   @Input() customerOrder: CustomerOrder | undefined;
+  customers = [];
+  customersOptions = [];
+  length = 0;
+  pageIndex = 0;
 
   form = new FormGroup({
     orderDate: new FormControl<Date>(new Date()),
@@ -25,19 +31,30 @@ export class CustomerOrderDialogComponent implements OnInit {
     currency: new FormControl<Currency>(Currency.EUR),
     productionSeq: new FormControl<string>(null),
     priority: new FormControl<Priority>(Priority.MEDIUM),
+    state: new FormControl<State>(State.PLANNED),
     customer: new FormControl<string>(null),
+    productOrders: new FormControl<string>(null),
   });
 
   constructor(
     protected ref: NbDialogRef<CustomerOrderDialogComponent>,
     private service: CustomerOrderService,
     private toastrService: NbToastrService,
+    private customerService: CustomerService,
   ) {}
 
   ngOnInit(): void {
     if (this.customerOrder) {
       this.fillForm();
     }
+    this.getPageCustomers();
+  }
+
+  private getPageCustomers(query?: string) {
+    this.customerService.getPage(0, query, undefined).then(r => {
+      this.customers = r.results;
+      this.customersOptions = this.customers.map(customer => customer.name);
+    });
   }
 
   private fillForm(): void {
@@ -47,6 +64,7 @@ export class CustomerOrderDialogComponent implements OnInit {
     this.form.controls.currency.patchValue(this.customerOrder.currency);
     this.form.controls.productionSeq.patchValue(this.customerOrder.productionSeq);
     this.form.controls.priority.patchValue(this.customerOrder.priority);
+    this.form.controls.state.patchValue(this.customerOrder.state);
     this.form.controls.customer.patchValue(this.customerOrder.customer);
   }
 
@@ -60,7 +78,6 @@ export class CustomerOrderDialogComponent implements OnInit {
       this.form.controls.priority.value,
       this.form.controls.orderProfit.value,
       this.form.controls.customer.value,
-      [],
     );
     this.service.create(customerOrder)
       .then(
@@ -76,7 +93,7 @@ export class CustomerOrderDialogComponent implements OnInit {
 
   update() {
     const customerOrder = new CustomerOrder(
-      this.customerOrder.state,
+      this.form.controls.state.value,
       this.form.controls.price.value,
       this.form.controls.currency.value,
       this.form.controls.orderDate.value,
@@ -84,7 +101,6 @@ export class CustomerOrderDialogComponent implements OnInit {
       this.form.controls.priority.value,
       this.form.controls.orderProfit.value,
       this.form.controls.customer.value,
-      [],
     );
     this.service.updateById(this.customerOrder.id, customerOrder)
       .then(
@@ -96,5 +112,14 @@ export class CustomerOrderDialogComponent implements OnInit {
           this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });
         },
       );
+  }
+
+  onCustomerSelected(customerName: string) {
+    const customerObject = this.customers.find(customer => customer.name === customerName);
+    this.form.controls.customer.patchValue(customerObject.id);
+  }
+
+  onCustomerFilterChanged(event: string) {
+    this.getPageCustomers(event);
   }
 }

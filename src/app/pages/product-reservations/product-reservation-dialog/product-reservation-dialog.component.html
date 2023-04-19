@@ -1,0 +1,29 @@
+<nb-card accent="primary">
+  <nb-card-header>
+    <div>Create Product Reservation</div>
+  </nb-card-header>
+  <nb-card-body>
+    <b>{{product.partNumber}}</b>
+    <p>{{product.description}}</p>
+
+    <form [formGroup]="form" class="row form-dialog">
+
+      <div class="col">
+        <label class="d-block" for="reservedQuantity">Reserved Quantity</label>
+        <input id="reservedQuantity" type="number" min="0" nbInput placeholder="Quantity" formControlName="reservedQuantity">
+
+        <label class="d-block" for="location">Location</label>
+        <input id="location" type="text" nbInput placeholder="Location" formControlName="location">
+      </div>
+
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-between">
+      <button nbButton status="basic" (click)="ref.close()">Cancel</button>
+      <button nbButton status="success" (click)="create()" [disabled]="!form.valid">
+        Create
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

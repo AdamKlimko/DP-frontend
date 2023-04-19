@@ -15,7 +15,7 @@ export class CustomerDialogComponent implements OnInit {
 
   form = new FormGroup({
     name: new FormControl<string>(null),
-    description: new FormControl<string>(null),
+    description: new FormControl<string>(''),
     country: new FormControl<string>(null),
   });
   constructor(

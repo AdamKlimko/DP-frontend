@@ -13,8 +13,10 @@ export class ProductService {
     private http: HttpClient,
   ) { }
 
-  public async getPage(page: number): Promise<Page<Product>> {
-    const url = `${config.apiUrl}/products?page=${page + 1}`;
+  public async getPage(page: number, query: any, sortBy: any): Promise<Page<Product>> {
+    const url = `${config.apiUrl}/products?page=${page + 1}${
+      query ? '&partNumber=' + query : ''}${
+      sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(
       this.http.get<Page<Product>>(url),
     );
@@ -38,6 +40,13 @@ export class ProductService {
     const url = `${config.apiUrl}/products`;
     await lastValueFrom(
       this.http.post<any>(url, product),
+    );
+  }
+
+  public async delete(id: string): Promise<any> {
+    const url = `${config.apiUrl}/products/${id}`;
+    await lastValueFrom(
+      this.http.delete<any>(url),
     );
   }
 }

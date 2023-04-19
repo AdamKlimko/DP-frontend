@@ -1,0 +1,77 @@
+<table mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> PO ID </th>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="partNumber">
+    <th mat-header-cell *matHeaderCellDef> Part N. </th>
+    <td mat-cell *matCellDef="let element"> {{element.product.partNumber}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element" [matTooltip]="element.product.description">
+      <div class="td-long">{{element.product.description}}</div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="uom">
+    <th mat-header-cell *matHeaderCellDef> UOM </th>
+    <td mat-cell *matCellDef="let element"> {{element.product.uom}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="size">
+    <th mat-header-cell *matHeaderCellDef> Size </th>
+    <td mat-cell *matCellDef="let element"> {{element.product.size}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="storedQuantity">
+    <th mat-header-cell *matHeaderCellDef> Stored </th>
+    <td mat-cell *matCellDef="let element"> {{element.product.storedQuantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> Ordered </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="processed">
+    <th mat-header-cell *matHeaderCellDef> State </th>
+    <td mat-cell *matCellDef="let element">
+      <span class="state state-released" *ngIf="element.processed">processed</span>
+      <span class="state state-canceled" *ngIf="!element.processed">not processed</span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <button nbButton ghost size="small" [matMenuTriggerFor]="menu" *ngIf="!element.processed">
+        <nb-icon icon="more-horizontal-outline" pack="eva"></nb-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngIf="element.product.storedQuantity >= element.quantity" (click)="reserve(element)">
+          <mat-icon>check_box</mat-icon>
+          <span>Reserve</span>
+        </button>
+        <button mat-menu-item *ngIf="element.product.storedQuantity < element.quantity">
+          <mat-icon>build</mat-icon>
+          <span>Produce</span>
+        </button>
+        <button mat-menu-item (click)="edit(element)">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button mat-menu-item (click)="delete(element.id)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

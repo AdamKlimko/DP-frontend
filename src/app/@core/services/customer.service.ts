@@ -13,8 +13,10 @@ export class CustomerService {
     private http: HttpClient,
   ) { }
 
-  public async getPage(page: number): Promise<Page<Customer>> {
-    const url = `${config.apiUrl}/customers?page=${page + 1}`;
+  public async getPage(page: number, query: any, sortBy: any): Promise<Page<Customer>> {
+    const url = `${config.apiUrl}/customers?page=${page + 1}${
+      query ? '&name=' + query : ''}${
+      sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(
       this.http.get<Page<Customer>>(url),
     );

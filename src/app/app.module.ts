@@ -20,10 +20,14 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    MatMenuModule,
+    MatIconModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

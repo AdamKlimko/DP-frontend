@@ -1,0 +1,18 @@
+<nb-card>
+  <nb-card-header>
+    Add Product
+  </nb-card-header>
+  <nb-card-body>
+    <ngx-product-table
+      [dataSource]="dataSource"
+      [displayedColumns]="displayedColumns"
+      [tableOptions]="tableOptions"
+      (addEmitter)="onAddProduct($event)">
+    </ngx-product-table>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-between">
+      <button nbButton status="basic" (click)="ref.close()">Cancel</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

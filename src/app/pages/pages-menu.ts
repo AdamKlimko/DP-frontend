@@ -19,4 +19,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/products',
     home: true,
   },
+  //  TBD
+  // {
+  //   title: 'Product Reservations',
+  //   icon: 'cube-outline',
+  //   link: '/pages/product-reservations',
+  //   home: true,
+  // },
 ];

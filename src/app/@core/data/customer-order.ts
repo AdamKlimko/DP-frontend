@@ -1,6 +1,8 @@
 import {Currency} from '../enums/currency';
 import {State} from '../enums/state';
 import {Priority} from '../enums/priority';
+import {ProductOrder} from './product-order';
+import {ProductReservation} from './product-reservation';
 
 export class CustomerOrder {
   id: string | undefined;
@@ -12,7 +14,8 @@ export class CustomerOrder {
   priority: Priority;
   orderProfit: number | undefined;
   customer: string;
-  products: [];
+  productOrders: string[] | ProductOrder[];
+  productReservations: string[] | ProductReservation[];
 
   constructor(state: State,
               price: number,
@@ -21,8 +24,7 @@ export class CustomerOrder {
               productionSeq: string,
               priority: Priority,
               orderProfit: number | undefined,
-              customer: string,
-              products: []) {
+              customer: string) {
     this.state = state;
     this.price = price;
     this.currency = currency;
@@ -31,6 +33,5 @@ export class CustomerOrder {
     this.priority = priority;
     this.orderProfit = orderProfit;
     this.customer = customer;
-    this.products = products;
   }
 }

@@ -15,7 +15,7 @@ export class ProductDialogComponent implements OnInit {
   form = new FormGroup({
     partNumber: new FormControl<string>(null),
     description: new FormControl<string>(null),
-    storedQuantity: new FormControl<number>(null),
+    storedQuantity: new FormControl<number>(0),
     uom: new FormControl<string>(null),
     size: new FormControl<string>(null),
   });
@@ -52,7 +52,7 @@ export class ProductDialogComponent implements OnInit {
     this.service.create(product)
       .then(
         () => {
-          this.ref.close();
+          this.ref.close(true);
           this.toastrService.show('Product Created', `Success`, { status: 'success' });
         },
         (error) => {
@@ -74,7 +74,7 @@ export class ProductDialogComponent implements OnInit {
     this.service.updateById(this.product.id, product)
       .then(
         () => {
-          this.ref.close();
+          this.ref.close(true);
           this.toastrService.show('Product Updated', `Success`, { status: 'success' });
         },
         (error) => {

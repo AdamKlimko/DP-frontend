@@ -5,60 +5,95 @@
         Customer order:
         <b>{{customerOrder.id}}</b>
       </div>
-      <button nbButton status="primary" size="small">
-        <nb-icon (click)="edit()" icon="edit-outline" pack="eva"></nb-icon>
+      <button nbButton status="primary">
+        <nb-icon (click)="edit()" icon="edit-outline" title="Edit" pack="eva"></nb-icon>
       </button>
     </nb-card-header>
 
-    <nb-card-body>
-      <nb-list>
-        <nb-list-item>
-          <b>State:</b>
-          {{customerOrder.state}}
-        </nb-list-item>
-        <nb-list-item>
-          <b>Priority:</b>
-          {{customerOrder.priority}}
-        </nb-list-item>
-        <nb-list-item>
-          <b>Order Date:</b>
-          {{customerOrder.orderDate | date:'dd-MM-yyyy'}}
-        </nb-list-item>
-        <nb-list-item>
-          <b>Price:</b>
-          {{customerOrder.price | currency: customerOrder.currency.toUpperCase()}}
-        </nb-list-item>
-        <nb-list-item>
-          <b>Order Profit:</b>
-          {{customerOrder.orderProfit | currency: customerOrder.currency.toUpperCase()}}
-        </nb-list-item>
-        <nb-list-item>
-          <b>Currency:</b>
-          {{customerOrder.currency | uppercase}}
-        </nb-list-item>
-        <nb-list-item>
-          <b>Production Sequence:</b>
-          {{customerOrder.productionSeq}}
-        </nb-list-item>
-        <nb-list-item>
-          <b>Customer:</b>
-          {{customerOrder.customer}}
-        </nb-list-item>
-      </nb-list>
+    <nb-card-body class="mt-3">
+      <div class="row">
+        <nb-list class="col-md-6">
+          <nb-list-item class="justify-content-between">
+            <div>State:</div>
+            <div>
+              <span [class]="'state state-'+customerOrder.state">
+                {{customerOrder.state}}
+              </span>
+            </div>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Priority:</span>
+            <span [class]="'priority priority-'+customerOrder.priority">
+              {{customerOrder.priority}}
+            </span>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Order Date:</span>
+            <b>{{customerOrder.orderDate | date:'dd-MM-yyyy'}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Price:</span>
+            <b>{{customerOrder.price | currency: customerOrder.currency.toUpperCase()}}</b>
+          </nb-list-item>
+        </nb-list>
+        <nb-list class="col-md-6">
+          <nb-list-item class="justify-content-between">
+            <span>Order Profit:</span>
+            <b>{{customerOrder.orderProfit | currency: customerOrder.currency.toUpperCase()}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Currency:</span>
+            <b>{{customerOrder.currency | uppercase}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Production Sequence:</span>
+            <b>{{customerOrder.productionSeq}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Customer:</span>
+            <b>{{customerOrder.customer}}</b>
+          </nb-list-item>
+        </nb-list>
+      </div>
 
       <nb-card>
         <nb-card-body>
           <nb-tabset fullWidth>
 
-            <nb-tab tabTitle="Products">
-              <ng-container *ngIf="!customerOrder.products.length" class="text-center">
-                <p>No <b>Products</b> yet.
+            <nb-tab tabTitle="Product Orders">
+              <ng-container *ngIf="!customerOrder.productOrders.length" class="text-center">
+                <p>No <b>Product Orders</b> yet.
               </ng-container>
 
-              <ng-container *ngIf="customerOrder.products.length">
-                <ngx-product-table [dataSource]="customerOrder.products"></ngx-product-table>
+              <ng-container *ngIf="customerOrder.productOrders.length">
+                <ngx-product-order-table
+                  [dataSource]="customerOrder.productOrders"
+                  [displayedColumns]="displayedColumnsProductOrders"
+                  (reserveEmitter)="onReserveProduct($event)"
+                  (deleteEmitter)="onDeleteProductOrder($event)">
+                </ngx-product-order-table>
               </ng-container>
 
+              <div class="d-flex justify-content-end mt-4"
+                   *ngIf="customerOrder.state === 'planned' || customerOrder.state === 'released'">
+                <button nbButton (click)="addProduct()">
+                  <nb-icon icon="plus-outline" pack="eva"></nb-icon>Add product
+                </button>
+              </div>
+
+            </nb-tab>
+
+            <nb-tab tabTitle="Product Reservations">
+              <ng-container *ngIf="!customerOrder.productReservations.length" class="text-center">
+                <p>No <b>Product Reservations</b> yet.
+              </ng-container>
+
+              <ng-container *ngIf="customerOrder.productReservations.length">
+                <ngx-product-reservation-table
+                  [dataSource]="customerOrder.productReservations"
+                  [displayedColumns]="displayedColumnsProductReservations">
+                </ngx-product-reservation-table>
+              </ng-container>
             </nb-tab>
           </nb-tabset>
         </nb-card-body>

@@ -13,7 +13,7 @@
         <nb-datepicker #orderDate></nb-datepicker>
 
         <label class="d-block" for="price">Price</label>
-        <input id="price" type="number" nbInput placeholder="Price" formControlName="price">
+        <input id="price" type="number" min="0" nbInput placeholder="Price" formControlName="price">
 
         <label class="d-block" for="orderProfit">Order Profit</label>
         <input id="orderProfit" type="number" nbInput placeholder="Order Profit" formControlName="orderProfit">
@@ -22,21 +22,29 @@
         <nb-select id="currency" placeholder="Select Currency" formControlName="currency">
           <nb-option *ngFor="let cur of currencies" [value]="cur">{{cur}}</nb-option>
         </nb-select>
+
+        <label class="d-block" for="priority">Priority</label>
+        <nb-radio-group id="priority" name="priority" formControlName="priority">
+          <nb-radio *ngFor="let priority of priorities" [value]="priority">{{ priority }}</nb-radio>
+        </nb-radio-group>
       </div>
       <div class="col-md-6">
         <label class="d-block" for="productionSeq">Production Sequence</label>
         <input id="productionSeq" type="text" nbInput placeholder="Production Sequence" formControlName="productionSeq">
 
         <label class="d-block" for="customer">Customer</label>
-        <input id="customer" type="text" nbInput placeholder="Customer" formControlName="customer">
+        <ngx-autocomplete id="customer"
+          (valueSelected)="onCustomerSelected($event)"
+          (filterChanged)="onCustomerFilterChanged($event)"
+          [options]="customersOptions">
+        </ngx-autocomplete>
 
-        <label class="d-block" for="priority">Priority</label>
-        <nb-radio-group id="priority" formControlName="priority">
-          <nb-radio *ngFor="let option of priorities" [value]="option">{{ option }}</nb-radio>
+        <label class="d-block" for="state">State</label>
+        <nb-radio-group id="state" name="state" formControlName="state">
+          <nb-radio *ngFor="let state of states" [value]="state">{{ state }}</nb-radio>
         </nb-radio-group>
       </div>
     </form>
-
   </nb-card-body>
   <nb-card-footer>
     <div class="d-flex justify-content-between">

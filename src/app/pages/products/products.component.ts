@@ -1,48 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../../@core/data/product';
-import {NbDialogService} from '@nebular/theme';
+import {NbDialogService, NbToastrService} from '@nebular/theme';
 import {ProductService} from '../../@core/services/product.service';
 import {ProductDialogComponent} from './product-dialog/product-dialog.component';
+import {PageBaseDirective} from '../../util-components/generalization/page-base.directive';
 
 @Component({
   selector: 'ngx-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent extends PageBaseDirective<Product> implements OnInit {
 
-  products: Product[] = [];
-
-  // Paginator
-  length = 0;
-  pageIndex = 0;
+  displayedColumns = ['id', 'partNumber', 'description', 'uom', 'size', 'storedQuantity', 'action'];
+  tableOptions = { edit: true, remove:  true, add: false };
 
   constructor(
-    private service: ProductService,
+    protected service: ProductService,
     private dialogService: NbDialogService,
-  ) {}
+    private toastrService: NbToastrService,
+  ) {
+    super(service);
+  }
 
   ngOnInit(): void {
-    this.getPage(0);
-  }
-
-  private getPage(page: number): void {
-    this.service.getPage(page).then(res => {
-      this.products = res.results;
-      this.length = res.totalResults;
-      this.pageIndex = page;
-    });
-  }
-
-  setPage(event: any) {
-    this.pageIndex = event.pageIndex;
-    this.getPage(event.pageIndex);
+    this.getFirstPage();
   }
 
   create() {
-    this.dialogService.open(ProductDialogComponent).onClose.subscribe(() => {
-      this.getPage(0);
+    this.dialogService.open(ProductDialogComponent).onClose.subscribe(res => {
+        if (res) {
+          this.getFirstPage();
+        }
       },
     );
+  }
+
+  update(product: Product) {
+    this.dialogService.open(ProductDialogComponent, {
+      context: {
+        product: product,
+      },
+    })
+      .onClose.subscribe(() => {
+        this.getCurrentPage();
+      });
+  }
+
+  delete(id: string) {
+    this.service.delete(id)
+      .then(() => {
+        this.toastrService.show('Product Deleted', `Success`, { status: 'success' });
+        this.getCurrentPage();
+      })
+      .catch(error => {
+        this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });
+      });
   }
 }

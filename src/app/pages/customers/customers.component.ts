@@ -3,45 +3,32 @@ import {NbDialogService, NbToastrService} from '@nebular/theme';
 import {CustomerService} from '../../@core/services/customer.service';
 import {Customer} from '../../@core/data/customer';
 import {CustomerDialogComponent} from './customer-dialog/customer-dialog.component';
+import {PageBaseDirective} from '../../util-components/generalization/page-base.directive';
 
 @Component({
   selector: 'ngx-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
 })
-export class CustomersComponent implements OnInit {
-  customers: Customer[] = [];
+export class CustomersComponent extends PageBaseDirective<Customer> implements OnInit {
 
-  // Paginator
-  length = 0;
-  pageIndex = 0;
+  displayedColumns = ['id', 'name', 'description', 'country', 'action'];
 
   constructor(
-    private service: CustomerService,
+    protected service: CustomerService,
     private dialogService: NbDialogService,
     private toastrService: NbToastrService,
-  ) {}
+  ) {
+    super(service);
+  }
 
   ngOnInit(): void {
-    this.getPage(0);
-  }
-
-  private getPage(page: number): void {
-    this.service.getPage(page).then(res => {
-      this.customers = res.results;
-      this.length = res.totalResults;
-      this.pageIndex = page;
-    });
-  }
-
-  setPage(event: any) {
-    this.pageIndex = event.pageIndex;
-    this.getPage(event.pageIndex);
+    this.getFirstPage();
   }
 
   create() {
     this.dialogService.open(CustomerDialogComponent).onClose.subscribe(() => {
-        this.getPage(0);
+      this.getFirstPage();
       },
     );
   }
@@ -53,16 +40,15 @@ export class CustomersComponent implements OnInit {
       },
     })
       .onClose.subscribe(() => {
-        this.getPage(0);
-      },
-    );
+        this.getCurrentPage();
+      });
   }
 
   delete(id: string) {
     this.service.delete(id)
       .then(() => {
         this.toastrService.show('Customer Deleted', `Success`, { status: 'success' });
-        this.getPage(0);
+        this.getCurrentPage();
       })
       .catch(error => {
         this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });
