@@ -21,6 +21,7 @@
 @import './overrides';
 
 // install the framework and custom global styles
+//noinspection SassScssResolvedByNameOnly
 @include nb-install() {
 
   // framework global styles
@@ -93,6 +94,11 @@ td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.td-add {
+  width: 65px !important;
+  margin: 0 5px !important;
 }
 
 .form-dialog label {

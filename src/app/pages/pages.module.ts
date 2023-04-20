@@ -37,6 +37,11 @@ import {ProductSelectionDialogComponent} from './products/product-selection-dial
 import { ProductReservationDialogComponent } from './product-reservations/product-reservation-dialog/product-reservation-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {CustomerOrdersComponent} from './customer-orders/customer-orders.component';
+import { ShipmentTableComponent } from './shipments/shipment-table/shipment-table.component';
+import { ShipmentDialogComponent } from './shipments/shipment-dialog/shipment-dialog.component';
+import { ShipmentSelectionDialogComponent } from './shipments/shipment-selection-dialog/shipment-selection-dialog.component';
+import { ShipmentsComponent } from './shipments/shipments.component';
+import { SemiProductsComponent } from './semi-products/semi-products.component';
 
 @NgModule({
     imports: [
@@ -83,6 +88,11 @@ import {CustomerOrdersComponent} from './customer-orders/customer-orders.compone
     ProductOrderTableComponent,
     ProductSelectionDialogComponent,
     ProductReservationDialogComponent,
+    ShipmentTableComponent,
+    ShipmentDialogComponent,
+    ShipmentSelectionDialogComponent,
+    ShipmentsComponent,
+    SemiProductsComponent,
   ],
 })
 export class PagesModule {

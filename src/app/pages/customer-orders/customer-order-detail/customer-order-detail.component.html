@@ -5,9 +5,14 @@
         Customer order:
         <b>{{customerOrder.id}}</b>
       </div>
-      <button nbButton status="primary">
-        <nb-icon (click)="edit()" icon="edit-outline" title="Edit" pack="eva"></nb-icon>
-      </button>
+      <div>
+        <button nbButton status="primary" matTooltip="Edit" (click)="edit()">
+          <nb-icon icon="edit-outline" pack="eva"></nb-icon>
+        </button>
+        <button class="ml-2" nbButton matTooltip="Ship Order" *ngIf="canShip()" (click)="addShipping()">
+          <nb-icon icon="car-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
     </nb-card-header>
 
     <nb-card-body class="mt-3">
@@ -51,7 +56,7 @@
           </nb-list-item>
           <nb-list-item class="justify-content-between">
             <span>Customer:</span>
-            <b>{{customerOrder.customer}}</b>
+            <b>{{customerOrder.customer.name}}</b>
           </nb-list-item>
         </nb-list>
       </div>

@@ -3,6 +3,7 @@ import {State} from '../enums/state';
 import {Priority} from '../enums/priority';
 import {ProductOrder} from './product-order';
 import {ProductReservation} from './product-reservation';
+import {Customer} from './customer';
 
 export class CustomerOrder {
   id: string | undefined;
@@ -13,7 +14,7 @@ export class CustomerOrder {
   productionSeq: string;
   priority: Priority;
   orderProfit: number | undefined;
-  customer: string;
+  customer: string | Customer;
   productOrders: string[] | ProductOrder[];
   productReservations: string[] | ProductReservation[];
 

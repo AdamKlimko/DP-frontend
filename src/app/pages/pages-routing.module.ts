@@ -9,6 +9,7 @@ import {ProductsComponent} from './products/products.component';
 import {CustomersComponent} from './customers/customers.component';
 import {ProductReservationsComponent} from './product-reservations/product-reservations.component';
 import {CustomerOrdersComponent} from './customer-orders/customer-orders.component';
+import {ShipmentsComponent} from './shipments/shipments.component';
 
 const routes: Routes = [{
   path: '',
@@ -37,6 +38,10 @@ const routes: Routes = [{
     {
       path: 'product-reservations',
       component: ProductReservationsComponent,
+    },
+    {
+      path: 'shipments',
+      component: ShipmentsComponent,
     },
     {
       path: '',

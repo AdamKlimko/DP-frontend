@@ -13,6 +13,9 @@ import {
   ProductReservationDialogComponent,
 } from '../../product-reservations/product-reservation-dialog/product-reservation-dialog.component';
 import {ProductOrder} from '../../../@core/data/product-order';
+import {
+  ShipmentSelectionDialogComponent,
+} from '../../shipments/shipment-selection-dialog/shipment-selection-dialog.component';
 
 @Component({
   selector: 'ngx-customer-order-detail',
@@ -94,5 +97,27 @@ export class CustomerOrderDetailComponent implements OnInit, OnDestroy {
       .catch(error => {
         this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });
       });
+  }
+
+  canShip() {
+    let count = 0;
+    if (this.customerOrder.productOrders.length === 0) return false;
+    this.customerOrder.productOrders.forEach(po => {
+      if (po.processed) {
+        count++;
+      }
+    });
+    return this.customerOrder.productOrders.length === count;
+  }
+
+  addShipping() {
+    this.dialogService.open(ShipmentSelectionDialogComponent, {
+      context: {
+        customerOrderId: this.customerOrder.id,
+      },
+    })
+      .onClose.subscribe(() => {
+      this.updateData();
+    });
   }
 }

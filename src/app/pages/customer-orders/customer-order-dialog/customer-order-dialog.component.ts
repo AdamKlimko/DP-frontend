@@ -65,7 +65,7 @@ export class CustomerOrderDialogComponent implements OnInit {
     this.form.controls.productionSeq.patchValue(this.customerOrder.productionSeq);
     this.form.controls.priority.patchValue(this.customerOrder.priority);
     this.form.controls.state.patchValue(this.customerOrder.state);
-    this.form.controls.customer.patchValue(this.customerOrder.customer);
+    this.form.controls.customer.patchValue(this.customerOrder.customer as string);
   }
 
   create() {
