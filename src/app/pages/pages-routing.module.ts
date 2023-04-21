@@ -10,6 +10,8 @@ import {CustomersComponent} from './customers/customers.component';
 import {ProductReservationsComponent} from './product-reservations/product-reservations.component';
 import {CustomerOrdersComponent} from './customer-orders/customer-orders.component';
 import {ShipmentsComponent} from './shipments/shipments.component';
+import {SemiProductsComponent} from './semi-products/semi-products.component';
+import {ProductDetailComponent} from './products/product-detail/product-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -34,6 +36,14 @@ const routes: Routes = [{
     {
       path: 'products',
       component: ProductsComponent,
+    },
+    {
+      path: 'products/:id',
+      component: ProductDetailComponent,
+    },
+    {
+      path: 'semiProducts',
+      component: SemiProductsComponent,
     },
     {
       path: 'product-reservations',

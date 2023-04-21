@@ -9,7 +9,7 @@ import {ProductTableOptions} from '../../products/product-table/product-table.co
   styleUrls: ['./shipment-table.component.scss'],
 })
 export class ShipmentTableComponent extends TableBaseDirective<Shipment> {
-  @Input() tableOptions: ProductTableOptions = { edit: false, remove: false, add: false };
+  @Input() tableOptions: ProductTableOptions;
   @Output() addEmitter = new EventEmitter<Shipment>();
   constructor() {
     super();

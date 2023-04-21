@@ -42,6 +42,11 @@ import { ShipmentDialogComponent } from './shipments/shipment-dialog/shipment-di
 import { ShipmentSelectionDialogComponent } from './shipments/shipment-selection-dialog/shipment-selection-dialog.component';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import { SemiProductsComponent } from './semi-products/semi-products.component';
+import { SemiProductTableComponent } from './semi-products/semi-product-table/semi-product-table.component';
+import { SemiProductDialogComponent } from './semi-products/semi-product-dialog/semi-product-dialog.component';
+import { SemiProductSelectionDialogComponent } from './semi-products/semi-product-selection-dialog/semi-product-selection-dialog.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { BomItemTableComponent } from './products/bom-item-table/bom-item-table.component';
 
 @NgModule({
     imports: [
@@ -93,6 +98,11 @@ import { SemiProductsComponent } from './semi-products/semi-products.component';
     ShipmentSelectionDialogComponent,
     ShipmentsComponent,
     SemiProductsComponent,
+    SemiProductTableComponent,
+    SemiProductDialogComponent,
+    SemiProductSelectionDialogComponent,
+    ProductDetailComponent,
+    BomItemTableComponent,
   ],
 })
 export class PagesModule {

@@ -5,6 +5,7 @@ import {NbToastrService} from '@nebular/theme';
 import {TableBaseDirective} from '../../../util-components/generalization/table-base.directive';
 
 export interface ProductTableOptions {
+  detail: boolean;
   edit: boolean;
   remove: boolean;
   add: boolean;
@@ -16,7 +17,7 @@ export interface ProductTableOptions {
   styleUrls: ['./product-table.component.scss'],
 })
 export class ProductTableComponent extends TableBaseDirective<Product> {
-  @Input() tableOptions: ProductTableOptions = { edit: false, remove: false, add: false };
+  @Input() tableOptions: ProductTableOptions;
   @Output() addEmitter = new EventEmitter<ProductOrder>();
 
   constructor(private toastrService: NbToastrService) {
@@ -25,7 +26,7 @@ export class ProductTableComponent extends TableBaseDirective<Product> {
 
   addProduct(id: string, quantity: any) {
     if (Number(quantity) > 0) {
-      this.addEmitter.emit(new ProductOrder(id, quantity));
+      this.addEmitter.emit(new ProductOrder(undefined, id, false, quantity));
     } else {
       this.toastrService.danger('Quantity must be a number > 0');
     }

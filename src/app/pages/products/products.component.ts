@@ -13,7 +13,7 @@ import {PageBaseDirective} from '../../util-components/generalization/page-base.
 export class ProductsComponent extends PageBaseDirective<Product> implements OnInit {
 
   displayedColumns = ['id', 'partNumber', 'description', 'uom', 'size', 'storedQuantity', 'action'];
-  tableOptions = { edit: true, remove:  true, add: false };
+  tableOptions = { detail: true, edit: true, remove:  true, add: false };
 
   constructor(
     protected service: ProductService,

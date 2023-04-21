@@ -8,8 +8,10 @@ export class ProductOrder {
   processed: boolean;
   quantity: number;
 
-  constructor(product: string | Product, quantity: number) {
+  constructor(customerOrder: string | CustomerOrder, product: string | Product, processed: boolean, quantity: number) {
+    this.customerOrder = customerOrder;
     this.product = product;
+    this.processed = processed;
     this.quantity = quantity;
   }
 }

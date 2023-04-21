@@ -20,6 +20,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Semi Products',
+    icon: 'pantone-outline',
+    link: '/pages/semiProducts',
+    home: true,
+  },
+  {
     title: 'Shipments',
     icon: 'car-outline',
     link: '/pages/shipments',

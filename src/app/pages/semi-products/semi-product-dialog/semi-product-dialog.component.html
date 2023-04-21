@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-header>
+    <div *ngIf="!semiProduct">Create Semi Product</div>
+    <div *ngIf="semiProduct">
+      Edit Semi Product: <b>{{semiProduct.id}}</b>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" class="row form-dialog">
+      <div class="col">
+        <label class="d-block" for="partNumber">Part Number</label>
+        <input id="partNumber" type="text" nbInput placeholder="Part Number" formControlName="partNumber">
+
+        <label class="d-block" for="description">Description</label>
+        <textarea id="description" nbInput fullWidth  placeholder="Description" formControlName="description">
+        </textarea>
+
+        <label class="d-block" for="manufacturer">Manufacturer</label>
+        <input id="manufacturer" type="text" nbInput placeholder="Manufacturer" formControlName="manufacturer">
+
+        <label class="d-block" for="uom">Unit of Measure</label>
+        <input id="uom" type="text" nbInput placeholder="UOM" formControlName="uom">
+
+        <label class="d-block" for="storedQuantity">Stored Quantity</label>
+        <input id="storedQuantity" type="number" min="0" nbInput placeholder="Stored Quantity" formControlName="storedQuantity">
+      </div>
+    </form>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-between">
+      <button nbButton status="basic" (click)="ref.close()">Cancel</button>
+      <button *ngIf="!semiProduct" nbButton status="success" (click)="create()" [disabled]="!form.valid">
+        Create
+      </button>
+      <button *ngIf="semiProduct" nbButton status="success" (click)="update()" [disabled]="!form.valid">
+        Update
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

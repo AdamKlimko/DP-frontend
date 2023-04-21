@@ -12,14 +12,12 @@ export class Product {
               description: string,
               storedQuantity: number,
               uom: string,
-              size: string,
-              billOfMaterials: []) {
+              size: string) {
     this.id = id;
     this.partNumber = partNumber;
     this.description = description;
     this.storedQuantity = storedQuantity;
     this.uom = uom;
     this.size = size;
-    this.billOfMaterials = billOfMaterials;
   }
 }

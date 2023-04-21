@@ -13,12 +13,19 @@
           <nb-icon icon="close-outline"></nb-icon></button>
       </nb-form-field>
     </div>
-    <ngx-product-table
+    <ngx-semi-product-table
       [dataSource]="data"
       [displayedColumns]="displayedColumns"
       [tableOptions]="tableOptions"
       (addEmitter)="onAddProduct($event)">
-    </ngx-product-table>
+    </ngx-semi-product-table>
+<!--    <mat-paginator [pageSize]="10"-->
+<!--                   [length]="length"-->
+<!--                   [pageIndex]="pageIndex"-->
+<!--                   (page)="setPage($event)"-->
+<!--                   showFirstLastButtons-->
+<!--                   matTooltipDisabled>-->
+<!--    </mat-paginator>-->
   </nb-card-body>
   <nb-card-footer>
     <div class="d-flex justify-content-between">

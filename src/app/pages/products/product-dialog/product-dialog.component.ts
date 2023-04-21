@@ -47,7 +47,6 @@ export class ProductDialogComponent implements OnInit {
       this.form.controls.storedQuantity.value,
       this.form.controls.uom.value,
       this.form.controls.size.value,
-      [],
     );
     this.service.create(product)
       .then(
@@ -69,7 +68,6 @@ export class ProductDialogComponent implements OnInit {
       this.form.controls.storedQuantity.value,
       this.form.controls.uom.value,
       this.form.controls.size.value,
-      [],
     );
     this.service.updateById(this.product.id, product)
       .then(
