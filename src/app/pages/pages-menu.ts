@@ -14,6 +14,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Production Orders',
+    icon: 'settings-outline',
+    link: '/pages/production-orders',
+    home: true,
+  },
+  {
     title: 'Products',
     icon: 'cube-outline',
     link: '/pages/products',

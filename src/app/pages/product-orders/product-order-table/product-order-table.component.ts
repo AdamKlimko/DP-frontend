@@ -14,6 +14,7 @@ export class ProductOrderTableComponent {
   @Output() editEmitter = new EventEmitter<Product>();
   @Output() deleteEmitter = new EventEmitter<string>();
   @Output() reserveEmitter = new EventEmitter<ProductOrder>();
+  @Output() produceEmitter = new EventEmitter<ProductOrder>();
   constructor() { }
 
   edit(item: Product) {
@@ -26,5 +27,9 @@ export class ProductOrderTableComponent {
 
   reserve(productOrder: ProductOrder) {
     this.reserveEmitter.emit(productOrder);
+  }
+
+  produce(productOrder: ProductOrder) {
+    this.produceEmitter.emit(productOrder);
   }
 }

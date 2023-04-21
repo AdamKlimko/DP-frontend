@@ -56,7 +56,7 @@
           <mat-icon>check_box</mat-icon>
           <span>Reserve</span>
         </button>
-        <button mat-menu-item *ngIf="element.product.storedQuantity < element.quantity">
+        <button mat-menu-item *ngIf="element.product.storedQuantity < element.quantity" (click)="produce(element)">
           <mat-icon>build</mat-icon>
           <span>Produce</span>
         </button>

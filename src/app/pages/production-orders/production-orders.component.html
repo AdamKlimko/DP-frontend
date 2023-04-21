@@ -1,0 +1,44 @@
+<nb-card>
+  <nb-card-header class="d-flex justify-content-between align-items-center">
+    Production Orders
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <div class="d-flex justify-content-start mb-3">
+      <nb-form-field>
+        <input type="text" nbInput placeholder="Product Order ID" [(ngModel)]="query" (keydown.enter)="getFirstPage()">
+        <button nbPrefix nbButton ghost (click)="getFirstPage()">
+          <nb-icon icon="search" pack="eva"></nb-icon>
+        </button>
+        <button nbSuffix nbButton ghost (click)="resetSearch()" *ngIf="query">
+          <nb-icon icon="close-outline"></nb-icon></button>
+      </nb-form-field>
+      <nb-select placeholder="State" [(selected)]="state" class="ml-2">
+        <nb-option [value]="undefined">None</nb-option>
+        <nb-option *ngFor="let state of states" [value]="state">{{state}}</nb-option>
+      </nb-select>
+
+      <nb-select placeholder="Priority" [(selected)]="priority" class="ml-2">
+        <nb-option [value]="undefined">None</nb-option>
+        <nb-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</nb-option>
+      </nb-select>
+    </div>
+
+    <ngx-production-order-table
+      [dataSource]="data"
+      [displayedColumns]="displayedColumns"
+      [tableOptions]="tableOptions"
+      (editEmitter)="update($event)"
+      (deleteEmitter)="delete($event)"
+    ></ngx-production-order-table>
+
+    <mat-paginator [pageSize]="10"
+                   [length]="length"
+                   [pageIndex]="pageIndex"
+                   (page)="setPage($event)"
+                   showFirstLastButtons>
+    </mat-paginator>
+
+  </nb-card-body>
+</nb-card>

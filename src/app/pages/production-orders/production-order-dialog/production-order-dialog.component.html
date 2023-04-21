@@ -1,0 +1,50 @@
+<nb-card>
+  <nb-card-header>
+    <div *ngIf="!productionOrder">Create Production Order</div>
+    <div *ngIf="productionOrder">
+      Edit Production Order: <b>{{productionOrder.id}}</b>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" class="row form-dialog">
+      <div class="col">
+
+        <label class="d-block">Wanted Delivery Date</label>
+        <input nbInput placeholder="Pick Wanted Delivery" [nbDatepicker]="wantedDeliveryDate" formControlName="wantedDeliveryDate">
+        <nb-datepicker #wantedDeliveryDate></nb-datepicker>
+
+        <label class="d-block">Start Date</label>
+        <input nbInput placeholder="Pick Start Date" [nbDatepicker]="startDateTime" formControlName="startDateTime">
+        <nb-datepicker #startDateTime></nb-datepicker>
+
+        <label class="d-block">End Date</label>
+        <input nbInput placeholder="Pick End Date" [nbDatepicker]="endDateTime" formControlName="endDateTime">
+        <nb-datepicker #endDateTime></nb-datepicker>
+
+        <label class="d-block">State</label>
+        <nb-select placeholder="State" formControlName="state" class="w-100 mb-2">
+          <nb-option [value]="undefined">None</nb-option>
+          <nb-option *ngFor="let state of states" [value]="state">{{state}}</nb-option>
+        </nb-select>
+
+        <label class="d-block" >Priority</label>
+        <nb-select placeholder="Priority" formControlName="priority" class="w-100 mb-2">
+          <nb-option [value]="undefined">None</nb-option>
+          <nb-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</nb-option>
+        </nb-select>
+      </div>
+    </form>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-between">
+      <button nbButton status="basic" (click)="ref.close()">Cancel</button>
+      <button *ngIf="!productionOrder" nbButton status="success" (click)="create()" [disabled]="!form.valid">
+        Create
+      </button>
+      <button *ngIf="productionOrder" nbButton status="success" (click)="update()" [disabled]="!form.valid">
+        Update
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

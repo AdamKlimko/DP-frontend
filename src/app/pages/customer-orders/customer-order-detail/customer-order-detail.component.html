@@ -2,7 +2,7 @@
   <ng-container *ngIf="customerOrder">
     <nb-card-header class="d-flex justify-content-between align-items-center">
       <div>
-        <button nbButton routerLink="/pages/customer-orders" size="small" matTooltip="back" class="mr-2">
+        <button nbButton routerLink="/pages/customer-orders" size="small" matTooltip="BACK" class="mr-2">
           <nb-icon icon="arrow-back-outline" pack="eva"></nb-icon>
         </button>
         Customer order:
@@ -23,17 +23,15 @@
         <nb-list class="col-md-6">
           <nb-list-item class="justify-content-between">
             <div>State:</div>
-            <div>
-              <span [class]="'state state-'+customerOrder.state">
+            <div><span [class]="'state state-'+customerOrder.state">
                 {{customerOrder.state}}
-              </span>
-            </div>
+            </span></div>
           </nb-list-item>
           <nb-list-item class="justify-content-between">
             <span>Priority:</span>
-            <span [class]="'priority priority-'+customerOrder.priority">
+            <div><span [class]="'priority priority-'+customerOrder.priority">
               {{customerOrder.priority}}
-            </span>
+            </span></div>
           </nb-list-item>
           <nb-list-item class="justify-content-between">
             <span>Order Date:</span>
@@ -75,6 +73,7 @@
               [dataSource]="customerOrder.productOrders"
               [displayedColumns]="displayedColumnsProductOrders"
               (reserveEmitter)="onReserveProduct($event)"
+              (produceEmitter)="onProduceProduct($event)"
               (deleteEmitter)="onDeleteProductOrder($event)">
             </ngx-product-order-table>
           </ng-container>

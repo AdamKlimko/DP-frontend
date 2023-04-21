@@ -47,6 +47,10 @@ import { SemiProductDialogComponent } from './semi-products/semi-product-dialog/
 import { SemiProductSelectionDialogComponent } from './semi-products/semi-product-selection-dialog/semi-product-selection-dialog.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { BomItemTableComponent } from './products/bom-item-table/bom-item-table.component';
+import { ProductionOrdersComponent } from './production-orders/production-orders.component';
+import { ProductionOrderDialogComponent } from './production-orders/production-order-dialog/production-order-dialog.component';
+import { ProductionOrderTableComponent } from './production-orders/production-order-table/production-order-table.component';
+import { ProductionOrderDetailComponent } from './production-orders/production-order-detail/production-order-detail.component';
 
 @NgModule({
     imports: [
@@ -103,6 +107,10 @@ import { BomItemTableComponent } from './products/bom-item-table/bom-item-table.
     SemiProductSelectionDialogComponent,
     ProductDetailComponent,
     BomItemTableComponent,
+    ProductionOrdersComponent,
+    ProductionOrderDialogComponent,
+    ProductionOrderTableComponent,
+    ProductionOrderDetailComponent,
   ],
 })
 export class PagesModule {

@@ -8,6 +8,7 @@ import {
   SemiProductSelectionDialogComponent,
 } from '../../semi-products/semi-product-selection-dialog/semi-product-selection-dialog.component';
 import {BomItemService} from '../../../@core/services/bom-item.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'ngx-product-detail',
@@ -17,8 +18,8 @@ import {BomItemService} from '../../../@core/services/bom-item.service';
 export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
   displayedColumns = ['id', 'partNumber', 'manufacturer', 'uom', 'quantity', 'action'];
-  tableOptions = { edit: false, remove: true, add: false };
-  sub;
+  tableOptions = { edit: false, remove: true, reserve: false, order: false};
+  sub: Subscription;
   constructor(
     private dialogService: NbDialogService,
     private service: ProductService,

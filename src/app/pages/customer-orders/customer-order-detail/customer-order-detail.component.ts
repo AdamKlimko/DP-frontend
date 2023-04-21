@@ -16,6 +16,9 @@ import {ProductOrder} from '../../../@core/data/product-order';
 import {
   ShipmentSelectionDialogComponent,
 } from '../../shipments/shipment-selection-dialog/shipment-selection-dialog.component';
+import {
+  ProductionOrderDialogComponent,
+} from '../../production-orders/production-order-dialog/production-order-dialog.component';
 
 @Component({
   selector: 'ngx-customer-order-detail',
@@ -80,6 +83,17 @@ export class CustomerOrderDetailComponent implements OnInit, OnDestroy {
     this.dialogService.open(ProductReservationDialogComponent, {
       context: {
         customerOrder: this.customerOrder,
+        productOrder: productOrder,
+      },
+    })
+      .onClose.subscribe(() => {
+      this.updateData();
+    });
+  }
+
+  onProduceProduct(productOrder: ProductOrder) {
+    this.dialogService.open(ProductionOrderDialogComponent, {
+      context: {
         productOrder: productOrder,
       },
     })

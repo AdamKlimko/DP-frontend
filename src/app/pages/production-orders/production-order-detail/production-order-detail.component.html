@@ -1,0 +1,90 @@
+<nb-card>
+  <ng-container *ngIf="productionOrder">
+    <nb-card-header class="d-flex justify-content-between align-items-center">
+      <div>
+        <button nbButton routerLink="/pages/production-orders" size="small" matTooltip="BACK" class="mr-2">
+          <nb-icon icon="arrow-back-outline" pack="eva"></nb-icon>
+        </button>
+        Production Order:
+        <b>{{productionOrder.id}}</b>
+      </div>
+      <div>
+        <button nbButton status="primary" matTooltip="Edit" (click)="edit()">
+          <nb-icon icon="edit-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Production Order</h6>
+          <nb-list>
+            <nb-list-item class="justify-content-between">
+              <span>Quantity to Produce:</span>
+              <b>{{productionOrder.productOrder.quantity}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>State:</span>
+              <div><span [class]="'state state-'+productionOrder.state">
+                {{productionOrder.state}}
+            </span></div>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Priority:</span>
+              <div><span [class]="'priority priority-'+productionOrder.priority">
+              {{productionOrder.priority}}
+            </span></div>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Wanted Delivery:</span>
+              <b>{{productionOrder.wantedDeliveryDate | date:'short'}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Start:</span>
+              <b>{{productionOrder.startDateTime | date:'short'}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>End:</span>
+              <b>{{productionOrder.endDateTime | date:'short'}}</b>
+            </nb-list-item>
+          </nb-list>
+        </div>
+        <div class="col-md-6">
+          <h6>Product</h6>
+          <nb-list>
+            <nb-list-item class="justify-content-between">
+              <span>Part Number:</span>
+              <b>{{product.partNumber}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Size:</span>
+              <b>{{product.size}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Unit of measure:</span>
+              <b>{{product.uom}}</b>
+            </nb-list-item>
+            <nb-list-item>
+              <div>
+                <div>Description:</div>
+                <div><b>{{product.description}}</b></div>
+              </div>
+            </nb-list-item>
+          </nb-list>
+        </div>
+      </div>
+
+      <nb-tabset class="mt-4">
+        <nb-tab tabTitle="Bill of materials">
+          <ngx-bom-item-table
+            [dataSource]="product.billOfMaterials"
+            [displayedColumns]="displayedColumns"
+            [tableOptions]="tableOptions">
+          </ngx-bom-item-table>
+        </nb-tab>
+      </nb-tabset>
+
+    </nb-card-body>
+  </ng-container>
+</nb-card>

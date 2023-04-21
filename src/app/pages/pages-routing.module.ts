@@ -12,6 +12,10 @@ import {CustomerOrdersComponent} from './customer-orders/customer-orders.compone
 import {ShipmentsComponent} from './shipments/shipments.component';
 import {SemiProductsComponent} from './semi-products/semi-products.component';
 import {ProductDetailComponent} from './products/product-detail/product-detail.component';
+import {ProductionOrdersComponent} from './production-orders/production-orders.component';
+import {
+  ProductionOrderDetailComponent,
+} from './production-orders/production-order-detail/production-order-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -32,6 +36,14 @@ const routes: Routes = [{
     {
       path: 'customer-orders/:id',
       component: CustomerOrderDetailComponent,
+    },
+    {
+      path: 'production-orders',
+      component: ProductionOrdersComponent,
+    },
+    {
+      path: 'production-orders/:id',
+      component: ProductionOrderDetailComponent,
     },
     {
       path: 'products',
