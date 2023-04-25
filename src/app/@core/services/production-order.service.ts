@@ -19,7 +19,7 @@ export class ProductionOrderService {
                        state: string,
                        priority: string): Promise<Page<ProductionOrder>> {
     const url = `${config.apiUrl}/productionOrders?page=${page + 1}${
-      query ? '&productionSeq=' + query : ''}${
+      query ? '&productOrder=' + query : ''}${
       state ? '&state=' + state : ''}${
       priority ? '&priority=' + priority : ''}${
       sortBy ? '&sortBy=' + sortBy : ''}`;

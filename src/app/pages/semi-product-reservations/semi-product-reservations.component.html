@@ -1,14 +1,14 @@
 <nb-card>
   <nb-card-header class="d-flex justify-content-between align-items-center">
-    Product Reservations
+    Semi-Product Reservations
   </nb-card-header>
 
   <nb-card-body>
 
-    <ngx-product-reservation-table
+    <ngx-semi-product-reservation-table
       [dataSource]="data"
       [displayedColumns]="displayedColumns"
-    ></ngx-product-reservation-table>
+    ></ngx-semi-product-reservation-table>
 
     <mat-paginator [pageSize]="10"
                    [length]="length"

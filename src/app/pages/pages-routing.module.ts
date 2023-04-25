@@ -16,6 +16,7 @@ import {ProductionOrdersComponent} from './production-orders/production-orders.c
 import {
   ProductionOrderDetailComponent,
 } from './production-orders/production-order-detail/production-order-detail.component';
+import {SemiProductReservationsComponent} from './semi-product-reservations/semi-product-reservations.component';
 
 const routes: Routes = [{
   path: '',
@@ -60,6 +61,10 @@ const routes: Routes = [{
     {
       path: 'product-reservations',
       component: ProductReservationsComponent,
+    },
+    {
+      path: 'semi-product-reservations',
+      component: SemiProductReservationsComponent,
     },
     {
       path: 'shipments',

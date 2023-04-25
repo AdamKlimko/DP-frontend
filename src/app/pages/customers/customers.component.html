@@ -26,11 +26,13 @@
       (deleteEmitter)="delete($event)"
     ></ngx-customer-table>
 
-    <mat-paginator [pageSize]="10"
-                   [length]="length"
-                   [pageIndex]="pageIndex"
-                   (page)="setPage($event)"
-                   showFirstLastButtons>
+    <mat-paginator
+      *ngIf="length > 10"
+      [pageSize]="10"
+      [length]="length"
+      [pageIndex]="pageIndex"
+      (page)="setPage($event)"
+      showFirstLastButtons>
     </mat-paginator>
 
   </nb-card-body>

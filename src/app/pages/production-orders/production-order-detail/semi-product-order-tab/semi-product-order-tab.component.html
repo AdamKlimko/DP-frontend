@@ -1,0 +1,15 @@
+<ngx-semi-product-order-table
+  [dataSource]="data"
+  [displayedColumns]="displayedColumns"
+  [tableOptions]="tableOptions"
+  (reserveEmitter)="reserve($event)"
+  (purchaseEmitter)="purchase($event)">
+</ngx-semi-product-order-table>
+<mat-paginator
+  *ngIf="length > 10"
+  [pageSize]="10"
+  [length]="length"
+  [pageIndex]="pageIndex"
+  (page)="setPage($event)"
+  showFirstLastButtons>
+</mat-paginator>

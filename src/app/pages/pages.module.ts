@@ -31,7 +31,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ProductReservationsComponent } from './product-reservations/product-reservations.component';
 import { ProductReservationTableComponent } from './product-reservations/product-reservation-table/product-reservation-table.component';
 import {UtilComponentsModule} from '../util-components/util-components.module';
-import { ProductOrderTableComponent } from './product-orders/product-order-table/product-order-table.component';
+import { ProductOrderTableComponent } from './customer-orders/product-order-table/product-order-table.component';
 import {MatIconModule} from '@angular/material/icon';
 import {ProductSelectionDialogComponent} from './products/product-selection-dialog/product-selection-dialog.component';
 import { ProductReservationDialogComponent } from './product-reservations/product-reservation-dialog/product-reservation-dialog.component';
@@ -51,6 +51,11 @@ import { ProductionOrdersComponent } from './production-orders/production-orders
 import { ProductionOrderDialogComponent } from './production-orders/production-order-dialog/production-order-dialog.component';
 import { ProductionOrderTableComponent } from './production-orders/production-order-table/production-order-table.component';
 import { ProductionOrderDetailComponent } from './production-orders/production-order-detail/production-order-detail.component';
+import { SemiProductReservationsComponent } from './semi-product-reservations/semi-product-reservations.component';
+import { SemiProductReservationTableComponent } from './semi-product-reservations/semi-product-reservation-table/semi-product-reservation-table.component';
+import { SemiProductReservationDialogComponent } from './semi-product-reservations/semi-product-reservation-dialog/semi-product-reservation-dialog.component';
+import { SemiProductOrderTableComponent } from './production-orders/production-order-detail/semi-product-order-table/semi-product-order-table.component';
+import { SemiProductOrderTabComponent } from './production-orders/production-order-detail/semi-product-order-tab/semi-product-order-tab.component';
 
 @NgModule({
     imports: [
@@ -111,6 +116,11 @@ import { ProductionOrderDetailComponent } from './production-orders/production-o
     ProductionOrderDialogComponent,
     ProductionOrderTableComponent,
     ProductionOrderDetailComponent,
+    SemiProductReservationsComponent,
+    SemiProductReservationTableComponent,
+    SemiProductReservationDialogComponent,
+    SemiProductOrderTableComponent,
+    SemiProductOrderTabComponent,
   ],
 })
 export class PagesModule {

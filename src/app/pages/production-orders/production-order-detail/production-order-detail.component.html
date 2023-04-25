@@ -76,12 +76,12 @@
       </div>
 
       <nb-tabset class="mt-4">
-        <nb-tab tabTitle="Bill of materials">
-          <ngx-bom-item-table
-            [dataSource]="product.billOfMaterials"
-            [displayedColumns]="displayedColumns"
-            [tableOptions]="tableOptions">
-          </ngx-bom-item-table>
+        <nb-tab tabTitle="Semi-Product Orders">
+          <ngx-semi-product-order-tab
+            [productionOrderId]="productionOrderId"
+            (reserveEmitter)="onReserveSemiProduct($event)"
+            (purchaseEmitter)="onPurchaseSemiProduct()">
+          </ngx-semi-product-order-tab>
         </nb-tab>
       </nb-tabset>
 

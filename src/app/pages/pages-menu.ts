@@ -43,4 +43,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/product-reservations',
     home: true,
   },
+  {
+    title: 'Semi-Product Reservations',
+    icon: 'pantone-outline',
+    link: '/pages/semi-product-reservations',
+    home: true,
+  },
 ];

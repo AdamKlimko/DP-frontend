@@ -1,0 +1,65 @@
+<table mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> SPO ID </th>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="partNumber">
+    <th mat-header-cell *matHeaderCellDef> Part N. </th>
+    <td mat-cell *matCellDef="let element"> {{element.bomItem.semiProduct.partNumber}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="manufacturer">
+    <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
+    <td mat-cell *matCellDef="let element"> {{element.bomItem.semiProduct.manufacturer}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="uom">
+    <th mat-header-cell *matHeaderCellDef> UOM </th>
+    <td mat-cell *matCellDef="let element"> {{element.bomItem.semiProduct.uom}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="storedQuantity">
+    <th mat-header-cell *matHeaderCellDef> Stored </th>
+    <td mat-cell *matCellDef="let element"> {{element.bomItem.semiProduct.storedQuantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> Ordered </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="state">
+    <th mat-header-cell *matHeaderCellDef> State </th>
+    <td mat-cell *matCellDef="let element">
+      <div><span [class]="'state state-'+element.state">{{element.state}}</span></div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <button nbButton ghost size="small" [matMenuTriggerFor]="menu">
+        <nb-icon icon="more-horizontal-outline" pack="eva"></nb-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item
+                *ngIf="element.bomItem.semiProduct.storedQuantity >= element.quantity"
+                (click)="reserve(element.bomItem)">
+          <mat-icon>check_box</mat-icon>
+          <span>Reserve</span>
+        </button>
+        <button mat-menu-item
+                *ngIf="element.bomItem.semiProduct.storedQuantity < element.quantity"
+                (click)="purchase(element.bomItem)">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Purchase</span>
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

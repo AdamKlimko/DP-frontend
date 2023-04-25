@@ -18,7 +18,7 @@ import {Subscription} from 'rxjs';
 export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
   displayedColumns = ['id', 'partNumber', 'manufacturer', 'uom', 'quantity', 'action'];
-  tableOptions = { edit: false, remove: true, reserve: false, order: false};
+  tableOptions = { edit: false, remove: true};
   sub: Subscription;
   constructor(
     private dialogService: NbDialogService,
