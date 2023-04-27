@@ -13,7 +13,6 @@ import {State} from '../../@core/enums/state';
   styleUrls: ['./production-orders.component.scss'],
 })
 export class ProductionOrdersComponent extends PageBaseDirective<ProductionOrder> implements OnInit {
-
   displayedColumns = [
     'id', 'productOrder', 'state', 'priority', 'wantedDeliveryDate', 'startDateTime', 'endDateTime', 'action',
   ];

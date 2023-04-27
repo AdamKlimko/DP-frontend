@@ -35,7 +35,6 @@ export class SemiProductOrderTabComponent extends PageBaseDirective<SemiProductO
     this.reserveEmitter.emit(bomItem);
   }
 
-  // Create purchase requisition
   purchase(bomItem: BomItem) {
     this.purchaseEmitter.emit(bomItem);
   }

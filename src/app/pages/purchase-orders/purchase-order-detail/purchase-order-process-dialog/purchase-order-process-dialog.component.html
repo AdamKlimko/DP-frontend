@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-header>
+    Process Purchase Order
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" class="row form-dialog">
+      <div class="col">
+
+        <label class="d-block">Storage Location</label>
+        <input type="text" nbInput placeholder="Storage Location" formControlName="location" fullWidth>
+
+      </div>
+    </form>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-between">
+      <button nbButton status="basic" (click)="ref.close()">Cancel</button>
+      <button nbButton status="success" (click)="process()" [disabled]="!form.valid">
+        Process
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

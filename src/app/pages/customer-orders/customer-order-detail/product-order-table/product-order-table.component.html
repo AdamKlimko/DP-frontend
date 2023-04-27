@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="dataSource">
 
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> PO ID </th>
+    <th mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
   </ng-container>
 
@@ -32,16 +32,20 @@
     <td mat-cell *matCellDef="let element"> {{element.product.storedQuantity}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="unitPrice">
+    <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="quantity">
     <th mat-header-cell *matHeaderCellDef> Ordered </th>
     <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="processed">
+  <ng-container matColumnDef="state">
     <th mat-header-cell *matHeaderCellDef> State </th>
     <td mat-cell *matCellDef="let element">
-      <span class="state state-released" *ngIf="element.processed">processed</span>
-      <span class="state state-canceled" *ngIf="!element.processed">not processed</span>
+      <span [class]="'state state-'+element.state">{{element.state}}</span>
     </td>
   </ng-container>
 

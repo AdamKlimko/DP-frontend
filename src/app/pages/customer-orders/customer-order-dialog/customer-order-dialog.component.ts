@@ -7,6 +7,7 @@ import {State} from '../../../@core/enums/state';
 import {Currency} from '../../../@core/enums/currency';
 import {Priority} from '../../../@core/enums/priority';
 import {CustomerService} from '../../../@core/services/customer.service';
+import {Customer} from '../../../@core/data/customer';
 
 @Component({
   selector: 'ngx-customer-order-dialog',
@@ -21,8 +22,9 @@ export class CustomerOrderDialogComponent implements OnInit {
   @Input() customerOrder: CustomerOrder | undefined;
   customers = [];
   customersOptions = [];
-  length = 0;
-  pageIndex = 0;
+  customerName: string;
+  // length = 0;
+  // pageIndex = 0;
 
   form = new FormGroup({
     orderDate: new FormControl<Date>(new Date()),
@@ -46,6 +48,9 @@ export class CustomerOrderDialogComponent implements OnInit {
   ngOnInit(): void {
     if (this.customerOrder) {
       this.fillForm();
+      const customer = (this.customerOrder.customer as Customer);
+      this.customerName = customer.name;
+      this.form.controls.customer.patchValue(customer.id);
     }
     this.getPageCustomers();
   }
@@ -59,30 +64,25 @@ export class CustomerOrderDialogComponent implements OnInit {
 
   private fillForm(): void {
     this.form.controls.orderDate.patchValue(this.customerOrder.orderDate);
-    this.form.controls.price.patchValue(this.customerOrder.price);
-    this.form.controls.orderProfit.patchValue(this.customerOrder.orderProfit);
     this.form.controls.currency.patchValue(this.customerOrder.currency);
-    this.form.controls.productionSeq.patchValue(this.customerOrder.productionSeq);
     this.form.controls.priority.patchValue(this.customerOrder.priority);
     this.form.controls.state.patchValue(this.customerOrder.state);
-    this.form.controls.customer.patchValue(this.customerOrder.customer as string);
   }
 
   create() {
     const customerOrder = new CustomerOrder(
       State.PLANNED,
-      this.form.controls.price.value,
+      undefined,
       this.form.controls.currency.value,
       this.form.controls.orderDate.value,
-      this.form.controls.productionSeq.value,
       this.form.controls.priority.value,
-      this.form.controls.orderProfit.value,
+      undefined,
       this.form.controls.customer.value,
     );
     this.service.create(customerOrder)
       .then(
         () => {
-          this.ref.close();
+          this.ref.close(true);
           this.toastrService.show('Customer Order Created', `Success`, { status: 'success' });
         },
         (error) => {
@@ -94,18 +94,17 @@ export class CustomerOrderDialogComponent implements OnInit {
   update() {
     const customerOrder = new CustomerOrder(
       this.form.controls.state.value,
-      this.form.controls.price.value,
+      undefined,
       this.form.controls.currency.value,
       this.form.controls.orderDate.value,
-      this.form.controls.productionSeq.value,
       this.form.controls.priority.value,
-      this.form.controls.orderProfit.value,
+      undefined,
       this.form.controls.customer.value,
     );
     this.service.updateById(this.customerOrder.id, customerOrder)
       .then(
         () => {
-          this.ref.close();
+          this.ref.close(true);
           this.toastrService.show('Customer Order Updated', `Success`, { status: 'success' });
         },
         (error) => {
@@ -115,8 +114,10 @@ export class CustomerOrderDialogComponent implements OnInit {
   }
 
   onCustomerSelected(customerName: string) {
-    const customerObject = this.customers.find(customer => customer.name === customerName);
-    this.form.controls.customer.patchValue(customerObject.id);
+    if (this.customerName !== customerName && customerName !== '') {
+      const customerObject = this.customers.find(customer => customer.name === customerName);
+      this.form.controls.customer.patchValue(customerObject.id);
+    }
   }
 
   onCustomerFilterChanged(event: string) {

@@ -48,6 +48,7 @@ export class ProductionOrderDialogComponent implements OnInit {
   create() {
     const productionOrder = new ProductionOrder(
       this.productOrder.id,
+      this.productOrder.productionSeq,
       this.form.controls.state.value,
       this.form.controls.wantedDeliveryDate.value,
       this.form.controls.startDateTime.value,

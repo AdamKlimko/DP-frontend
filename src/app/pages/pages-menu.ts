@@ -2,51 +2,93 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Customers',
-    icon: 'person-outline',
-    link: '/pages/customers',
+    title: 'Dashboard',
+    icon: 'pie-chart-outline',
+    link: '/pages/dashboard',
     home: true,
   },
   {
-    title: 'Customer Orders',
-    icon: 'shopping-cart-outline',
-    link: '/pages/customer-orders',
-    home: true,
+    title: 'Customer Relations',
+    icon: 'people-outline',
+    children: [
+      {
+        title: 'Customers',
+        icon: 'person-outline',
+        link: '/pages/customers',
+      },
+      {
+        title: 'Customer Orders',
+        icon: 'shopping-cart-outline',
+        link: '/pages/customer-orders',
+      },
+      {
+        title: 'Shipments',
+        icon: 'car-outline',
+        link: '/pages/shipments',
+      },
+    ],
   },
   {
-    title: 'Production Orders',
+    title: 'Manufacturing',
     icon: 'settings-outline',
-    link: '/pages/production-orders',
-    home: true,
+    children: [
+      {
+        title: 'Production Orders',
+        icon: 'settings-2-outline',
+        link: '/pages/production-orders',
+      },
+      {
+        title: 'Product Reservations',
+        icon: 'cube-outline',
+        link: '/pages/product-reservations',
+      },
+      {
+        title: 'Semi-Product Reserv...',
+        icon: 'pantone-outline',
+        link: '/pages/semi-product-reservations',
+      },
+    ],
   },
   {
-    title: 'Products',
-    icon: 'cube-outline',
-    link: '/pages/products',
-    home: true,
+    title: 'Procurement',
+    icon: 'shopping-bag-outline',
+    children: [
+      {
+        title: 'Purchase Orders',
+        icon: 'clipboard-outline',
+        link: '/pages/purchase-orders',
+      },
+      {
+        title: 'Purchase Requisitions',
+        icon: 'pricetags-outline',
+        link: '/pages/purchase-requisitions',
+      },
+    ],
   },
   {
-    title: 'Semi Products',
-    icon: 'pantone-outline',
-    link: '/pages/semiProducts',
-    home: true,
-  },
-  {
-    title: 'Shipments',
-    icon: 'car-outline',
-    link: '/pages/shipments',
-    home: true,
-  },
-  {
-    title: 'Product Reservations',
-    icon: 'cube-outline',
-    link: '/pages/product-reservations',
-    home: true,
-  },
-  {
-    title: 'Semi-Product Reservations',
-    icon: 'pantone-outline',
-    link: '/pages/semi-product-reservations',
-    home: true,
+    title: 'Storage',
+    icon: 'inbox-outline',
+    children: [
+      {
+        title: 'Products',
+        icon: 'cube-outline',
+        link: '/pages/products',
+      },
+      {
+        title: 'Semi Products',
+        icon: 'pantone-outline',
+        link: '/pages/semi-products',
+      },
+      {
+        title: 'Product Storage',
+        icon: 'cube-outline',
+        link: '/pages/product-storage-items',
+      },
+      {
+        title: 'Semi-Product Storage',
+        icon: 'pantone-outline',
+        link: '/pages/semi-product-storage-items',
+      },
+    ],
   },
 ];

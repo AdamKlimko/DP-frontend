@@ -13,8 +13,13 @@ export class ProductOrderService {
     private http: HttpClient,
   ) { }
 
-  public async getPage(page: number): Promise<Page<ProductOrder>> {
-    const url = `${config.apiUrl}/productOrders?page=${page + 1}&populate=product`;
+  public async getPage(customerOrderId: string,
+                       page: number,
+                       query: any,
+                       sortBy: any): Promise<Page<ProductOrder>> {
+    const url = `${config.apiUrl}/customerOrders/${customerOrderId}/productOrders?page=${page + 1}&populate=product${
+      query ? '&customerOrder=' + query : ''}${
+      sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(
       this.http.get<Page<ProductOrder>>(url),
     );

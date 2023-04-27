@@ -5,6 +5,7 @@ import {ProductOrder} from './product-order';
 export class ProductionOrder {
   id: string | undefined;
   productOrder: string | ProductOrder;
+  productionSeq: string;
   state: State;
   wantedDeliveryDate: Date;
   startDateTime: Date;
@@ -12,12 +13,14 @@ export class ProductionOrder {
   priority: Priority;
 
   constructor(productOrder: string | ProductOrder,
+              productionSeq: string,
               state: State,
               wantedDeliveryDate: Date,
               startDateTime: Date,
               endDateTime: Date,
               priority: Priority) {
     this.productOrder = productOrder;
+    this.productionSeq = productionSeq;
     this.state = state;
     this.wantedDeliveryDate = wantedDeliveryDate;
     this.startDateTime = startDateTime;

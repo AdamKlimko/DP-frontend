@@ -1,0 +1,20 @@
+<ng-container *ngIf="!length" class="text-center">
+  <p>No <b>Product Reservations</b> yet.
+</ng-container>
+
+<ng-container *ngIf="length">
+  <ngx-product-reservation-table
+    [dataSource]="data"
+    [displayedColumns]="displayedColumns"
+    (deleteEmitter)="delete($event)">
+  </ngx-product-reservation-table>
+</ng-container>
+
+<mat-paginator
+  *ngIf="length > 10"
+  [pageSize]="10"
+  [length]="length"
+  [pageIndex]="pageIndex"
+  (page)="setPage($event)"
+  showFirstLastButtons>
+</mat-paginator>

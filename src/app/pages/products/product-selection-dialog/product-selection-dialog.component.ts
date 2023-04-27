@@ -5,6 +5,7 @@ import {ProductOrder} from '../../../@core/data/product-order';
 import {ProductOrderService} from '../../../@core/services/product-order.service';
 import {PageBaseDirective} from '../../../util-components/generalization/page-base.directive';
 import {Product} from '../../../@core/data/product';
+import {CustomerOrder} from '../../../@core/data/customer-order';
 
 @Component({
   selector: 'ngx-product-selection-dialog',
@@ -12,7 +13,7 @@ import {Product} from '../../../@core/data/product';
   styleUrls: ['./product-selection-dialog.component.scss'],
 })
 export class ProductSelectionDialogComponent extends PageBaseDirective<Product> implements OnInit {
-  @Input() customerOrderId: string;
+  @Input() customerOrder: CustomerOrder;
   dataSource = [];
   displayedColumns = ['partNumber', 'uom', 'size', 'storedQuantity', 'select'];
   tableOptions = { detail: false, edit: false, remove: false, add: true };
@@ -31,8 +32,9 @@ export class ProductSelectionDialogComponent extends PageBaseDirective<Product> 
   }
 
   onAddProduct(productOrder: ProductOrder) {
-    productOrder.customerOrder = this.customerOrderId;
-    this.productOrderService.create(this.customerOrderId, productOrder)
+    productOrder.customerOrder = this.customerOrder.id;
+    productOrder.productionSeq = this.customerOrder.productionSeq;
+    this.productOrderService.create(this.customerOrder.id, productOrder)
       .then(
         () => {
           this.toastrService.show('Product Order Created', `Success`, { status: 'success' });

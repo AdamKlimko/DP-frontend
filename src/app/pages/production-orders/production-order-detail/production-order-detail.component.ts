@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ProductionOrder} from '../../../@core/data/production-order';
 import {NbDialogService} from '@nebular/theme';
@@ -11,6 +11,13 @@ import {BomItem} from '../../../@core/data/bom-item';
 import {
   SemiProductReservationDialogComponent,
 } from '../../semi-product-reservations/semi-product-reservation-dialog/semi-product-reservation-dialog.component';
+import {
+  PurchaseRequisitionDialogComponent,
+} from '../../purchase-requisitions/purchase-requisition-dialog/purchase-requisition-dialog.component';
+import {PurchaseRequisition} from '../../../@core/data/purchase-requisition';
+import {
+  PurchaseRequisitionSelectionDialogComponent,
+} from '../../purchase-requisitions/purchase-requisition-selection-dialog/purchase-requisition-selection-dialog.component';
 
 @Component({
   selector: 'ngx-production-order-detail',
@@ -22,6 +29,7 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
   productionOrder: ProductionOrder;
   product: Product;
   sub: Subscription;
+  dataUpdated = new EventEmitter<void>();
   constructor(
     private dialogService: NbDialogService,
     protected service: ProductionOrderService,
@@ -71,7 +79,29 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  onPurchaseSemiProduct() {
-    //
+  onPurchaseSemiProduct(bomItem: BomItem) {
+    this.dialogService.open(PurchaseRequisitionDialogComponent, {
+      context: {
+        bomItem: bomItem,
+        productionOrderId: this.productionOrder.id,
+      },
+    })
+      .onClose.subscribe(res => {
+        if (res) {
+          //
+        }
+        this.updateData();
+    });
+  }
+
+  onAddToPurchaseOrder(purchaseRequisition: PurchaseRequisition) {
+    this.dialogService.open(PurchaseRequisitionSelectionDialogComponent, {
+      context: {
+        purchaseRequisition,
+      },
+    })
+      .onClose.subscribe(() => {
+      this.updateData();
+    });
   }
 }

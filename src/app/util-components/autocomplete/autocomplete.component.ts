@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'ngx-autocomplete',
@@ -8,14 +9,20 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./autocomplete.component.scss'],
 })
 export class AutocompleteComponent implements OnInit {
+  @Input() selectedValue: string;
   @Input() options: string[];
   filteredOptions$: Observable<string[]>;
-  @ViewChild('autoInput') input;
 
   @Output() filterChanged = new EventEmitter<string>();
   @Output() valueSelected = new EventEmitter<any>();
 
+  inputControl = new FormControl<string>('');
+
   ngOnInit() {
+    if (this.selectedValue) {
+      this.inputControl.patchValue(this.selectedValue);
+      this.options = [this.selectedValue];
+    }
     this.filteredOptions$ = of(this.options);
   }
 
@@ -31,8 +38,8 @@ export class AutocompleteComponent implements OnInit {
   }
 
   onChange() {
-    this.filterChanged.emit(this.input.nativeElement.value);
-    this.filteredOptions$ = this.getFilteredOptions(this.input.nativeElement.value);
+    this.filterChanged.emit(this.inputControl.value);
+    this.filteredOptions$ = this.getFilteredOptions(this.inputControl.value);
   }
 
   onSelectionChange($event) {

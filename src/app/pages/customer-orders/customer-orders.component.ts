@@ -15,7 +15,7 @@ import {State} from '../../@core/enums/state';
 })
 export class CustomerOrdersComponent extends PageBaseDirective<CustomerOrder> implements OnInit {
   displayedColumns: string[] = [
-    'productionSeq', 'state', 'priority', 'price', 'orderProfit', 'currency', 'orderDate', 'nProducts', 'action',
+    'productionSeq', 'state', 'priority', 'price', 'orderProfit', 'currency', 'orderDate', 'action',
   ];
   currencies = Object.values(Currency);
   priorities = Object.values(Priority);
@@ -44,6 +44,11 @@ export class CustomerOrdersComponent extends PageBaseDirective<CustomerOrder> im
   }
 
   create() {
-    this.dialogService.open(CustomerOrderDialogComponent);
+    this.dialogService.open(CustomerOrderDialogComponent).onClose.subscribe(res => {
+        if (res) {
+          this.getFirstPage();
+        }
+      },
+    );
   }
 }

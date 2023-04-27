@@ -1,43 +1,38 @@
 <nb-card>
-  <nb-card-header>
-    Purchase orders
+  <nb-card-header class="d-flex justify-content-between align-items-center">
+    Purchase Orders
+    <button nbButton status="primary" (click)="create()">
+      <nb-icon icon="plus-outline" pack="eva"></nb-icon>
+    </button>
   </nb-card-header>
 
   <nb-card-body>
-    <table mat-table [dataSource]="dataSource" class="w-100">
 
-      <ng-container matColumnDef="state">
-        <th mat-header-cell *matHeaderCellDef> State </th>
-        <td mat-cell *matCellDef="let element"> {{element.state | uppercase}} </td>
-      </ng-container>
+    <div class="d-flex justify-content-start mb-3">
+      <nb-form-field>
+        <input type="text" nbInput placeholder="Query" [(ngModel)]="query" (keydown.enter)="getFirstPage()">
+        <button nbPrefix nbButton ghost (click)="getFirstPage()">
+          <nb-icon icon="search" pack="eva"></nb-icon>
+        </button>
+        <button nbSuffix nbButton ghost (click)="resetSearch()" *ngIf="query">
+          <nb-icon icon="close-outline"></nb-icon></button>
+      </nb-form-field>
+    </div>
 
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Price </th>
-        <td mat-cell *matCellDef="let element"> {{element.price + (element.currency | myCurrency)}} </td>
-      </ng-container>
+    <ngx-purchase-order-table
+      [dataSource]="data"
+      [displayedColumns]="displayedColumns"
+      [tableOptions]="tableOptions"
+      (editEmitter)="update()"
+      (deleteEmitter)="delete()"
+    ></ngx-purchase-order-table>
 
-      <ng-container matColumnDef="currency">
-        <th mat-header-cell *matHeaderCellDef> Currency </th>
-        <td mat-cell *matCellDef="let element"> {{element.currency | uppercase}} </td>
-      </ng-container>
+    <mat-paginator [pageSize]="10"
+                   [length]="length"
+                   [pageIndex]="pageIndex"
+                   (page)="setPage($event)"
+                   showFirstLastButtons>
+    </mat-paginator>
 
-      <ng-container matColumnDef="promisedDeliveryDate">
-        <th mat-header-cell *matHeaderCellDef> Promised DD </th>
-        <td mat-cell *matCellDef="let element"> {{element.promisedDeliveryDate}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="wantedDeliveryDate">
-        <th mat-header-cell *matHeaderCellDef> Wanted DD </th>
-        <td mat-cell *matCellDef="let element"> {{element.wantedDeliveryDate}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="supplier">
-        <th mat-header-cell *matHeaderCellDef> Supplier </th>
-        <td mat-cell *matCellDef="let element"> {{element.supplier}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
   </nb-card-body>
 </nb-card>

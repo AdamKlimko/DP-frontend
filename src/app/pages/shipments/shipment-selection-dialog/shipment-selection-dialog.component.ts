@@ -4,6 +4,7 @@ import {ShipmentService} from '../../../@core/services/shipment.service';
 import {ShipmentDialogComponent} from '../shipment-dialog/shipment-dialog.component';
 import {Shipment} from '../../../@core/data/shipment';
 import {Customer} from '../../../@core/data/customer';
+import {ShipmentTableOptions} from '../shipment-table/shipment-table.component';
 
 @Component({
   selector: 'ngx-shipment-selection-dialog',
@@ -14,7 +15,7 @@ export class ShipmentSelectionDialogComponent implements OnInit {
   @Input() customerOrderId: string;
   dataSource = [];
   displayedColumns = ['customer', 'address', 'state', 'priority', 'customerOrders', 'add'];
-  tableOptions = { edit: false, remove: false, add: true };
+  tableOptions: ShipmentTableOptions = { detail: false, edit: false, remove: false, add: true };
   constructor(
     protected ref: NbDialogRef<ShipmentSelectionDialogComponent>,
     private service: ShipmentService,

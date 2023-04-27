@@ -1,0 +1,29 @@
+<ng-container *ngIf="!length" class="text-center">
+  <p>No <b>Product Orders</b> yet.
+</ng-container>
+
+<ng-container *ngIf="length">
+  <ngx-product-order-table
+    [dataSource]="data"
+    [displayedColumns]="displayedColumns"
+    (reserveEmitter)="reserveProduct($event)"
+    (produceEmitter)="produceProduct($event)"
+    (deleteEmitter)="deleteProductOrder($event)">
+  </ngx-product-order-table>
+</ng-container>
+
+<mat-paginator
+  *ngIf="length > 10"
+  [pageSize]="10"
+  [length]="length"
+  [pageIndex]="pageIndex"
+  (page)="setPage($event)"
+  showFirstLastButtons>
+</mat-paginator>
+
+<div class="d-flex justify-content-end mt-4"
+     *ngIf="customerOrder.state === 'planned'">
+  <button nbButton (click)="addProductOrder()">
+    <nb-icon icon="plus-outline" pack="eva"></nb-icon>Add product
+  </button>
+</div>

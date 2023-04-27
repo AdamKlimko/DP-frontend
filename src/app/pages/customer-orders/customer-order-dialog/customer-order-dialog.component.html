@@ -12,12 +12,6 @@
         <input id="orderDate" nbInput placeholder="Pick Order Date" [nbDatepicker]="orderDate" formControlName="orderDate">
         <nb-datepicker #orderDate></nb-datepicker>
 
-        <label class="d-block" for="price">Price</label>
-        <input id="price" type="number" min="0" nbInput placeholder="Price" formControlName="price">
-
-        <label class="d-block" for="orderProfit">Order Profit</label>
-        <input id="orderProfit" type="number" nbInput placeholder="Order Profit" formControlName="orderProfit">
-
         <label class="d-block" for="currency">Currency</label>
         <nb-select id="currency" placeholder="Select Currency" formControlName="currency">
           <nb-option *ngFor="let cur of currencies" [value]="cur">{{cur}}</nb-option>
@@ -29,11 +23,10 @@
         </nb-radio-group>
       </div>
       <div class="col-md-6">
-        <label class="d-block" for="productionSeq">Production Sequence</label>
-        <input id="productionSeq" type="text" nbInput placeholder="Production Sequence" formControlName="productionSeq">
 
         <label class="d-block" for="customer">Customer</label>
         <ngx-autocomplete id="customer"
+          [selectedValue]="customerName"
           (valueSelected)="onCustomerSelected($event)"
           (filterChanged)="onCustomerFilterChanged($event)"
           [options]="customersOptions">

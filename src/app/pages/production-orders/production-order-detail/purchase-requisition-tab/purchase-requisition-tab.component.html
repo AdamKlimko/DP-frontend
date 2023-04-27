@@ -1,0 +1,21 @@
+<ng-container *ngIf="!length" class="text-center">
+  <p>No <b>Purchase Requisitions</b> yet.
+</ng-container>
+
+<ng-container *ngIf="length">
+  <ngx-purchase-requisition-table
+    [dataSource]="data"
+    [displayedColumns]="displayedColumns"
+    [tableOptions]="tableOptions"
+    (addEmitter)="addToPurchaseOrder($event)">
+  </ngx-purchase-requisition-table>
+</ng-container>
+
+<mat-paginator
+  *ngIf="length > 10"
+  [pageSize]="10"
+  [length]="length"
+  [pageIndex]="pageIndex"
+  (page)="setPage($event)"
+  showFirstLastButtons>
+</mat-paginator>

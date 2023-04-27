@@ -17,6 +17,10 @@ import {
   ProductionOrderDetailComponent,
 } from './production-orders/production-order-detail/production-order-detail.component';
 import {SemiProductReservationsComponent} from './semi-product-reservations/semi-product-reservations.component';
+import {SemiProductStorageItemsComponent} from './semi-product-storage-item/semi-product-storage-items.component';
+import {PurchaseRequisitionsComponent} from './purchase-requisitions/purchase-requisitions.component';
+import {ProductStorageItemsComponent} from './product-storage-items/product-storage-items.component';
+import {PurchaseOrderDetailComponent} from './purchase-orders/purchase-order-detail/purchase-order-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +29,14 @@ const routes: Routes = [{
     {
       path: 'purchase-orders',
       component: PurchaseOrdersComponent,
+    },
+    {
+      path: 'purchase-orders/:id',
+      component: PurchaseOrderDetailComponent,
+    },
+    {
+      path: 'purchase-requisitions',
+      component: PurchaseRequisitionsComponent,
     },
     {
       path: 'customers',
@@ -55,8 +67,16 @@ const routes: Routes = [{
       component: ProductDetailComponent,
     },
     {
-      path: 'semiProducts',
+      path: 'product-storage-items',
+      component: ProductStorageItemsComponent,
+    },
+    {
+      path: 'semi-products',
       component: SemiProductsComponent,
+    },
+    {
+      path: 'semi-product-storage-items',
+      component: SemiProductStorageItemsComponent,
     },
     {
       path: 'product-reservations',
@@ -72,7 +92,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'purchase-orders',
+      redirectTo: 'dashboard',
       pathMatch: 'full',
     },
     {

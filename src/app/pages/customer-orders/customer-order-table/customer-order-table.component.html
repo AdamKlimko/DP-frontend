@@ -17,12 +17,19 @@
 
   <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef> Price </th>
-    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.price">{{element.price}}</ng-container>
+      <ng-container *ngIf="!element.price">-</ng-container>
+
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="orderProfit">
-    <th mat-header-cell *matHeaderCellDef> Order profit </th>
-    <td mat-cell *matCellDef="let element"> {{element.orderProfit}} </td>
+    <th mat-header-cell *matHeaderCellDef> Profit </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.orderProfit">{{element.orderProfit}}</ng-container>
+      <ng-container *ngIf="!element.orderProfit">-</ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="currency">
@@ -38,11 +45,6 @@
   <ng-container matColumnDef="productionSeq">
     <th mat-header-cell *matHeaderCellDef> Production seq </th>
     <td mat-cell *matCellDef="let element"> {{element.productionSeq}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="nProducts">
-    <th mat-header-cell *matHeaderCellDef> N. Products </th>
-    <td mat-cell *matCellDef="let element"> {{element.productOrders.length}} </td>
   </ng-container>
 
   <ng-container matColumnDef="action">

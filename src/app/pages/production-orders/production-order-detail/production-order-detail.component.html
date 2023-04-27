@@ -2,7 +2,7 @@
   <ng-container *ngIf="productionOrder">
     <nb-card-header class="d-flex justify-content-between align-items-center">
       <div>
-        <button nbButton routerLink="/pages/production-orders" size="small" matTooltip="BACK" class="mr-2">
+        <button nbButton routerLink="/pages/production-orders" size="small" matTooltip="Back" class="mr-2">
           <nb-icon icon="arrow-back-outline" pack="eva"></nb-icon>
         </button>
         Production Order:
@@ -75,13 +75,22 @@
         </div>
       </div>
 
-      <nb-tabset class="mt-4">
-        <nb-tab tabTitle="Semi-Product Orders">
+      <nb-tabset class="mt-4" fullWidth>
+        <nb-tab tabTitle="Semi-Product Orders" tabIcon="pantone-outline">
           <ngx-semi-product-order-tab
             [productionOrderId]="productionOrderId"
             (reserveEmitter)="onReserveSemiProduct($event)"
-            (purchaseEmitter)="onPurchaseSemiProduct()">
+            (purchaseEmitter)="onPurchaseSemiProduct($event)">
           </ngx-semi-product-order-tab>
+        </nb-tab>
+        <nb-tab tabTitle="Purchase Requisitions" tabIcon="pricetags-outline">
+          <ngx-purchase-requisition-tab
+            [productionOrderId]="productionOrderId"
+            (addEmitter)="onAddToPurchaseOrder($event)">
+          </ngx-purchase-requisition-tab>
+        </nb-tab>
+        <nb-tab tabTitle="Semi-Product Reservations" tabIcon="edit-outline">
+
         </nb-tab>
       </nb-tabset>
 

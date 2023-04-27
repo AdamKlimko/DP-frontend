@@ -12,7 +12,6 @@ import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
-import {PurchaseOrdersModule} from './purchase-orders/purchase-orders.module';
 import { CustomerOrderTableComponent } from './customer-orders/customer-order-table/customer-order-table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -31,7 +30,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ProductReservationsComponent } from './product-reservations/product-reservations.component';
 import { ProductReservationTableComponent } from './product-reservations/product-reservation-table/product-reservation-table.component';
 import {UtilComponentsModule} from '../util-components/util-components.module';
-import { ProductOrderTableComponent } from './customer-orders/product-order-table/product-order-table.component';
+import { ProductOrderTableComponent } from './customer-orders/customer-order-detail/product-order-table/product-order-table.component';
 import {MatIconModule} from '@angular/material/icon';
 import {ProductSelectionDialogComponent} from './products/product-selection-dialog/product-selection-dialog.component';
 import { ProductReservationDialogComponent } from './product-reservations/product-reservation-dialog/product-reservation-dialog.component';
@@ -56,6 +55,23 @@ import { SemiProductReservationTableComponent } from './semi-product-reservation
 import { SemiProductReservationDialogComponent } from './semi-product-reservations/semi-product-reservation-dialog/semi-product-reservation-dialog.component';
 import { SemiProductOrderTableComponent } from './production-orders/production-order-detail/semi-product-order-table/semi-product-order-table.component';
 import { SemiProductOrderTabComponent } from './production-orders/production-order-detail/semi-product-order-tab/semi-product-order-tab.component';
+import {PurchaseOrdersComponent} from './purchase-orders/purchase-orders.component';
+import { PurchaseOrderTableComponent } from './purchase-orders/purchase-order-table/purchase-order-table.component';
+import { SemiProductStorageItemsComponent } from './semi-product-storage-item/semi-product-storage-items.component';
+import { SemiProductStorageItemTableComponent } from './semi-product-storage-item/semi-product-storage-item-table/semi-product-storage-item-table.component';
+import { PurchaseRequisitionsComponent } from './purchase-requisitions/purchase-requisitions.component';
+import { PurchaseRequisitionTableComponent } from './purchase-requisitions/purchase-requisition-table/purchase-requisition-table.component';
+import { ProductStorageItemsComponent } from './product-storage-items/product-storage-items.component';
+import { ProductStorageItemTableComponent } from './product-storage-items/product-storage-item-table/product-storage-item-table.component';
+import { ProductOrderTabComponent } from './customer-orders/customer-order-detail/product-order-tab/product-order-tab.component';
+import { ProductReservationTabComponent } from './customer-orders/customer-order-detail/product-reservation-tab/product-reservation-tab.component';
+import { ProductionOrderTabComponent } from './customer-orders/customer-order-detail/production-order-tab/production-order-tab.component';
+import { PurchaseRequisitionDialogComponent } from './purchase-requisitions/purchase-requisition-dialog/purchase-requisition-dialog.component';
+import { PurchaseRequisitionTabComponent } from './production-orders/production-order-detail/purchase-requisition-tab/purchase-requisition-tab.component';
+import { PurchaseRequisitionSelectionDialogComponent } from './purchase-requisitions/purchase-requisition-selection-dialog/purchase-requisition-selection-dialog.component';
+import { PurchaseOrderDialogComponent } from './purchase-orders/purchase-order-dialog/purchase-order-dialog.component';
+import { PurchaseOrderDetailComponent } from './purchase-orders/purchase-order-detail/purchase-order-detail.component';
+import { PurchaseOrderProcessDialogComponent } from './purchase-orders/purchase-order-detail/purchase-order-process-dialog/purchase-order-process-dialog.component';
 
 @NgModule({
     imports: [
@@ -63,7 +79,6 @@ import { SemiProductOrderTabComponent } from './production-orders/production-ord
         ThemeModule,
         NbMenuModule,
         MiscellaneousModule,
-        PurchaseOrdersModule,
         NbCardModule,
         MatTableModule,
         MatProgressSpinnerModule,
@@ -121,6 +136,23 @@ import { SemiProductOrderTabComponent } from './production-orders/production-ord
     SemiProductReservationDialogComponent,
     SemiProductOrderTableComponent,
     SemiProductOrderTabComponent,
+    PurchaseOrdersComponent,
+    PurchaseOrderTableComponent,
+    SemiProductStorageItemsComponent,
+    SemiProductStorageItemTableComponent,
+    PurchaseRequisitionsComponent,
+    PurchaseRequisitionTableComponent,
+    ProductStorageItemsComponent,
+    ProductStorageItemTableComponent,
+    ProductOrderTabComponent,
+    ProductReservationTabComponent,
+    ProductionOrderTabComponent,
+    PurchaseRequisitionDialogComponent,
+    PurchaseRequisitionTabComponent,
+    PurchaseRequisitionSelectionDialogComponent,
+    PurchaseOrderDialogComponent,
+    PurchaseOrderDetailComponent,
+    PurchaseOrderProcessDialogComponent,
   ],
 })
 export class PagesModule {

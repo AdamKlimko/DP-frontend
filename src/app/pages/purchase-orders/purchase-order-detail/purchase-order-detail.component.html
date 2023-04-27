@@ -1,0 +1,78 @@
+<nb-card>
+  <ng-container *ngIf="purchaseOrder">
+    <nb-card-header class="d-flex justify-content-between align-items-center">
+      <div>
+        <button nbButton routerLink="/pages/purchase-orders" size="small" matTooltip="Back" class="mr-2">
+          <nb-icon icon="arrow-back-outline" pack="eva"></nb-icon>
+        </button>
+        Purchase Order:
+        <b>{{purchaseOrder.id}}</b>
+      </div>
+      <div>
+        <button nbButton status="primary" matTooltip="Edit" (click)="edit()"
+                *ngIf="purchaseOrder.state === 'planned'">
+          <nb-icon icon="edit-outline" pack="eva"></nb-icon>
+        </button>
+        <button nbButton status="success" matTooltip="Process" (click)="process()"
+                *ngIf="purchaseOrder.state === 'released'">
+          <nb-icon icon="checkmark-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+        <nb-list class="col-md-6">
+          <nb-list-item class="justify-content-between">
+            <div>State:</div>
+            <div><span [class]="'state state-'+purchaseOrder.state">
+                {{purchaseOrder.state}}
+            </span></div>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Priority:</span>
+            <div><span [class]="'priority priority-'+purchaseOrder.priority">
+              {{purchaseOrder.priority}}
+            </span></div>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Order Date:</span>
+            <b>{{purchaseOrder.wantedDeliveryDate | date:'dd-MM-yyyy'}}</b>
+          </nb-list-item>
+        </nb-list>
+        <nb-list class="col-md-6">
+          <nb-list-item class="justify-content-between">
+            <span>Supplier:</span>
+            <b>{{purchaseOrder.supplier}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Currency:</span>
+            <b>{{purchaseOrder.currency | uppercase}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Price:</span>
+            <b>{{purchaseOrder.price | currency: purchaseOrder.currency.toUpperCase()}}</b>
+          </nb-list-item>
+        </nb-list>
+      </div>
+
+      <nb-tabset class="mt-4">
+        <nb-tab tabTitle="Purchase Requisitions">
+          <ng-container *ngIf="!data.length" class="text-center">
+            <p>No <b>Purchase Requisitions</b> yet.
+          </ng-container>
+
+          <ng-container *ngIf="data.length">
+            <ngx-purchase-requisition-table
+              [dataSource]="data"
+              [displayedColumns]="displayedColumns"
+              [tableOptions]="tableOptions">
+            </ngx-purchase-requisition-table>
+          </ng-container>
+
+        </nb-tab>
+      </nb-tabset>
+
+    </nb-card-body>
+  </ng-container>
+</nb-card>

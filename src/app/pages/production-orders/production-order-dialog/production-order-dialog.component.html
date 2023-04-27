@@ -21,8 +21,8 @@
         <input nbInput placeholder="Pick End Date" [nbDatepicker]="endDateTime" formControlName="endDateTime">
         <nb-datepicker #endDateTime></nb-datepicker>
 
-        <label class="d-block">State</label>
-        <nb-select placeholder="State" formControlName="state" class="w-100 mb-2">
+        <label class="d-block" *ngIf="productionOrder">State</label>
+        <nb-select placeholder="State" formControlName="state" class="w-100 mb-2" *ngIf="productionOrder">
           <nb-option [value]="undefined">None</nb-option>
           <nb-option *ngFor="let state of states" [value]="state">{{state}}</nb-option>
         </nb-select>

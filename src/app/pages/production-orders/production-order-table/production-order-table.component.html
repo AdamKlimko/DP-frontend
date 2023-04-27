@@ -45,7 +45,7 @@
         <nb-icon icon="more-horizontal-outline" pack="eva"></nb-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="element.id" *ngIf="tableOptions.detail">
+        <button mat-menu-item [routerLink]="'/pages/production-orders/'+element.id" *ngIf="tableOptions.detail">
           <mat-icon>info</mat-icon>Detail
         </button>
         <button mat-menu-item (click)="edit(element)" *ngIf="tableOptions.edit">

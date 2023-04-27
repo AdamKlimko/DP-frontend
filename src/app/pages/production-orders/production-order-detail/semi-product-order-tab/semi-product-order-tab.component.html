@@ -1,10 +1,17 @@
-<ngx-semi-product-order-table
-  [dataSource]="data"
-  [displayedColumns]="displayedColumns"
-  [tableOptions]="tableOptions"
-  (reserveEmitter)="reserve($event)"
-  (purchaseEmitter)="purchase($event)">
-</ngx-semi-product-order-table>
+<ng-container *ngIf="!length" class="text-center">
+  <p>No <b>Semi-Product Orders</b> yet.
+</ng-container>
+
+<ng-container *ngIf="length">
+  <ngx-semi-product-order-table
+    [dataSource]="data"
+    [displayedColumns]="displayedColumns"
+    [tableOptions]="tableOptions"
+    (reserveEmitter)="reserve($event)"
+    (purchaseEmitter)="purchase($event)">
+  </ngx-semi-product-order-table>
+</ng-container>
+
 <mat-paginator
   *ngIf="length > 10"
   [pageSize]="10"

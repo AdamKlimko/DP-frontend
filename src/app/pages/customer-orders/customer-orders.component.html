@@ -23,14 +23,14 @@
         <nb-option *ngFor="let state of states" [value]="state">{{state}}</nb-option>
       </nb-select>
 
-      <nb-select placeholder="Currency" [(selected)]="currency" class="ml-2">
-        <nb-option [value]="undefined">None</nb-option>
-        <nb-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</nb-option>
-      </nb-select>
-
       <nb-select placeholder="Priority" [(selected)]="priority" class="ml-2">
         <nb-option [value]="undefined">None</nb-option>
         <nb-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</nb-option>
+      </nb-select>
+
+      <nb-select placeholder="Currency" [(selected)]="currency" class="ml-2">
+        <nb-option [value]="undefined">None</nb-option>
+        <nb-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</nb-option>
       </nb-select>
     </div>
 

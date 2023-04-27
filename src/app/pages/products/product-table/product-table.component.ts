@@ -3,6 +3,7 @@ import {Product} from '../../../@core/data/product';
 import {ProductOrder} from '../../../@core/data/product-order';
 import {NbToastrService} from '@nebular/theme';
 import {TableBaseDirective} from '../../../util-components/generalization/table-base.directive';
+import {State} from '../../../@core/enums/state';
 
 export interface ProductTableOptions {
   detail: boolean;
@@ -24,9 +25,9 @@ export class ProductTableComponent extends TableBaseDirective<Product> {
     super();
   }
 
-  addProduct(id: string, quantity: any) {
+  addProduct(id: string, quantity: any, unitPrice: any) {
     if (Number(quantity) > 0) {
-      this.addEmitter.emit(new ProductOrder(undefined, id, false, quantity));
+      this.addEmitter.emit(new ProductOrder(undefined, id, undefined, State.PLANNED, quantity, unitPrice));
     } else {
       this.toastrService.danger('Quantity must be a number > 0');
     }

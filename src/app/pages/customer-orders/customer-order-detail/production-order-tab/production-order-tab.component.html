@@ -1,0 +1,21 @@
+<ng-container *ngIf="!length" class="text-center">
+  <p>No <b>Production Orders</b> yet.
+</ng-container>
+
+<ng-container *ngIf="length">
+  <ngx-production-order-table
+    [dataSource]="data"
+    [displayedColumns]="displayedColumns"
+    [tableOptions]="tableOptions"
+    (deleteEmitter)="deleteProductOrder($event)">
+  </ngx-production-order-table>
+</ng-container>
+
+<mat-paginator
+  *ngIf="length > 10"
+  [pageSize]="10"
+  [length]="length"
+  [pageIndex]="pageIndex"
+  (page)="setPage($event)"
+  showFirstLastButtons>
+</mat-paginator>

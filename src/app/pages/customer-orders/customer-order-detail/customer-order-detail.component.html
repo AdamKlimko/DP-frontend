@@ -12,7 +12,9 @@
         <button nbButton status="primary" matTooltip="Edit" (click)="edit()">
           <nb-icon icon="edit-outline" pack="eva"></nb-icon>
         </button>
-        <button class="ml-2" nbButton matTooltip="Ship Order" *ngIf="canShip()" (click)="addShipping()">
+        <button class="ml-2" nbButton matTooltip="Ship Order"
+                *ngIf="customerOrder.state === 'processed'"
+                (click)="addShipping()">
           <nb-icon icon="car-outline" pack="eva"></nb-icon>
         </button>
       </div>
@@ -38,11 +40,15 @@
             <b>{{customerOrder.orderDate | date:'dd-MM-yyyy'}}</b>
           </nb-list-item>
           <nb-list-item class="justify-content-between">
-            <span>Price:</span>
-            <b>{{customerOrder.price | currency: customerOrder.currency.toUpperCase()}}</b>
+            <span>Production Sequence:</span>
+            <b>{{customerOrder.productionSeq}}</b>
           </nb-list-item>
         </nb-list>
         <nb-list class="col-md-6">
+          <nb-list-item class="justify-content-between">
+            <span>Price:</span>
+            <b>{{customerOrder.price | currency: customerOrder.currency.toUpperCase()}}</b>
+          </nb-list-item>
           <nb-list-item class="justify-content-between">
             <span>Order Profit:</span>
             <b>{{customerOrder.orderProfit | currency: customerOrder.currency.toUpperCase()}}</b>
@@ -52,10 +58,6 @@
             <b>{{customerOrder.currency | uppercase}}</b>
           </nb-list-item>
           <nb-list-item class="justify-content-between">
-            <span>Production Sequence:</span>
-            <b>{{customerOrder.productionSeq}}</b>
-          </nb-list-item>
-          <nb-list-item class="justify-content-between">
             <span>Customer:</span>
             <b>{{customerOrder.customer.name}}</b>
           </nb-list-item>
@@ -63,41 +65,26 @@
       </div>
 
       <nb-tabset fullWidth class="mt-4">
-        <nb-tab tabTitle="Product Orders">
-          <ng-container *ngIf="!customerOrder.productOrders.length" class="text-center">
-            <p>No <b>Product Orders</b> yet.
-          </ng-container>
-
-          <ng-container *ngIf="customerOrder.productOrders.length">
-            <ngx-product-order-table
-              [dataSource]="customerOrder.productOrders"
-              [displayedColumns]="displayedColumnsProductOrders"
-              (reserveEmitter)="onReserveProduct($event)"
-              (produceEmitter)="onProduceProduct($event)"
-              (deleteEmitter)="onDeleteProductOrder($event)">
-            </ngx-product-order-table>
-          </ng-container>
-
-          <div class="d-flex justify-content-end mt-4"
-               *ngIf="customerOrder.state === 'planned' || customerOrder.state === 'released'">
-            <button nbButton (click)="addProduct()">
-              <nb-icon icon="plus-outline" pack="eva"></nb-icon>Add product
-            </button>
-          </div>
-
+        <nb-tab tabTitle="Product Orders" tabIcon="cube-outline">
+          <ngx-product-order-tab
+            (addEmitter)="onAddProductOrder()"
+            (deleteEmitter)="onDeleteProductOrder($event)"
+            (produceEmitter)="onProduceProduct($event)"
+            (reserveEmitter)="onReserveProduct($event)"
+            [customerOrder]="customerOrder">
+          </ngx-product-order-tab>
         </nb-tab>
 
-        <nb-tab tabTitle="Product Reservations">
-          <ng-container *ngIf="!customerOrder.productReservations.length" class="text-center">
-            <p>No <b>Product Reservations</b> yet.
-          </ng-container>
+        <nb-tab tabTitle="Production Orders" tabIcon="settings-2-outline">
+          <ngx-production-order-tab
+            [customerOrder]="customerOrder">
+          </ngx-production-order-tab>
+        </nb-tab>
 
-          <ng-container *ngIf="customerOrder.productReservations.length">
-            <ngx-product-reservation-table
-              [dataSource]="customerOrder.productReservations"
-              [displayedColumns]="displayedColumnsProductReservations">
-            </ngx-product-reservation-table>
-          </ng-container>
+        <nb-tab tabTitle="Product Reservations" tabIcon="edit-outline">
+          <ngx-product-reservation-tab
+            [customerOrder]="customerOrder">
+          </ngx-product-reservation-tab>
         </nb-tab>
       </nb-tabset>
 
