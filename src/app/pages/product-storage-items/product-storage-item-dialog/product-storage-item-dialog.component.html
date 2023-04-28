@@ -1,0 +1,33 @@
+<nb-card accent="primary">
+  <nb-card-header>
+    <div>Assemble Product</div>
+  </nb-card-header>
+  <nb-card-body>
+    <b>{{product.partNumber}}</b>
+    <p>{{product.description}}</p>
+
+    <form [formGroup]="form" class="row form-dialog">
+
+      <div class="col">
+        <label class="d-block">Production Order</label>
+        <input type="text" nbInput placeholder="Production Order" formControlName="productionOrder">
+
+        <label class="d-block">Quantity</label>
+        <input type="number" min="0" nbInput placeholder="Quantity" formControlName="storedQuantity">
+
+        <label class="d-block">Location</label>
+        <input type="text" nbInput placeholder="Location" formControlName="location">
+      </div>
+
+    </form>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-between">
+      <button nbButton status="basic" (click)="ref.close()">Cancel</button>
+      <button nbButton status="success" (click)="assemble()" [disabled]="!form.valid">
+        Assemble
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

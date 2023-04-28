@@ -7,6 +7,8 @@ import {PurchaseRequisitionService} from '../../../@core/services/purchase-requi
 import {PurchaseRequisition} from '../../../@core/data/purchase-requisition';
 import {Currency} from '../../../@core/enums/currency';
 import {State} from '../../../@core/enums/state';
+import {SemiProductOrderService} from '../../../@core/services/semi-product-order.service';
+import {SemiProductOrder} from '../../../@core/data/semi-product-order';
 
 @Component({
   selector: 'ngx-purchase-requisition-dialog',
@@ -14,7 +16,7 @@ import {State} from '../../../@core/enums/state';
   styleUrls: ['./purchase-requisition-dialog.component.scss'],
 })
 export class PurchaseRequisitionDialogComponent implements OnInit {
-  @Input() bomItem: BomItem;
+  @Input() semiProductOrder: SemiProductOrder;
   @Input() productionOrderId: string;
   semiProduct: SemiProduct;
   currencies = Object.values(Currency);
@@ -26,17 +28,20 @@ export class PurchaseRequisitionDialogComponent implements OnInit {
   constructor(
     protected ref: NbDialogRef<PurchaseRequisitionDialogComponent>,
     private service: PurchaseRequisitionService,
+    private semiProductOrderService: SemiProductOrderService,
     private toastrService: NbToastrService,
     ) { }
 
   ngOnInit(): void {
-    this.semiProduct = this.bomItem.semiProduct as SemiProduct;
+    const bomItem = this.semiProductOrder.bomItem as BomItem;
+    this.semiProduct = bomItem.semiProduct as SemiProduct;
   }
 
   create() {
     const purchaseRequisition = new PurchaseRequisition(
       undefined,
       this.productionOrderId,
+      this.semiProductOrder.id,
       this.semiProduct.id,
       State.PLANNED,
       this.form.controls.quantity.value,

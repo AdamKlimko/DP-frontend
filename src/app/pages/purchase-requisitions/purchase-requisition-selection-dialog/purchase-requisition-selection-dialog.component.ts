@@ -32,7 +32,7 @@ export class PurchaseRequisitionSelectionDialogComponent implements OnInit {
   }
 
   updateData() {
-    this.purchaseOrderService.getPage(0, undefined, undefined).then(res => {
+    this.purchaseOrderService.getPage(0, undefined, '-createdAt', 'planned').then(res => {
       this.dataSource = res.results;
     });
   }
@@ -49,6 +49,7 @@ export class PurchaseRequisitionSelectionDialogComponent implements OnInit {
     const newPurchaseRequisition = new PurchaseRequisition(
       purchaseOrderId,
       this.purchaseRequisition.productionOrder,
+      this.purchaseRequisition.semiProductOrder,
       semiProduct.id,
       this.purchaseRequisition.state,
       this.purchaseRequisition.quantity,

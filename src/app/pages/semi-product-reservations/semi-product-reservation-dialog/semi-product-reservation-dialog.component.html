@@ -14,9 +14,20 @@
 
         <label class="d-block">Location</label>
         <input type="text" nbInput placeholder="Location" formControlName="location">
+
+        <label class="d-block">Semi Product Storage Item</label>
+        <input type="text" nbInput placeholder="Semi Product Storage Item" formControlName="semiProductStorageItem">
       </div>
 
     </form>
+
+    <ngx-semi-product-storage-item-table
+      [dataSource]="data"
+      [displayedColumns]="displayedColumns"
+      [tableOptions]="tableOptions"
+      (selectEmitter)="selectStorageItem($event)"
+    ></ngx-semi-product-storage-item-table>
+
   </nb-card-body>
   <nb-card-footer>
     <div class="d-flex justify-content-between">

@@ -15,7 +15,7 @@ export class SemiProductStorageItemService {
 
   public async getPage(page: number, query: any, sortBy: any): Promise<Page<SemiProductStorageItem>> {
     const url = `${config.apiUrl}/semiProductStorageItems?page=${page + 1}&populate=semiProduct${
-      query ? '&customer=' + query : ''}${
+      query ? '&semiProduct=' + query : ''}${
       sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(
       this.http.get<Page<SemiProductStorageItem>>(url),

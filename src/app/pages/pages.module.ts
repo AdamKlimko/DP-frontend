@@ -72,6 +72,8 @@ import { PurchaseRequisitionSelectionDialogComponent } from './purchase-requisit
 import { PurchaseOrderDialogComponent } from './purchase-orders/purchase-order-dialog/purchase-order-dialog.component';
 import { PurchaseOrderDetailComponent } from './purchase-orders/purchase-order-detail/purchase-order-detail.component';
 import { PurchaseOrderProcessDialogComponent } from './purchase-orders/purchase-order-detail/purchase-order-process-dialog/purchase-order-process-dialog.component';
+import { SemiProductReservationTabComponent } from './production-orders/production-order-detail/semi-product-reservation-tab/semi-product-reservation-tab.component';
+import { ProductStorageItemDialogComponent } from './product-storage-items/product-storage-item-dialog/product-storage-item-dialog.component';
 
 @NgModule({
     imports: [
@@ -153,6 +155,8 @@ import { PurchaseOrderProcessDialogComponent } from './purchase-orders/purchase-
     PurchaseOrderDialogComponent,
     PurchaseOrderDetailComponent,
     PurchaseOrderProcessDialogComponent,
+    SemiProductReservationTabComponent,
+    ProductStorageItemDialogComponent,
   ],
 })
 export class PagesModule {

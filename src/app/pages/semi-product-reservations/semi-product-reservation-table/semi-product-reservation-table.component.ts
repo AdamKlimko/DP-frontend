@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TableBaseDirective} from '../../../util-components/generalization/table-base.directive';
 import {SemiProductReservation} from '../../../@core/data/semi-product-reservation';
 

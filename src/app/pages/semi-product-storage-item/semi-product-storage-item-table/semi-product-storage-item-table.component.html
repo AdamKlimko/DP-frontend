@@ -1,8 +1,13 @@
 <table mat-table [dataSource]="dataSource">
 
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Storage Item ID </th>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="purchaseRequisition">
     <th mat-header-cell *matHeaderCellDef> Purch. Req. </th>
-    <td mat-cell *matCellDef="let element"> {{element.purchaseRequisition}} </td>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.purchaseRequisition}} </td>
   </ng-container>
 
   <ng-container matColumnDef="partNumber">
@@ -54,17 +59,16 @@
     </td>
   </ng-container>
 
-<!--  <ng-container matColumnDef="select" *ngIf="tableOptions.add">-->
-<!--    <th mat-header-cell *matHeaderCellDef> Add </th>-->
-<!--    <td mat-cell *matCellDef="let element">-->
-<!--      <div class="d-flex align-items-center">-->
-<!--        <input #quantity type="number" min="0" nbInput class="td-add">-->
-<!--        <button nbButton (click)="addSemiProduct(element.id, quantity.value)">-->
-<!--          <nb-icon icon="plus-outline" pack="eva"></nb-icon>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--  </ng-container>-->
+  <ng-container matColumnDef="select" *ngIf="tableOptions.select">
+    <th mat-header-cell *matHeaderCellDef> Select </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="d-flex align-items-center">
+        <button nbButton (click)="select(element)">
+          <nb-icon icon="checkmark-square-2-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

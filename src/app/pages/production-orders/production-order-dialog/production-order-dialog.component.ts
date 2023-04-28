@@ -68,17 +68,24 @@ export class ProductionOrderDialogComponent implements OnInit {
   }
 
   update() {
-    // const shipment = new Shipment(
-    // );
-    // this.service.updateById(this.productionOrder.id, shipment)
-    //   .then(
-    //     () => {
-    //       this.ref.close(true);
-    //       this.toastrService.show('Shipment Updated', `Success`, { status: 'success' });
-    //     },
-    //     (error) => {
-    //       this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });
-    //     },
-    //   );
+    const productionOrder = new ProductionOrder(
+      this.productOrder.id,
+      this.productOrder.productionSeq,
+      this.form.controls.state.value,
+      this.form.controls.wantedDeliveryDate.value,
+      this.form.controls.startDateTime.value,
+      this.form.controls.endDateTime.value,
+      this.form.controls.priority.value,
+    );
+    this.service.updateById(this.productionOrder.id, productionOrder)
+      .then(
+        () => {
+          this.ref.close(true);
+          this.toastrService.show('Production Order Updated', `Success`, { status: 'success' });
+        },
+        (error) => {
+          this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });
+        },
+      );
   }
 }

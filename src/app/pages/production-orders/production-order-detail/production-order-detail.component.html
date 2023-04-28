@@ -9,8 +9,13 @@
         <b>{{productionOrder.id}}</b>
       </div>
       <div>
-        <button nbButton status="primary" matTooltip="Edit" (click)="edit()">
+        <button nbButton status="primary" matTooltip="Edit" (click)="edit()"
+        *ngIf="productionOrder.state === 'planned' || productionOrder.state === 'released'">
           <nb-icon icon="edit-outline" pack="eva"></nb-icon>
+        </button>
+        <button class="ml-2" nbButton matTooltip="Assemble" (click)="assemble()"
+        *ngIf="canAssemble && productionOrder.state === 'released'">
+          <nb-icon icon="settings-2-outline" pack="eva"></nb-icon>
         </button>
       </div>
     </nb-card-header>
@@ -51,8 +56,12 @@
           </nb-list>
         </div>
         <div class="col-md-6">
-          <h6>Product</h6>
+          <h6>Product Order</h6>
           <nb-list>
+            <nb-list-item class="justify-content-between">
+              <span>Production Sequence:</span>
+              <b>{{productionOrder.productionSeq}}</b>
+            </nb-list-item>
             <nb-list-item class="justify-content-between">
               <span>Part Number:</span>
               <b>{{product.partNumber}}</b>
@@ -80,7 +89,8 @@
           <ngx-semi-product-order-tab
             [productionOrderId]="productionOrderId"
             (reserveEmitter)="onReserveSemiProduct($event)"
-            (purchaseEmitter)="onPurchaseSemiProduct($event)">
+            (purchaseEmitter)="onPurchaseSemiProduct($event)"
+            (canAssembleEmitter)="canAssemble = $event">
           </ngx-semi-product-order-tab>
         </nb-tab>
         <nb-tab tabTitle="Purchase Requisitions" tabIcon="pricetags-outline">
@@ -90,7 +100,9 @@
           </ngx-purchase-requisition-tab>
         </nb-tab>
         <nb-tab tabTitle="Semi-Product Reservations" tabIcon="edit-outline">
-
+          <ngx-semi-product-reservation-tab
+            [productionOrderId]="productionOrderId">
+          </ngx-semi-product-reservation-tab>
         </nb-tab>
       </nb-tabset>
 

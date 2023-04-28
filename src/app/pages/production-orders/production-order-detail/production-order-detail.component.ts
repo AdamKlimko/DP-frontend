@@ -7,7 +7,6 @@ import {ProductionOrderService} from '../../../@core/services/production-order.s
 import {ProductionOrderDialogComponent} from '../production-order-dialog/production-order-dialog.component';
 import {ProductOrder} from '../../../@core/data/product-order';
 import {Product} from '../../../@core/data/product';
-import {BomItem} from '../../../@core/data/bom-item';
 import {
   SemiProductReservationDialogComponent,
 } from '../../semi-product-reservations/semi-product-reservation-dialog/semi-product-reservation-dialog.component';
@@ -18,6 +17,10 @@ import {PurchaseRequisition} from '../../../@core/data/purchase-requisition';
 import {
   PurchaseRequisitionSelectionDialogComponent,
 } from '../../purchase-requisitions/purchase-requisition-selection-dialog/purchase-requisition-selection-dialog.component';
+import {SemiProductOrder} from '../../../@core/data/semi-product-order';
+import {
+  ProductStorageItemDialogComponent,
+} from '../../product-storage-items/product-storage-item-dialog/product-storage-item-dialog.component';
 
 @Component({
   selector: 'ngx-production-order-detail',
@@ -30,6 +33,7 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
   product: Product;
   sub: Subscription;
   dataUpdated = new EventEmitter<void>();
+  canAssemble = false;
   constructor(
     private dialogService: NbDialogService,
     protected service: ProductionOrderService,
@@ -45,6 +49,7 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private updateData() {
+    this.dataUpdated.emit();
     this.sub = this.route.params.subscribe(params => {
       this.productionOrderId = params.id;
       this.service.getById(params.id)
@@ -60,6 +65,7 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
     this.dialogService.open(ProductionOrderDialogComponent, {
       context: {
         productionOrder: this.productionOrder,
+        productOrder: this.productionOrder.productOrder as ProductOrder,
       },
     })
       .onClose.subscribe(() => {
@@ -67,10 +73,10 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  onReserveSemiProduct(bomItem: BomItem) {
+  onReserveSemiProduct(semiProductOrder: SemiProductOrder) {
     this.dialogService.open(SemiProductReservationDialogComponent, {
       context: {
-        bomItem: bomItem,
+        semiProductOrder: semiProductOrder,
         productionOrderId: this.productionOrder.id,
       },
     })
@@ -79,17 +85,14 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  onPurchaseSemiProduct(bomItem: BomItem) {
+  onPurchaseSemiProduct(semiProductOrder: SemiProductOrder) {
     this.dialogService.open(PurchaseRequisitionDialogComponent, {
       context: {
-        bomItem: bomItem,
+        semiProductOrder: semiProductOrder,
         productionOrderId: this.productionOrder.id,
       },
     })
-      .onClose.subscribe(res => {
-        if (res) {
-          //
-        }
+      .onClose.subscribe(() => {
         this.updateData();
     });
   }
@@ -98,6 +101,17 @@ export class ProductionOrderDetailComponent implements OnInit, OnDestroy {
     this.dialogService.open(PurchaseRequisitionSelectionDialogComponent, {
       context: {
         purchaseRequisition,
+      },
+    })
+      .onClose.subscribe(() => {
+      this.updateData();
+    });
+  }
+
+  assemble() {
+    this.dialogService.open(ProductStorageItemDialogComponent, {
+      context: {
+        productionOrder: this.productionOrder,
       },
     })
       .onClose.subscribe(() => {

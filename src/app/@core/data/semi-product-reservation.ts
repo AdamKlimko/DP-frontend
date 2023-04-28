@@ -1,19 +1,23 @@
-import {SemiProduct} from './semi-product';
 import {ProductionOrder} from './production-order';
+import {SemiProductStorageItem} from './semi-product-storage-item';
+import {SemiProductOrder} from './semi-product-order';
 
 export class SemiProductReservation {
   id: string;
-  semiProduct: string | SemiProduct;
+  semiProductStorageItem: string | SemiProductStorageItem;
   productionOrder: string | ProductionOrder;
+  semiProductOrder: string | SemiProductOrder;
   reservedQuantity: number;
   location: string;
 
-  constructor(semiProduct: string | SemiProduct,
+  constructor(semiProductStorageItem: string | SemiProductStorageItem,
               productionOrder: string | ProductionOrder,
+              semiProductOrder: string | SemiProductOrder,
               reservedQuantity: number,
               location: string) {
-    this.semiProduct = semiProduct;
+    this.semiProductStorageItem = semiProductStorageItem;
     this.productionOrder = productionOrder;
+    this.semiProductOrder = semiProductOrder;
     this.reservedQuantity = reservedQuantity;
     this.location = location;
   }

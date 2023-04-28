@@ -2,7 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SemiProductOrderService} from '../../../../@core/services/semi-product-order.service';
 import {PageBaseDirective} from '../../../../util-components/generalization/page-base.directive';
 import {SemiProductOrder} from '../../../../@core/data/semi-product-order';
-import {BomItem} from '../../../../@core/data/bom-item';
+import {ProductionOrderDetailComponent} from '../production-order-detail.component';
+import {State} from '../../../../@core/enums/state';
 
 @Component({
   selector: 'ngx-semi-product-order-tab',
@@ -11,16 +12,25 @@ import {BomItem} from '../../../../@core/data/bom-item';
 })
 export class SemiProductOrderTabComponent extends PageBaseDirective<SemiProductOrder> implements OnInit {
   @Input() productionOrderId: string;
-  @Output() reserveEmitter = new EventEmitter<BomItem>();
-  @Output() purchaseEmitter = new EventEmitter<BomItem>();
+  @Output() reserveEmitter = new EventEmitter<SemiProductOrder>();
+  @Output() purchaseEmitter = new EventEmitter<SemiProductOrder>();
+  @Output() canAssembleEmitter = new EventEmitter<boolean>();
   displayedColumns = ['id', 'partNumber', 'manufacturer', 'uom', 'storedQuantity', 'quantity', 'state', 'action'];
   tableOptions = { edit: false, remove: false, reserve: true, order: true };
-  constructor(protected service: SemiProductOrderService) {
+  constructor(
+    protected service: SemiProductOrderService,
+    private parent: ProductionOrderDetailComponent,
+    ) {
     super(service);
   }
 
   ngOnInit(): void {
     this.getFirstPage();
+    this.canAssembleEmitter.emit(this.canAssemble());
+    this.parent.dataUpdated.subscribe(() => {
+      this.getFirstPage();
+      this.canAssembleEmitter.emit(this.canAssemble());
+    });
   }
 
   protected getPage(page: number): void {
@@ -31,11 +41,19 @@ export class SemiProductOrderTabComponent extends PageBaseDirective<SemiProductO
     });
   }
 
-  reserve(bomItem: BomItem) {
-    this.reserveEmitter.emit(bomItem);
+  reserve(semiProductOrder: SemiProductOrder) {
+    this.reserveEmitter.emit(semiProductOrder);
   }
 
-  purchase(bomItem: BomItem) {
-    this.purchaseEmitter.emit(bomItem);
+  purchase(semiProductOrder: SemiProductOrder) {
+    this.purchaseEmitter.emit(semiProductOrder);
+  }
+
+  canAssemble(): boolean {
+    let count = 0;
+    this.data.forEach(spo => {
+      if (spo.state === State.PROCESSED) { count++; }
+    });
+    return this.length === count;
   }
 }

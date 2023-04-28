@@ -27,7 +27,7 @@ export class PurchaseOrderProcessDialogComponent  {
       .then(
         () => {
           this.ref.close(true);
-          this.toastrService.show('Purchase Order Created', `Success`, { status: 'success' });
+          this.toastrService.show('Purchase Order Processed', `Success`, { status: 'success' });
         },
         (error) => {
           this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });

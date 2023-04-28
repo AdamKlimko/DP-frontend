@@ -11,9 +11,9 @@ import {ProductStorageItem} from '../../@core/data/product-storage-item';
 })
 export class ProductStorageItemsComponent extends PageBaseDirective<ProductStorageItem> implements OnInit {
   displayedColumns = [
-    'productionOrder', 'partNumber', 'description', 'storedQuantity', 'location', 'action',
+    'productionOrder', 'partNumber', 'description', 'storedQuantity', 'location',
   ];
-  tableOptions = { edit: true, remove:  true, add: false };
+  tableOptions = { edit: false, remove:  false };
 
   constructor(
     protected service: ProductStorageItemService,

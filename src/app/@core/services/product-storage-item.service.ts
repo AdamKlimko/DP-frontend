@@ -15,7 +15,7 @@ export class ProductStorageItemService {
 
   public async getPage(page: number, query: any, sortBy: any): Promise<Page<ProductStorageItem>> {
     const url = `${config.apiUrl}/productStorageItems?page=${page + 1}&populate=product${
-      query ? '&customer=' + query : ''}${
+      query ? '&product=' + query : ''}${
       sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(
       this.http.get<Page<ProductStorageItem>>(url),

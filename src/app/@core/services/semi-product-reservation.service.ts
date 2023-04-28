@@ -13,8 +13,10 @@ export class SemiProductReservationService {
     private http: HttpClient,
   ) { }
 
-  public async getPage(page: number): Promise<Page<SemiProductReservation>> {
-    const url = `${config.apiUrl}/semiProductReservations?page=${page + 1}`;
+  public async getPage(page: number, query: any, sortBy: any): Promise<Page<SemiProductReservation>> {
+    const url = `${config.apiUrl}/semiProductReservations?page=${page + 1}${
+      query ? '&productionOrder=' + query : ''}${
+      sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(
       this.http.get<Page<SemiProductReservation>>(url),
     );

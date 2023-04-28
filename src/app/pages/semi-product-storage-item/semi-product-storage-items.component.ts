@@ -12,7 +12,7 @@ export class SemiProductStorageItemsComponent extends PageBaseDirective<SemiProd
   displayedColumns = [
     'purchaseRequisition', 'partNumber', 'description', 'manufacturer', 'uom', 'storedQuantity', 'location', 'action',
   ];
-  tableOptions = { edit: true, remove:  true, add: false };
+  tableOptions = { edit: false, remove:  false, select: false };
 
   constructor(
     protected service: SemiProductStorageItemService,
@@ -22,36 +22,5 @@ export class SemiProductStorageItemsComponent extends PageBaseDirective<SemiProd
 
   ngOnInit(): void {
     this.getFirstPage();
-  }
-
-  create() {
-    // this.dialogService.open(SemiProductDialogComponent).onClose.subscribe(res => {
-    //     if (res) {
-    //       this.getFirstPage();
-    //     }
-    //   },
-    // );
-  }
-
-  update(semiProductStorageItem: SemiProductStorageItem) {
-    // this.dialogService.open(SemiProductDialogComponent, {
-    //   context: {
-    //     semiProduct: semiProduct,
-    //   },
-    // })
-    //   .onClose.subscribe(() => {
-    //   this.getCurrentPage();
-    // });
-  }
-
-  delete(id: string) {
-    // this.service.delete(id)
-    //   .then(() => {
-    //     this.toastrService.show('Semi Product Deleted', `Success`, { status: 'success' });
-    //     this.getCurrentPage();
-    //   })
-    //   .catch(error => {
-    //     this.toastrService.show(error.error.message, 'Error', { status: 'danger', duration: 0 });
-    //   });
   }
 }
