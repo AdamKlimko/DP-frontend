@@ -18,7 +18,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Customer Orders',
-        icon: 'shopping-cart-outline',
+        icon: 'shopping-bag-outline',
         link: '/pages/customer-orders',
       },
       {
@@ -51,7 +51,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Procurement',
-    icon: 'shopping-bag-outline',
+    icon: 'shopping-cart-outline',
     children: [
       {
         title: 'Purchase Orders',
@@ -67,7 +67,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Storage',
-    icon: 'inbox-outline',
+    icon: 'archive-outline',
     children: [
       {
         title: 'Products',
@@ -78,16 +78,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Semi Products',
         icon: 'pantone-outline',
         link: '/pages/semi-products',
-      },
-      {
-        title: 'Product Storage',
-        icon: 'cube-outline',
-        link: '/pages/product-storage-items',
-      },
-      {
-        title: 'Semi-Product Storage',
-        icon: 'pantone-outline',
-        link: '/pages/semi-product-storage-items',
       },
     ],
   },

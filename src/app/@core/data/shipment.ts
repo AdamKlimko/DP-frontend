@@ -1,6 +1,7 @@
 import {State} from '../enums/state';
 import {Customer} from './customer';
 import {Priority} from '../enums/priority';
+import {CustomerOrder} from './customer-order';
 
 export class Shipment {
   id: string | undefined;
@@ -8,14 +9,14 @@ export class Shipment {
   customer: string | Customer;
   priority: Priority;
   address: string;
-  customerOrders: string[];
+  customerOrders: string[] | CustomerOrder[];
 
   constructor(id: string | undefined,
               state: State,
               customer: string | Customer,
               priority: Priority,
               address: string,
-              customerOrders: string[]) {
+              customerOrders: string[] | CustomerOrder[]) {
     this.id = id;
     this.state = state;
     this.customer = customer;

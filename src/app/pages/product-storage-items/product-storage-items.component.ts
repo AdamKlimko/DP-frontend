@@ -5,7 +5,7 @@ import {PageBaseDirective} from '../../util-components/generalization/page-base.
 import {ProductStorageItem} from '../../@core/data/product-storage-item';
 
 @Component({
-  selector: 'ngx-product-storage-item',
+  selector: 'ngx-product-storage-items',
   templateUrl: './product-storage-items.component.html',
   styleUrls: ['./product-storage-items.component.scss'],
 })
@@ -13,7 +13,7 @@ export class ProductStorageItemsComponent extends PageBaseDirective<ProductStora
   displayedColumns = [
     'productionOrder', 'partNumber', 'description', 'storedQuantity', 'location',
   ];
-  tableOptions = { edit: false, remove:  false };
+  tableOptions = { edit: false, remove: false, select: false };
 
   constructor(
     protected service: ProductStorageItemService,

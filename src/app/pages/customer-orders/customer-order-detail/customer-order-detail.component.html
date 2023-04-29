@@ -50,6 +50,10 @@
             <b>{{customerOrder.price | currency: customerOrder.currency.toUpperCase()}}</b>
           </nb-list-item>
           <nb-list-item class="justify-content-between">
+            <span>Order Cost:</span>
+            <b>{{customerOrder.orderCost | currency: customerOrder.currency.toUpperCase()}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
             <span>Order Profit:</span>
             <b>{{customerOrder.orderProfit | currency: customerOrder.currency.toUpperCase()}}</b>
           </nb-list-item>
@@ -59,7 +63,7 @@
           </nb-list-item>
           <nb-list-item class="justify-content-between">
             <span>Customer:</span>
-            <b>{{customerOrder.customer.name}}</b>
+            <b>{{customerOrder.customer.name}}, {{customerOrder.customer.country}}</b>
           </nb-list-item>
         </nb-list>
       </div>

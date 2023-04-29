@@ -2,7 +2,7 @@
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
   </ng-container>
 
   <ng-container matColumnDef="state">
@@ -19,7 +19,7 @@
 
   <ng-container matColumnDef="purchaseOrder">
     <th mat-header-cell *matHeaderCellDef> Purchase Order </th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element" class="td-id">
       <ng-container *ngIf="element.purchaseOrder">{{element.purchaseOrder}}</ng-container>
       <div *ngIf="!element.purchaseOrder" class="text-center">-</div>
     </td>

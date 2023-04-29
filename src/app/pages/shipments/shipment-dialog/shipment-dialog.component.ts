@@ -6,6 +6,7 @@ import {ShipmentService} from '../../../@core/services/shipment.service';
 import {Priority} from '../../../@core/enums/priority';
 import {State} from '../../../@core/enums/state';
 import {CustomerService} from '../../../@core/services/customer.service';
+import {Customer} from '../../../@core/data/customer';
 
 @Component({
   selector: 'ngx-shipment-dialog',
@@ -18,6 +19,7 @@ export class ShipmentDialogComponent implements OnInit {
   customersOptions = [];
   priorities = Object.values(Priority);
   states = Object.values(State);
+  customerName: string;
 
   form = new FormGroup({
     state: new FormControl<State>(State.PLANNED),
@@ -35,6 +37,9 @@ export class ShipmentDialogComponent implements OnInit {
   ngOnInit(): void {
     if (this.shipment) {
       this.fillForm();
+      const customer = (this.shipment.customer as Customer);
+      this.customerName = customer.name;
+      this.form.controls.customer.patchValue(customer.id);
     }
   }
 
@@ -48,7 +53,7 @@ export class ShipmentDialogComponent implements OnInit {
   create() {
     const shipment = new Shipment(
       undefined,
-      this.form.controls.state.value,
+      State.PLANNED,
       this.form.controls.customer.value,
       this.form.controls.priority.value,
       this.form.controls.address.value,
@@ -67,13 +72,14 @@ export class ShipmentDialogComponent implements OnInit {
   }
 
   update() {
+    const customerOrderIds = this.shipment.customerOrders.map(co => co.id);
     const shipment = new Shipment(
       undefined,
       this.form.controls.state.value,
       this.form.controls.customer.value,
       this.form.controls.priority.value,
       this.form.controls.address.value,
-      this.shipment.customerOrders,
+      customerOrderIds,
     );
     this.service.updateById(this.shipment.id, shipment)
       .then(

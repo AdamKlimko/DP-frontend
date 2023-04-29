@@ -1,0 +1,69 @@
+<nb-card>
+  <ng-container *ngIf="shipment">
+    <nb-card-header class="d-flex justify-content-between align-items-center">
+      <div>
+        <button nbButton routerLink="/pages/shipments" size="small" matTooltip="Back" class="mr-2">
+          <nb-icon icon="arrow-back-outline" pack="eva"></nb-icon>
+        </button>
+        Shipment:
+        <b>{{shipment.id}}</b>
+      </div>
+      <div>
+        <button nbButton status="primary" matTooltip="Edit" (click)="edit()">
+          <nb-icon icon="edit-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+        <nb-list class="col-md-6">
+          <nb-list-item class="justify-content-between">
+            <div>State:</div>
+            <div><span [class]="'state state-'+shipment.state">
+                {{shipment.state}}
+            </span></div>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Priority:</span>
+            <div><span [class]="'priority priority-'+shipment.priority">
+              {{shipment.priority}}
+            </span></div>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>N. of Orders:</span>
+            <b>{{customerOrders.length}}</b>
+          </nb-list-item>
+        </nb-list>
+        <nb-list class="col-md-6">
+          <nb-list-item class="justify-content-between">
+            <span>Customer:</span>
+            <b>{{shipment.customer.name}}, {{shipment.customer.country}}</b>
+          </nb-list-item>
+          <nb-list-item class="justify-content-between">
+            <span>Address:</span>
+            <b>{{shipment.address}}</b>
+          </nb-list-item>
+        </nb-list>
+      </div>
+
+      <nb-tabset class="mt-4">
+        <nb-tab tabTitle="Customer Orders">
+          <ng-container *ngIf="!customerOrders.length" class="text-center">
+            <p>No <b>Customer Orders</b> yet.
+          </ng-container>
+
+          <ng-container *ngIf="customerOrders.length">
+            <ngx-customer-order-table
+              [dataSource]="customerOrders"
+              [displayedColumns]="displayedColumns"
+              [tableOptions]="tableOptions">
+            </ngx-customer-order-table>
+          </ng-container>
+
+        </nb-tab>
+      </nb-tabset>
+
+    </nb-card-body>
+  </ng-container>
+</nb-card>

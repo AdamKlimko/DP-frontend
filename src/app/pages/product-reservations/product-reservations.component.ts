@@ -10,7 +10,7 @@ import {PageBaseDirective} from '../../util-components/generalization/page-base.
 })
 export class ProductReservationsComponent extends PageBaseDirective<ProductReservation> implements OnInit {
   displayedColumns: string[] = [
-    'customerOrder', 'productOrder', 'product', 'reservedQuantity', 'location',
+    'customerOrder', 'productOrder', 'partNumber', 'reservedQuantity', 'location',
   ];
 
   constructor(

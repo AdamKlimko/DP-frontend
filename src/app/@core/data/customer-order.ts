@@ -11,6 +11,7 @@ export class CustomerOrder {
   orderDate: Date;
   productionSeq: string;
   priority: Priority;
+  orderCost: number | undefined;
   orderProfit: number | undefined;
   customer: string | Customer;
 

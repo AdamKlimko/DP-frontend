@@ -18,7 +18,7 @@ export class ProductionOrderTabComponent extends PageBaseDirective<ProductionOrd
   @Input() customerOrder: CustomerOrder;
   tableOptions: ProductionOrderTableOptions = { detail: true, edit: true, remove: true };
   displayedColumns = [
-    'id', 'productOrder', 'state', 'priority', 'wantedDeliveryDate', 'startDateTime', 'endDateTime', 'action',
+    'state', 'priority', 'id', 'productOrder', 'wantedDeliveryDate', 'startDateTime', 'endDateTime', 'cost', 'action',
   ];
   constructor(
     protected service: ProductionOrderService,

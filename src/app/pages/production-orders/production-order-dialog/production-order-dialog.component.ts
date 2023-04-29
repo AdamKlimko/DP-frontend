@@ -6,6 +6,7 @@ import {NbDialogRef, NbToastrService} from '@nebular/theme';
 import {ProductionOrder} from '../../../@core/data/production-order';
 import {ProductionOrderService} from '../../../@core/services/production-order.service';
 import {ProductOrder} from '../../../@core/data/product-order';
+import {Currency} from '../../../@core/enums/currency';
 
 @Component({
   selector: 'ngx-production-order-dialog',
@@ -54,6 +55,7 @@ export class ProductionOrderDialogComponent implements OnInit {
       this.form.controls.startDateTime.value,
       this.form.controls.endDateTime.value,
       this.form.controls.priority.value,
+      Currency.EUR,
     );
     this.service.create(productionOrder)
       .then(
@@ -76,6 +78,7 @@ export class ProductionOrderDialogComponent implements OnInit {
       this.form.controls.startDateTime.value,
       this.form.controls.endDateTime.value,
       this.form.controls.priority.value,
+      Currency.EUR,
     );
     this.service.updateById(this.productionOrder.id, productionOrder)
       .then(

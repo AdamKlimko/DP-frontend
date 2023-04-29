@@ -15,7 +15,7 @@ export class ProductReservationTabComponent extends PageBaseDirective<ProductRes
   @Input() customerOrder: CustomerOrder;
   @Output() editEmitter = new EventEmitter<Product>();
   @Output() deleteEmitter = new EventEmitter<string>();
-  displayedColumns = ['productOrder', 'product', 'reservedQuantity', 'location'];
+  displayedColumns = ['productOrder', 'partNumber', 'reservedQuantity', 'location'];
   constructor(
     protected service: ProductReservationService,
     private parent: CustomerOrderDetailComponent,
@@ -23,6 +23,7 @@ export class ProductReservationTabComponent extends PageBaseDirective<ProductRes
     super(service);
   }
   ngOnInit(): void {
+    this.query = this.customerOrder.id;
     this.getFirstPage();
     this.parent.dataUpdated.subscribe(() => {
       this.getFirstPage();
@@ -30,7 +31,7 @@ export class ProductReservationTabComponent extends PageBaseDirective<ProductRes
   }
 
   protected getPage(page: number): void {
-    this.service.getPage(this.customerOrder.id, page, this.query, this.sortBy).then(res => {
+    this.service.getPage(page, this.query, this.sortBy).then(res => {
       this.data = res.results;
       this.length = res.totalResults;
       this.pageIndex = page;

@@ -45,7 +45,7 @@ export class SemiProductDialogComponent implements OnInit {
       this.form.controls.partNumber.value,
       this.form.controls.description.value,
       this.form.controls.manufacturer.value,
-      this.form.controls.storedQuantity.value,
+      0,
       this.form.controls.uom.value,
     );
     this.service.create(semiProduct)

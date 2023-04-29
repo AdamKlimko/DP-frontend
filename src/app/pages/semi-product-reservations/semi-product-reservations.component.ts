@@ -10,7 +10,7 @@ import {SemiProductReservationService} from '../../@core/services/semi-product-r
 })
 export class SemiProductReservationsComponent extends PageBaseDirective<SemiProductReservation> implements OnInit {
   displayedColumns: string[] = [
-    'semiProduct', 'productionOrder', 'reservedQuantity', 'location',
+    'id', 'semiProductStorageItem', 'productionOrder', 'semiProductOrder', 'reservedQuantity', 'location',
   ];
   constructor(protected service: SemiProductReservationService) {
     super(service);

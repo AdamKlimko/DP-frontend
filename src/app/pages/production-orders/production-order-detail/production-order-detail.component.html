@@ -53,6 +53,10 @@
               <span>End:</span>
               <b>{{productionOrder.endDateTime | date:'short'}}</b>
             </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Cost:</span>
+              <b>{{productionOrder.cost | currency: productionOrder.currency.toUpperCase()}}</b>
+            </nb-list-item>
           </nb-list>
         </div>
         <div class="col-md-6">

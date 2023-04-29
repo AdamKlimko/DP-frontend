@@ -14,7 +14,7 @@ import {State} from '../../@core/enums/state';
 })
 export class ProductionOrdersComponent extends PageBaseDirective<ProductionOrder> implements OnInit {
   displayedColumns = [
-    'id', 'productOrder', 'state', 'priority', 'wantedDeliveryDate', 'startDateTime', 'endDateTime', 'action',
+    'state', 'priority', 'id', 'productOrder', 'wantedDeliveryDate', 'startDateTime', 'endDateTime', 'cost', 'action',
   ];
   tableOptions = { detail: true, edit: true, remove:  true };
   priorities = Object.values(Priority);

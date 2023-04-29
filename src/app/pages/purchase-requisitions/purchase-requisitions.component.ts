@@ -12,7 +12,7 @@ import {PurchaseRequisitionTableOptions} from './purchase-requisition-table/purc
 })
 export class PurchaseRequisitionsComponent extends PageBaseDirective<PurchaseRequisition> implements OnInit {
   displayedColumns = [
-    'id', 'semiProduct', 'purchaseOrder', 'productionOrder', 'unitPrice', 'quantity', 'price', 'currency', 'state', 'action',
+    'state', 'id', 'semiProduct', 'purchaseOrder', 'productionOrder', 'unitPrice', 'quantity', 'price', 'currency', 'action',
   ];
   tableOptions: PurchaseRequisitionTableOptions = {add: false, edit: false, remove: false};
   constructor(

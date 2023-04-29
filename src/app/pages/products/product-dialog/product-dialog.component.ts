@@ -44,7 +44,7 @@ export class ProductDialogComponent implements OnInit {
       undefined,
       this.form.controls.partNumber.value,
       this.form.controls.description.value,
-      this.form.controls.storedQuantity.value,
+      0,
       this.form.controls.uom.value,
       this.form.controls.size.value,
     );

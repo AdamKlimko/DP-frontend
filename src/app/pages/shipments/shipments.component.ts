@@ -11,8 +11,8 @@ import {ShipmentDialogComponent} from './shipment-dialog/shipment-dialog.compone
   styleUrls: ['./shipments.component.scss'],
 })
 export class ShipmentsComponent extends PageBaseDirective<Shipment> implements OnInit {
-  displayedColumns = ['customer', 'address', 'state', 'priority', 'customerOrders', 'action'];
-  tableOptions = { edit: true, remove:  true, add: false };
+  displayedColumns = ['state', 'priority', 'id', 'customer', 'address', 'customerOrders', 'action'];
+  tableOptions = { edit: true, remove:  true, add: false, detail: true };
 
   constructor(
     protected service: ShipmentService,

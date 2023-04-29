@@ -2,7 +2,7 @@
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
   </ng-container>
 
   <ng-container matColumnDef="state">
@@ -33,13 +33,17 @@
     <td mat-cell *matCellDef="let element"> {{element.customerOrders.length}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="action" *ngIf="tableOptions.edit || tableOptions.remove">
+  <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef> Action </th>
     <td mat-cell *matCellDef="let element">
-      <button nbButton ghost size="small" [matMenuTriggerFor]="menu">
+      <button nbButton ghost size="small" [matMenuTriggerFor]="menu"
+              *ngIf="tableOptions.edit || tableOptions.remove || tableOptions.detail">
         <nb-icon icon="more-horizontal-outline" pack="eva"></nb-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'/pages/shipments/'+element.id" *ngIf="tableOptions.detail">
+          <mat-icon>info</mat-icon>Detail
+        </button>
         <button mat-menu-item (click)="edit(element)" *ngIf="tableOptions.edit">
           <mat-icon>edit</mat-icon>Edit
         </button>

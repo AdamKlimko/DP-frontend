@@ -13,11 +13,10 @@ export class ProductReservationService {
     private http: HttpClient,
   ) { }
 
-  public async getPage(customerOrderId: string,
-                       page: number,
+  public async getPage(page: number,
                        query: any,
                        sortBy: any): Promise<Page<ProductReservation>> {
-    const url = `${config.apiUrl}/customerOrders/${customerOrderId}/productReservations?page=${page + 1}${
+    const url = `${config.apiUrl}/productReservations?page=${page + 1}${
       query ? '&customerOrder=' + query : ''}${
       sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(

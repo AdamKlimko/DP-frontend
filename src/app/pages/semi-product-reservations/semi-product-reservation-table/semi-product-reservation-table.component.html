@@ -5,9 +5,14 @@
     <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="semiProductStorageItem">
+    <th mat-header-cell *matHeaderCellDef> Storage Item </th>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.semiProductStorageItem}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="productionOrder">
     <th mat-header-cell *matHeaderCellDef> Production Order </th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element" class="td-id">
       <a [routerLink]="'/pages/production-orders/'+element.productionOrder">
         {{element.productionOrder}}
       </a>

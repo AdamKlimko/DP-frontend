@@ -1,38 +1,8 @@
-<nb-card>
-  <nb-card-header class="d-flex justify-content-between align-items-center">
-    Semi-Products
-    <button nbButton status="primary" (click)="create()">
-      <nb-icon icon="plus-outline" pack="eva"></nb-icon>
-    </button>
-  </nb-card-header>
-
-  <nb-card-body>
-
-    <div class="d-flex justify-content-start mb-3">
-      <nb-form-field>
-        <input type="text" nbInput placeholder="Part N." [(ngModel)]="query" (keydown.enter)="getFirstPage()">
-        <button nbPrefix nbButton ghost (click)="getFirstPage()">
-          <nb-icon icon="search" pack="eva"></nb-icon>
-        </button>
-        <button nbSuffix nbButton ghost (click)="resetSearch()" *ngIf="query">
-          <nb-icon icon="close-outline"></nb-icon></button>
-      </nb-form-field>
-    </div>
-
-    <ngx-semi-product-table
-      [dataSource]="data"
-      [displayedColumns]="displayedColumns"
-      [tableOptions]="tableOptions"
-      (editEmitter)="update($event)"
-      (deleteEmitter)="delete($event)"
-    ></ngx-semi-product-table>
-
-    <mat-paginator [pageSize]="10"
-                   [length]="length"
-                   [pageIndex]="pageIndex"
-                   (page)="setPage($event)"
-                   showFirstLastButtons>
-    </mat-paginator>
-
-  </nb-card-body>
-</nb-card>
+<nb-tabset class="mt-4" fullWidth>
+  <nb-tab tabTitle="Semi Products" tabIcon="cube-outline">
+    <ngx-semi-product-tab></ngx-semi-product-tab>
+  </nb-tab>
+  <nb-tab tabTitle="Storage" tabIcon="archive-outline">
+    <ngx-semi-product-storage-items></ngx-semi-product-storage-items>
+  </nb-tab>
+</nb-tabset>

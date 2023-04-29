@@ -1,6 +1,7 @@
 import {State} from '../enums/state';
 import {Priority} from '../enums/priority';
 import {ProductOrder} from './product-order';
+import {Currency} from '../enums/currency';
 
 export class ProductionOrder {
   id: string | undefined;
@@ -11,6 +12,8 @@ export class ProductionOrder {
   startDateTime: Date;
   endDateTime: Date;
   priority: Priority;
+  cost: number;
+  currency: Currency;
 
   constructor(productOrder: string | ProductOrder,
               productionSeq: string,
@@ -18,7 +21,8 @@ export class ProductionOrder {
               wantedDeliveryDate: Date,
               startDateTime: Date,
               endDateTime: Date,
-              priority: Priority) {
+              priority: Priority,
+              currency: Currency) {
     this.productOrder = productOrder;
     this.productionSeq = productionSeq;
     this.state = state;
@@ -26,5 +30,6 @@ export class ProductionOrder {
     this.startDateTime = startDateTime;
     this.endDateTime = endDateTime;
     this.priority = priority;
+    this.currency = currency;
   }
 }

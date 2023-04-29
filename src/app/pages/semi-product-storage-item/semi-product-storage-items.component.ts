@@ -4,13 +4,13 @@ import {SemiProductStorageItem} from '../../@core/data/semi-product-storage-item
 import {SemiProductStorageItemService} from '../../@core/services/semi-product-storage-item.service';
 
 @Component({
-  selector: 'ngx-semi-product-storage-item',
+  selector: 'ngx-semi-product-storage-items',
   templateUrl: './semi-product-storage-items.component.html',
   styleUrls: ['./semi-product-storage-items.component.scss'],
 })
 export class SemiProductStorageItemsComponent extends PageBaseDirective<SemiProductStorageItem> implements OnInit {
   displayedColumns = [
-    'purchaseRequisition', 'partNumber', 'description', 'manufacturer', 'uom', 'storedQuantity', 'location', 'action',
+    'id', 'purchaseRequisition', 'partNumber', 'description', 'manufacturer', 'uom', 'storedQuantity', 'location',
   ];
   tableOptions = { edit: false, remove:  false, select: false };
 
@@ -22,5 +22,13 @@ export class SemiProductStorageItemsComponent extends PageBaseDirective<SemiProd
 
   ngOnInit(): void {
     this.getFirstPage();
+  }
+
+  protected getPage(page: number): void {
+    this.service.getPage(page, this.query, this.sortBy, undefined).then(res => {
+      this.data = res.results;
+      this.length = res.totalResults;
+      this.pageIndex = page;
+    });
   }
 }

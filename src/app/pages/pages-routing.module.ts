@@ -21,6 +21,7 @@ import {SemiProductStorageItemsComponent} from './semi-product-storage-item/semi
 import {PurchaseRequisitionsComponent} from './purchase-requisitions/purchase-requisitions.component';
 import {ProductStorageItemsComponent} from './product-storage-items/product-storage-items.component';
 import {PurchaseOrderDetailComponent} from './purchase-orders/purchase-order-detail/purchase-order-detail.component';
+import {ShipmentDetailComponent} from './shipments/shipment-detail/shipment-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -89,6 +90,10 @@ const routes: Routes = [{
     {
       path: 'shipments',
       component: ShipmentsComponent,
+    },
+    {
+      path: 'shipments/:id',
+      component: ShipmentDetailComponent,
     },
     {
       path: '',

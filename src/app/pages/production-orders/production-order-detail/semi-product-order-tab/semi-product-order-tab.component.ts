@@ -15,7 +15,7 @@ export class SemiProductOrderTabComponent extends PageBaseDirective<SemiProductO
   @Output() reserveEmitter = new EventEmitter<SemiProductOrder>();
   @Output() purchaseEmitter = new EventEmitter<SemiProductOrder>();
   @Output() canAssembleEmitter = new EventEmitter<boolean>();
-  displayedColumns = ['id', 'partNumber', 'manufacturer', 'uom', 'storedQuantity', 'quantity', 'state', 'action'];
+  displayedColumns = ['state', 'id', 'partNumber', 'manufacturer', 'uom', 'storedQuantity', 'quantity', 'action'];
   tableOptions = { edit: false, remove: false, reserve: true, order: true };
   constructor(
     protected service: SemiProductOrderService,

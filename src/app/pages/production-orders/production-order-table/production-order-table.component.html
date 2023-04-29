@@ -2,12 +2,12 @@
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.id}} </td>
   </ng-container>
 
   <ng-container matColumnDef="productOrder">
     <th mat-header-cell *matHeaderCellDef> Product Order ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.productOrder}} </td>
+    <td mat-cell *matCellDef="let element" class="td-id"> {{element.productOrder}} </td>
   </ng-container>
 
   <ng-container matColumnDef="state">
@@ -36,6 +36,11 @@
   <ng-container matColumnDef="endDateTime">
     <th mat-header-cell *matHeaderCellDef> End </th>
     <td mat-cell *matCellDef="let element"> {{element.endDateTime | date:'short'}}
+  </ng-container>
+
+  <ng-container matColumnDef="cost">
+    <th mat-header-cell *matHeaderCellDef> Cost </th>
+    <td mat-cell *matCellDef="let element"> {{element.cost | currency:element.currency.toUpperCase()}}
   </ng-container>
 
   <ng-container matColumnDef="action" *ngIf="tableOptions.edit || tableOptions.remove || tableOptions.detail">

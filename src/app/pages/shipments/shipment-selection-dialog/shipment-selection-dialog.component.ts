@@ -42,13 +42,14 @@ export class ShipmentSelectionDialogComponent implements OnInit {
 
   onAdd(shipment: Shipment) {
     const customer = shipment.customer as Customer;
+    const newCustomerOrders = shipment.customerOrders as string[];
+    newCustomerOrders.push(this.customerOrderId);
     const newShipment = new Shipment(undefined,
       shipment.state,
       customer.id,
       shipment.priority,
       shipment.address,
       shipment.customerOrders);
-    shipment.customerOrders.push(this.customerOrderId);
     this.service.updateById(shipment.id, newShipment)
       .then(() => {
         this.toastrService.show('Customer Order added to Shipment', `Success`, { status: 'success' });

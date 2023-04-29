@@ -16,7 +16,7 @@ export class PurchaseRequisitionTabComponent extends PageBaseDirective<PurchaseR
   @Input() productionOrderId: string;
   @Output() addEmitter = new EventEmitter<PurchaseRequisition>();
   displayedColumns = [
-    'id', 'semiProduct', 'purchaseOrder', 'unitPrice', 'quantity', 'price', 'currency', 'state', 'action',
+    'state', 'id', 'semiProduct', 'purchaseOrder', 'unitPrice', 'quantity', 'price', 'currency', 'action',
   ];
   tableOptions: PurchaseRequisitionTableOptions = { add: true, edit: false, remove: false };
   constructor(

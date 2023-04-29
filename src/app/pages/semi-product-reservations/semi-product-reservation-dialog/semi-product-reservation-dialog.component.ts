@@ -41,9 +41,17 @@ export class SemiProductReservationDialogComponent extends PageBaseDirective<Sem
   ngOnInit(): void {
     const bomItem = this.semiProductOrder.bomItem as BomItem;
     this.semiProduct = bomItem.semiProduct as SemiProduct;
-    this.form.controls.reservedQuantity.patchValue(bomItem.quantity);
+    this.form.controls.reservedQuantity.patchValue(this.semiProductOrder.quantity);
     this.query = this.semiProduct.id;
     this.getFirstPage();
+  }
+
+  protected getPage(page: number): void {
+    this.service.getPage(page, this.query, this.sortBy, true).then(res => {
+      this.data = res.results;
+      this.length = res.totalResults;
+      this.pageIndex = page;
+    });
   }
 
   create() {

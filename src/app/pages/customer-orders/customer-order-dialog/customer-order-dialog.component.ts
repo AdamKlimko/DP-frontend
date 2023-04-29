@@ -23,8 +23,6 @@ export class CustomerOrderDialogComponent implements OnInit {
   customers = [];
   customersOptions = [];
   customerName: string;
-  // length = 0;
-  // pageIndex = 0;
 
   form = new FormGroup({
     orderDate: new FormControl<Date>(new Date()),

@@ -12,7 +12,7 @@ import {ProductionOrderDetailComponent} from '../production-order-detail.compone
 export class SemiProductReservationTabComponent extends PageBaseDirective<SemiProductReservation> implements OnInit {
   @Input() productionOrderId: string;
   displayedColumns = [
-    'id', 'semiProductOrder', 'reservedQuantity', 'location',
+    'id', 'semiProductStorageItem', 'semiProductOrder', 'reservedQuantity', 'location',
   ];
   tableOptions = { edit: false, remove: false };
   constructor(

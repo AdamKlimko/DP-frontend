@@ -3,7 +3,6 @@ import {PageBaseDirective} from '../../../../util-components/generalization/page
 import {ProductOrder} from '../../../../@core/data/product-order';
 import {ProductOrderService} from '../../../../@core/services/product-order.service';
 import {CustomerOrder} from '../../../../@core/data/customer-order';
-import {Product} from '../../../../@core/data/product';
 import {CustomerOrderDetailComponent} from '../customer-order-detail.component';
 
 @Component({
@@ -14,12 +13,11 @@ import {CustomerOrderDetailComponent} from '../customer-order-detail.component';
 export class ProductOrderTabComponent extends PageBaseDirective<ProductOrder> implements OnInit {
   @Input() customerOrder: CustomerOrder;
   @Output() addEmitter = new EventEmitter<void>();
-  @Output() editEmitter = new EventEmitter<Product>();
   @Output() deleteEmitter = new EventEmitter<string>();
   @Output() reserveEmitter = new EventEmitter<ProductOrder>();
   @Output() produceEmitter = new EventEmitter<ProductOrder>();
   displayedColumns = [
-    'id', 'partNumber', 'description', 'uom', 'size', 'storedQuantity', 'unitPrice', 'quantity', 'state', 'action',
+    'state', 'id', 'partNumber', 'description', 'uom', 'size', 'storedQuantity', 'unitPrice', 'quantity', 'action',
   ];
   constructor(
     protected service: ProductOrderService,
