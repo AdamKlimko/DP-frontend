@@ -1,0 +1,115 @@
+<nb-card>
+  <ng-container *ngIf="productionOrder">
+    <nb-card-header class="d-flex justify-content-between align-items-center">
+      <div>
+        <button nbButton routerLink="/pages/production-orders" size="small" matTooltip="Back" class="mr-2">
+          <nb-icon icon="arrow-back-outline" pack="eva"></nb-icon>
+        </button>
+        Production Order:
+        <b>{{productionOrder.id}}</b>
+      </div>
+      <div>
+        <button nbButton status="primary" matTooltip="Edit" (click)="edit()"
+        *ngIf="productionOrder.state === 'planned' || productionOrder.state === 'released'">
+          <nb-icon icon="edit-outline" pack="eva"></nb-icon>
+        </button>
+        <button class="ml-2" nbButton matTooltip="Assemble" (click)="assemble()"
+        *ngIf="canAssemble && productionOrder.state === 'released'">
+          <nb-icon icon="settings-2-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Production Order</h6>
+          <nb-list>
+            <nb-list-item class="justify-content-between">
+              <span>Quantity to Produce:</span>
+              <b>{{productionOrder.productOrder.quantity}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>State:</span>
+              <div><span [class]="'state state-'+productionOrder.state">
+                {{productionOrder.state}}
+            </span></div>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Priority:</span>
+              <div><span [class]="'priority priority-'+productionOrder.priority">
+              {{productionOrder.priority}}
+            </span></div>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Wanted Delivery:</span>
+              <b>{{productionOrder.wantedDeliveryDate | date:'dd/MM/yyyy'}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Start:</span>
+              <b>{{productionOrder.startDateTime | date:'dd/MM/yyyy'}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>End:</span>
+              <b>{{productionOrder.endDateTime | date:'dd/MM/yyyy'}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Cost:</span>
+              <b>{{productionOrder.cost | currency: productionOrder.currency.toUpperCase()}}</b>
+            </nb-list-item>
+          </nb-list>
+        </div>
+        <div class="col-md-6">
+          <h6>Product Order</h6>
+          <nb-list>
+            <nb-list-item class="justify-content-between">
+              <span>Production Sequence:</span>
+              <b>{{productionOrder.productionSeq}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Part Number:</span>
+              <b>{{product.partNumber}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Size:</span>
+              <b>{{product.size}}</b>
+            </nb-list-item>
+            <nb-list-item class="justify-content-between">
+              <span>Unit of measure:</span>
+              <b>{{product.uom}}</b>
+            </nb-list-item>
+            <nb-list-item>
+              <div>
+                <div>Description:</div>
+                <div><b>{{product.description}}</b></div>
+              </div>
+            </nb-list-item>
+          </nb-list>
+        </div>
+      </div>
+
+      <nb-tabset class="mt-4" fullWidth>
+        <nb-tab tabTitle="Semi-Product Orders" tabIcon="pantone-outline">
+          <ngx-semi-product-order-tab
+            [productionOrderId]="productionOrderId"
+            (reserveEmitter)="onReserveSemiProduct($event)"
+            (purchaseEmitter)="onPurchaseSemiProduct($event)"
+            (canAssembleEmitter)="canAssemble = $event">
+          </ngx-semi-product-order-tab>
+        </nb-tab>
+        <nb-tab tabTitle="Purchase Requisitions" tabIcon="pricetags-outline">
+          <ngx-purchase-requisition-tab
+            [productionOrderId]="productionOrderId"
+            (addEmitter)="onAddToPurchaseOrder($event)">
+          </ngx-purchase-requisition-tab>
+        </nb-tab>
+        <nb-tab tabTitle="Semi-Product Reservations" tabIcon="edit-outline">
+          <ngx-semi-product-reservation-tab
+            [productionOrderId]="productionOrderId">
+          </ngx-semi-product-reservation-tab>
+        </nb-tab>
+      </nb-tabset>
+
+    </nb-card-body>
+  </ng-container>
+</nb-card>

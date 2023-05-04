@@ -4,6 +4,7 @@ import {Page} from '../data/page';
 import {config} from '../../config';
 import {lastValueFrom} from 'rxjs';
 import {Shipment} from '../data/shipment';
+import {State} from '../enums/state';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,10 @@ export class ShipmentService {
     private http: HttpClient,
   ) { }
 
-  public async getPage(page: number, query: any, sortBy: any): Promise<Page<Shipment>> {
+  public async getPage(page: number, query: any, sortBy: any, state: State): Promise<Page<Shipment>> {
     const url = `${config.apiUrl}/shipments?page=${page + 1}&populate=customer${
       query ? '&customer=' + query : ''}${
+      state ? '&state=' + state : ''}${
       sortBy ? '&sortBy=' + sortBy : ''}`;
     return await lastValueFrom(
       this.http.get<Page<Shipment>>(url),

@@ -3,25 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import {PurchaseOrdersComponent} from './purchase-orders/purchase-orders.component';
-import {CustomerOrderDetailComponent} from './customer-orders/customer-order-detail/customer-order-detail.component';
-import {ProductsComponent} from './products/products.component';
-import {CustomersComponent} from './customers/customers.component';
-import {ProductReservationsComponent} from './product-reservations/product-reservations.component';
-import {CustomerOrdersComponent} from './customer-orders/customer-orders.component';
-import {ShipmentsComponent} from './shipments/shipments.component';
-import {SemiProductsComponent} from './semi-products/semi-products.component';
-import {ProductDetailComponent} from './products/product-detail/product-detail.component';
-import {ProductionOrdersComponent} from './production-orders/production-orders.component';
+import {PurchaseOrdersComponent} from './procurement/purchase-order/purchase-orders/purchase-orders.component';
+import {CustomerOrderDetailComponent} from './customer-relations/customer-order/customer-order-detail/customer-order-detail.component';
+import {ProductsComponent} from './storage/product/products/products.component';
+import {CustomersComponent} from './customer-relations/customer/customers/customers.component';
+import {ProductReservationsComponent} from './manufacturing/product-reservation/product-reservations/product-reservations.component';
+import {CustomerOrdersComponent} from './customer-relations/customer-order/customer-orders/customer-orders.component';
+import {ShipmentsComponent} from './customer-relations/shipment/shipments/shipments.component';
+import {SemiProductsComponent} from './storage/semi-product/semi-products/semi-products.component';
+import {ProductDetailComponent} from './storage/product/product-detail/product-detail.component';
+import {ProductionOrdersComponent} from './manufacturing/production-order/production-orders/production-orders.component';
 import {
   ProductionOrderDetailComponent,
-} from './production-orders/production-order-detail/production-order-detail.component';
-import {SemiProductReservationsComponent} from './semi-product-reservations/semi-product-reservations.component';
-import {SemiProductStorageItemsComponent} from './semi-product-storage-item/semi-product-storage-items.component';
-import {PurchaseRequisitionsComponent} from './purchase-requisitions/purchase-requisitions.component';
-import {ProductStorageItemsComponent} from './product-storage-items/product-storage-items.component';
-import {PurchaseOrderDetailComponent} from './purchase-orders/purchase-order-detail/purchase-order-detail.component';
-import {ShipmentDetailComponent} from './shipments/shipment-detail/shipment-detail.component';
+} from './manufacturing/production-order/production-order-detail/production-order-detail.component';
+import {SemiProductReservationsComponent} from './manufacturing/semi-product-reservation/semi-product-reservations/semi-product-reservations.component';
+import {SemiProductStorageItemsComponent} from './storage/semi-product-storage-item/semi-product-storage-items/semi-product-storage-items.component';
+import {PurchaseRequisitionsComponent} from './procurement/purchase-requisition/purchase-requisitions/purchase-requisitions.component';
+import {ProductStorageItemsComponent} from './storage/product-storage-item/product-storage-items/product-storage-items.component';
+import {PurchaseOrderDetailComponent} from './procurement/purchase-order/purchase-order-detail/purchase-order-detail.component';
+import {ShipmentDetailComponent} from './customer-relations/shipment/shipment-detail/shipment-detail.component';
 
 const routes: Routes = [{
   path: '',
