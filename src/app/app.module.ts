@@ -6,7 +6,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import {
 } from '@nebular/theme';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import {AuthInterceptor} from './@core/auth/auth-interceptor.service';
+import {AuthGuard} from './@core/auth/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,6 +47,14 @@ import {MatIconModule} from '@angular/material/icon';
     ThemeModule.forRoot(),
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    AuthGuard,
+  ],
 })
 export class AppModule {
 }

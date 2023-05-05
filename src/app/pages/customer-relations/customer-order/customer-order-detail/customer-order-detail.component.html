@@ -69,7 +69,7 @@
       </div>
 
       <nb-tabset fullWidth class="mt-4">
-        <nb-tab tabTitle="Product Orders" tabIcon="cube-outline">
+        <nb-tab tabTitle="Product Orders" tabIcon="cube-outline" responsive>
           <ngx-product-order-tab
             (addEmitter)="onAddProductOrder()"
             (deleteEmitter)="onDeleteProductOrder($event)"
@@ -79,13 +79,13 @@
           </ngx-product-order-tab>
         </nb-tab>
 
-        <nb-tab tabTitle="Production Orders" tabIcon="settings-2-outline">
+        <nb-tab tabTitle="Production Orders" tabIcon="settings-2-outline" responsive>
           <ngx-production-order-tab
             [customerOrder]="customerOrder">
           </ngx-production-order-tab>
         </nb-tab>
 
-        <nb-tab tabTitle="Product Reservations" tabIcon="edit-outline">
+        <nb-tab tabTitle="Product Reservations" tabIcon="edit-outline" responsive>
           <ngx-product-reservation-tab
             [customerOrder]="customerOrder">
           </ngx-product-reservation-tab>

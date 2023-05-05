@@ -89,7 +89,7 @@
       </div>
 
       <nb-tabset class="mt-4" fullWidth>
-        <nb-tab tabTitle="Semi-Product Orders" tabIcon="pantone-outline">
+        <nb-tab tabTitle="Semi-Product Orders" tabIcon="pantone-outline" responsive>
           <ngx-semi-product-order-tab
             [productionOrderId]="productionOrderId"
             (reserveEmitter)="onReserveSemiProduct($event)"
@@ -97,13 +97,13 @@
             (canAssembleEmitter)="canAssemble = $event">
           </ngx-semi-product-order-tab>
         </nb-tab>
-        <nb-tab tabTitle="Purchase Requisitions" tabIcon="pricetags-outline">
+        <nb-tab tabTitle="Purchase Requisitions" tabIcon="pricetags-outline" responsive>
           <ngx-purchase-requisition-tab
             [productionOrderId]="productionOrderId"
             (addEmitter)="onAddToPurchaseOrder($event)">
           </ngx-purchase-requisition-tab>
         </nb-tab>
-        <nb-tab tabTitle="Semi-Product Reservations" tabIcon="edit-outline">
+        <nb-tab tabTitle="Semi-Product Reservations" tabIcon="edit-outline" responsive>
           <ngx-semi-product-reservation-tab
             [productionOrderId]="productionOrderId">
           </ngx-semi-product-reservation-tab>
