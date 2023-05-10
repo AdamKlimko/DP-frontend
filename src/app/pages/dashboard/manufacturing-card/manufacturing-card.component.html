@@ -1,0 +1,30 @@
+<nb-reveal-card [showToggleButton]="false" [revealed]="revealed">
+  <nb-card-front>
+    <nb-card size="small">
+      <nb-card-header>
+        <nb-icon icon="settings-2-outline" pack="eva"></nb-icon>
+        Manufacturing
+      </nb-card-header>
+      <nb-list>
+        <nb-list-item>
+          <ngx-states-summary title="Production Order Counts" [states]="chart"></ngx-states-summary>
+        </nb-list-item>
+        <nb-list-item *ngFor="let item of summary" class="justify-content-between">
+          <span>{{ item.title }}:</span>
+          <b>{{ item.value }}</b>
+        </nb-list-item>
+      </nb-list>
+      <nb-icon class="toggle-icon" icon="chevron-up-outline" pack="eva" (click)="toggleView()"></nb-icon>
+    </nb-card>
+  </nb-card-front>
+  <nb-card-back>
+    <nb-card size="small">
+      <nb-card-header>
+        <nb-icon icon="settings-2-outline" pack="eva"></nb-icon>
+        Active Production Orders
+      </nb-card-header>
+      <ngx-pie-chart [inputData]="chart"></ngx-pie-chart>
+      <nb-icon class="toggle-icon" icon="chevron-down-outline" pack="eva" (click)="toggleView()"></nb-icon>
+    </nb-card>
+  </nb-card-back>
+</nb-reveal-card>

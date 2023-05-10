@@ -30,7 +30,7 @@ export const NB_CORE_PROVIDERS = [
           endpoint: '/auth/login',
           method: 'post',
           redirect: {
-            success: '/pages/',
+            success: '/pages/dashboard',
             failure: null,
           },
         },

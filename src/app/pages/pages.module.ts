@@ -8,9 +8,11 @@ import {StorageModule} from './storage/storage.module';
 import {ManufacturingModule} from './manufacturing/manufacturing.module';
 import {CustomerRelationsModule} from './customer-relations/customer-relations.module';
 import {NbMenuModule} from '@nebular/theme';
+import {DashboardModule} from './dashboard/dashboard.module';
 
 @NgModule({
     imports: [
+        DashboardModule,
         ProcurementModule,
         StorageModule,
         ManufacturingModule,

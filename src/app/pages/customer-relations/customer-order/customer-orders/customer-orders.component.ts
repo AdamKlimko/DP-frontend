@@ -15,7 +15,7 @@ import {State} from '../../../../@core/enums/state';
 })
 export class CustomerOrdersComponent extends PageBaseDirective<CustomerOrder> implements OnInit {
   displayedColumns: string[] = [
-    'state', 'priority', 'productionSeq', 'price', 'orderProfit', 'orderCost', 'orderDate', 'action',
+    'state', 'priority', 'productionSeq', 'customer', 'price', 'orderProfit', 'orderCost', 'orderDate', 'action',
   ];
   currencies = Object.values(Currency);
   priorities = Object.values(Priority);

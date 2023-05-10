@@ -19,7 +19,7 @@ export class CustomerOrderService {
                        state: any,
                        currency: any,
                        priority: any): Promise<Page<CustomerOrder>> {
-    const url = `${config.apiUrl}/customerOrders?page=${page + 1}${
+    const url = `${config.apiUrl}/customerOrders?populate=customer&page=${page + 1}${
       query ? '&productionSeq=' + query : ''}${
       state ? '&state=' + state : ''}${
       currency ? '&currency=' + currency : ''}${

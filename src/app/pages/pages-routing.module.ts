@@ -12,7 +12,9 @@ import {CustomerOrdersComponent} from './customer-relations/customer-order/custo
 import {ShipmentsComponent} from './customer-relations/shipment/shipments/shipments.component';
 import {SemiProductsComponent} from './storage/semi-product/semi-products/semi-products.component';
 import {ProductDetailComponent} from './storage/product/product-detail/product-detail.component';
-import {ProductionOrdersComponent} from './manufacturing/production-order/production-orders/production-orders.component';
+import {
+  ProductionOrdersComponent,
+} from './manufacturing/production-order/production-orders/production-orders.component';
 import {
   ProductionOrderDetailComponent,
 } from './manufacturing/production-order/production-order-detail/production-order-detail.component';
@@ -22,11 +24,16 @@ import {PurchaseRequisitionsComponent} from './procurement/purchase-requisition/
 import {ProductStorageItemsComponent} from './storage/product-storage-item/product-storage-items/product-storage-items.component';
 import {PurchaseOrderDetailComponent} from './procurement/purchase-order/purchase-order-detail/purchase-order-detail.component';
 import {ShipmentDetailComponent} from './customer-relations/shipment/shipment-detail/shipment-detail.component';
+import {DashboardComponent} from './dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
+    {
+      path: 'dashboard',
+      component: DashboardComponent,
+    },
     {
       path: 'purchase-orders',
       component: PurchaseOrdersComponent,

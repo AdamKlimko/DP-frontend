@@ -3,7 +3,6 @@ export enum State {
   RELEASED = 'released',
   PROCESSED = 'processed',
   CLOSED = 'closed',
-  CANCELED = 'canceled',
 }
 
 export function getNextState(currentState: State): State {
@@ -15,7 +14,6 @@ export function getNextState(currentState: State): State {
     case State.PROCESSED:
       return State.CLOSED;
     case State.CLOSED:
-    case State.CANCELED:
       return currentState; // can't transition from these states
     default:
       throw new Error(`Invalid state: ${currentState}`);

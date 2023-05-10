@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-xl-7">
+    <nb-card size="large">
+      <nb-card-header>
+        <nb-icon icon="shopping-bag-outline" pack="eva"></nb-icon>
+        Order Totals Preview
+      </nb-card-header>
+      <nb-card-body>
+        <ngx-chart-panel-header [titles]="['Purchase', 'Production', 'Customer']"
+                                [type]="customerOrderPeriod" (periodChange)="getCustomerOrderChartData($event)">
+        </ngx-chart-panel-header>
+        <ngx-customer-order-chart [ordersChartData]="ordersChartData"></ngx-customer-order-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-xl-5">
+    <nb-card size="large">
+      <nb-tabset fullWidth>
+        <nb-tab tabTitle="Profits">
+          <div class="chart-container">
+            <ngx-chart-panel-summary *ngIf="summaryData"
+                                     [summary]="summaryData.customerRelationsSummary"></ngx-chart-panel-summary>
+            <ngx-chart-panel-header [titles]="['Profit', 'Cost', 'Price']"
+                                    [type]="profitPeriod" (periodChange)="getProfitChartData($event)">
+            </ngx-chart-panel-header>
+            <ngx-bar-chart [profitChartData]="profitChartData"></ngx-bar-chart>
+          </div>
+        </nb-tab>
+        <nb-tab tabTitle="States" [lazyLoad]="true">
+          <div class="chart-container">
+
+            <h6 class="pt-2 pl-4">Customer Orders States:</h6>
+            <ngx-pie-chart [inputData]="dashboardData.customerOrderStates"></ngx-pie-chart>
+            <nb-list>
+              <nb-list-item>
+                <ngx-states-summary title="Customer Order Counts" [states]="dashboardData.customerOrderStates"></ngx-states-summary>
+              </nb-list-item>
+            </nb-list>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-5">
+    <ngx-manufacturing-card
+      *ngIf="summaryData"
+      [summary]="summaryData.manufacturingSummary"
+      [chart]="dashboardData.productionOrderStates"
+    ></ngx-manufacturing-card>
+  </div>
+
+  <div class="col-xl-7">
+    <ngx-procurement-card
+      *ngIf="summaryData"
+      [summary]="summaryData.procurementSummary"
+      [chartOrders]="dashboardData.purchaseOrderStates"
+      [chartRequisitions]="dashboardData.purchaseRequisitionStates">
+    </ngx-procurement-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <nb-card>
+      <nb-card-header>
+        <nb-icon icon="archive-outline" pack="eva"></nb-icon>
+        <nb-icon icon="cube-outline" pack="eva"></nb-icon>
+        Product Storage
+      </nb-card-header>
+      <ngx-chart-panel-summary *ngIf="summaryData" [summary]="summaryData.storageSummary.products"></ngx-chart-panel-summary>
+      <ngx-storage-list [inputData]="storageData.productStorage"></ngx-storage-list>
+    </nb-card>
+  </div>
+
+  <div class="col-xl-6">
+    <nb-card>
+      <nb-card-header>
+        <nb-icon icon="archive-outline" pack="eva"></nb-icon>
+        <nb-icon icon="pantone-outline" pack="eva"></nb-icon>
+        Semi-Product Storage
+      </nb-card-header>
+      <ngx-chart-panel-summary *ngIf="summaryData" [summary]="summaryData.storageSummary.semiProducts"></ngx-chart-panel-summary>
+      <ngx-storage-list [inputData]="storageData.semiProductStorage"></ngx-storage-list>
+    </nb-card>
+  </div>
+</div>

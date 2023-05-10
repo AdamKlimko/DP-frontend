@@ -173,8 +173,11 @@ export const DEFAULT_THEME = {
       lineWidth: '4',
 
       // first line
-      firstAreaGradFrom: baseThemeVariables.bg3,
-      firstAreaGradTo: baseThemeVariables.bg3,
+      firstLineGradFrom: 'rgb(190,190,190)',
+      firstLineGradTo: 'rgb(190,190,190)',
+
+      firstAreaGradFrom: 'rgba(145,145,145,0.2)',
+      firstAreaGradTo: 'rgba(225,0,0,0)',
       firstShadowLineDarkBg: 'rgba(0, 0, 0, 0)',
 
       // second line

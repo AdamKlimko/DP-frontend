@@ -1,0 +1,9 @@
+<p>{{title}}</p>
+<div class="d-flex justify-content-start">
+  <div *ngFor="let state of states" class="d-flex mr-2">
+    <span><div [class]="'state state-' + state.name">
+      {{state.name}}
+    </div></span>
+    <h6 class="pl-1">{{state.value}}</h6>
+  </div>
+</div>
