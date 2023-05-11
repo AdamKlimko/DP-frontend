@@ -42,6 +42,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }),
     ];
     this.dashboardService.fetchDashboardData();
+    this.dashboardService.fetchStorageData();
+    this.dashboardService.fetchCustomerOrderChart(this.customerOrderPeriod);
+    this.dashboardService.fetchProfitBarChart(this.profitPeriod);
   }
 
   getProfitChartData(period: string) {

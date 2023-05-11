@@ -8,8 +8,8 @@
 
   <nb-card-body>
 
-    <div class="d-flex justify-content-start mb-3">
-      <nb-form-field>
+    <div class="d-flex flex-wrap justify-content-start align-items-center mb-2">
+      <nb-form-field class="flex-shrink-0 mr-2 mb-1">
         <input type="text" nbInput placeholder="Production Sequence" [(ngModel)]="query" (keydown.enter)="getFirstPage()">
         <button nbPrefix nbButton ghost (click)="getFirstPage()">
           <nb-icon icon="search" pack="eva"></nb-icon>
@@ -18,20 +18,27 @@
           <nb-icon icon="close-outline"></nb-icon></button>
       </nb-form-field>
 
-      <nb-select placeholder="State" [(selected)]="state" class="ml-2">
+      <nb-select placeholder="State" [(selected)]="state" class="mr-2 mb-1">
         <nb-option [value]="undefined">None</nb-option>
         <nb-option *ngFor="let state of states" [value]="state">{{state}}</nb-option>
       </nb-select>
 
-      <nb-select placeholder="Priority" [(selected)]="priority" class="ml-2">
+      <nb-select placeholder="Priority" [(selected)]="priority" class="mr-2 mb-1">
         <nb-option [value]="undefined">None</nb-option>
         <nb-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</nb-option>
       </nb-select>
 
-      <nb-select placeholder="Currency" [(selected)]="currency" class="ml-2">
+      <nb-select placeholder="Currency" [(selected)]="currency" class="mr-2 mb-1">
         <nb-option [value]="undefined">None</nb-option>
         <nb-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</nb-option>
       </nb-select>
+
+      <nb-select placeholder="Sort By" [(selected)]="sortBy" class="mr-2 mb-1">
+        <nb-option [value]="undefined">None</nb-option>
+        <nb-option *ngFor="let sortBy of sortByOptions" [value]="sortBy.value">{{sortBy.title}}</nb-option>
+      </nb-select>
+
+      <nb-toggle [(checked)]="sortAsc" labelPosition="right" class="mb-1">{{sortAsc ? 'ASC' : 'DESC'}}</nb-toggle>
     </div>
 
     <ngx-customer-order-table

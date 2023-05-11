@@ -29,7 +29,7 @@ import {
   NbDatepickerModule, NbFormFieldModule,
   NbIconModule, NbInputModule, NbListModule,
   NbRadioModule,
-  NbSelectModule, NbTabsetModule,
+  NbSelectModule, NbTabsetModule, NbToggleModule,
 } from '@nebular/theme';
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -81,6 +81,7 @@ import {ManufacturingModule} from '../manufacturing/manufacturing.module';
     NbFormFieldModule,
     FormsModule,
     ManufacturingModule,
+    NbToggleModule,
   ],
 })
 export class CustomerRelationsModule { }

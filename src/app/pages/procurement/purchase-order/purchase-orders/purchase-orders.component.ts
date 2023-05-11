@@ -13,7 +13,7 @@ import {NbDialogService} from '@nebular/theme';
   styleUrls: ['./purchase-orders.component.scss'],
 })
 export class PurchaseOrdersComponent extends PageBaseDirective<PurchaseOrder> implements OnInit {
-  displayedColumns = ['state', 'priority', 'id', 'supplier', 'price', 'currency', 'wantedDeliveryDate', 'action'];
+  displayedColumns = ['state', 'priority', 'id', 'supplier', 'price', 'wantedDeliveryDate', 'action'];
   tableOptions: PurchaseOrderTableOptions = {detail: true, add: false, edit: false, remove: false};
   constructor(
     protected service: PurchaseOrderService,

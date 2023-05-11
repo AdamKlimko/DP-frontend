@@ -17,7 +17,7 @@ export class ProductOrderTabComponent extends PageBaseDirective<ProductOrder> im
   @Output() reserveEmitter = new EventEmitter<ProductOrder>();
   @Output() produceEmitter = new EventEmitter<ProductOrder>();
   displayedColumns = [
-    'state', 'id', 'partNumber', 'description', 'uom', 'size', 'storedQuantity', 'unitPrice', 'quantity', 'action',
+    'state', 'id', 'partNumber', 'description', 'uom', 'size', 'unitPrice', 'storedQuantity', 'quantity', 'action',
   ];
   constructor(
     protected service: ProductOrderService,

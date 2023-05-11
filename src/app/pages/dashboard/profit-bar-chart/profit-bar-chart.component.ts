@@ -103,7 +103,7 @@ export class ProfitBarChartComponent implements AfterViewInit, OnDestroy, OnChan
       ],
       series: [
         {
-          name: 'Price',
+          name: 'Sales',
           type: 'bar',
           barGap: 0,
           barWidth: '20%',
@@ -121,7 +121,7 @@ export class ProfitBarChartComponent implements AfterViewInit, OnDestroy, OnChan
           data: this.profitChartData.data[0],
         },
         {
-          name: 'Cost',
+          name: 'Costs',
           type: 'bar',
           barWidth: '20%',
           itemStyle: {

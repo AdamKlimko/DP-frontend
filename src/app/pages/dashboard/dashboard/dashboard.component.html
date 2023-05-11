@@ -5,7 +5,7 @@
         <nb-icon icon="shopping-bag-outline" pack="eva"></nb-icon>
         Order Totals Preview
       </nb-card-header>
-      <nb-card-body>
+      <nb-card-body class="p-0">
         <ngx-chart-panel-header [titles]="['Purchase', 'Production', 'Customer']"
                                 [type]="customerOrderPeriod" (periodChange)="getCustomerOrderChartData($event)">
         </ngx-chart-panel-header>
@@ -21,7 +21,7 @@
           <div class="chart-container">
             <ngx-chart-panel-summary *ngIf="summaryData"
                                      [summary]="summaryData.customerRelationsSummary"></ngx-chart-panel-summary>
-            <ngx-chart-panel-header [titles]="['Profit', 'Cost', 'Price']"
+            <ngx-chart-panel-header [titles]="['Profit', 'Costs', 'Sales']"
                                     [type]="profitPeriod" (periodChange)="getProfitChartData($event)">
             </ngx-chart-panel-header>
             <ngx-bar-chart [profitChartData]="profitChartData"></ngx-bar-chart>

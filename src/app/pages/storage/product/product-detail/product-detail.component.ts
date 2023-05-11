@@ -17,7 +17,7 @@ import {Subscription} from 'rxjs';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
-  displayedColumns = ['id', 'partNumber', 'manufacturer', 'uom', 'quantity', 'action'];
+  displayedColumns = ['id', 'partNumber', 'description', 'manufacturer', 'uom', 'quantity', 'action'];
   tableOptions = { edit: false, remove: true};
   sub: Subscription;
   constructor(

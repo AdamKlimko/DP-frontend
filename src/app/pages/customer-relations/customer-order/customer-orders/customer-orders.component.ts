@@ -8,6 +8,13 @@ import {Currency} from '../../../../@core/enums/currency';
 import {Priority} from '../../../../@core/enums/priority';
 import {State} from '../../../../@core/enums/state';
 
+const sortByOptions = [
+  {title: 'Order Date', value: 'orderDate'},
+  {title: 'Price', value: 'price'},
+  {title: 'Cost', value: 'orderCost'},
+  {title: 'Profit', value: 'orderProfit'},
+];
+
 @Component({
   selector: 'ngx-customer-orders',
   templateUrl: './customer-orders.component.html',
@@ -15,14 +22,16 @@ import {State} from '../../../../@core/enums/state';
 })
 export class CustomerOrdersComponent extends PageBaseDirective<CustomerOrder> implements OnInit {
   displayedColumns: string[] = [
-    'state', 'priority', 'productionSeq', 'customer', 'price', 'orderProfit', 'orderCost', 'orderDate', 'action',
+    'state', 'priority', 'productionSeq', 'customer', 'price', 'orderCost', 'orderProfit', 'orderDate', 'action',
   ];
+  sortByOptions: { title: string, value: string }[] = sortByOptions;
   currencies = Object.values(Currency);
   priorities = Object.values(Priority);
   states = Object.values(State);
   state = undefined;
   currency = undefined;
   priority = undefined;
+  sortAsc = true;
 
   constructor (
     protected service: CustomerOrderService,
@@ -36,7 +45,8 @@ export class CustomerOrdersComponent extends PageBaseDirective<CustomerOrder> im
   }
 
   protected getPage(page: number) {
-    this.service.getPage(page, this.query, this.sortBy, this.state, this.currency, this.priority).then(res => {
+    const sortBy = this.sortAsc ? this.sortBy : '-' + this.sortBy;
+    this.service.getPage(page, this.query, sortBy, this.state, this.currency, this.priority).then(res => {
       this.data = res.results;
       this.length = res.totalResults;
       this.pageIndex = page;
