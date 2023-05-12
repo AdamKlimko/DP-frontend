@@ -7,7 +7,7 @@ ERP systému Matador-ERP. Aplikácia je súčasťou diplomovej práce „Inovat�
 1. V ľubovoľnom adresári spustíme pomocou príkazového riadku príkaz na naklonovanie repozitáru
 
 ```bash
-git clone https://github.com/AdamKlimko/DP-backend.git
+git clone https://github.com/AdamKlimko/DP-frontend.git
 ```
 
 2. V novovzniknutom adresári spustíme nasledovné príkazy na nainštalovanie potrebných dependencies.
