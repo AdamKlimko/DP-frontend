@@ -16,3 +16,9 @@ git clone https://github.com/AdamKlimko/DP-frontend.git
 npm update --force
 npm install --force
 ```
+
+3. Spustíme Angular aplikáciu
+
+```bash
+npm start
+```
